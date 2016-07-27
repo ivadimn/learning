@@ -38,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mi_scale_id:
                 scaleAnimation();
                 return true;
+            case R.id.mi_rotate_id:
+                rotateAnimation();
+                return true;
+            case R.id.mi_alpha_id:
+                complexAnimation();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -47,5 +53,36 @@ public class MainActivity extends AppCompatActivity {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.scale);
         textView.startAnimation(anim);
 
+    }
+
+    private void rotateAnimation() {
+        float dest = 360f;
+        ObjectAnimator animation1 = ObjectAnimator.ofFloat(textView,
+                "rotation", dest);
+        animation1.setDuration(2000);
+        animation1.start();
+    }
+
+    private void complexAnimation() {
+        ObjectAnimator fadeOut = ObjectAnimator.ofFloat(textView, "alpha",
+                0f);
+        fadeOut.setDuration(2000);
+        ObjectAnimator mover = ObjectAnimator.ofFloat(textView,
+                "translationX", -500f, 0f);
+        mover.setDuration(2000);
+        ObjectAnimator fadeIn = ObjectAnimator.ofFloat(textView, "alpha",
+                0f, 1f);
+        fadeIn.setDuration(2000);
+        AnimatorSet animatorSet = new AnimatorSet();
+
+        animatorSet.play(mover).with(fadeIn).after(fadeOut);
+        animatorSet.start();
+    }
+
+    private void otherAnimation() {
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(this,
+                R.anim.property_animator);
+        set.setTarget(textView);
+        set.start();
     }
 }
