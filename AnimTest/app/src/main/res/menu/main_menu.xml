@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/mi_scale_id"
+        android:title="@string/anim_scale_title"
+        app:showAsAction="collapseActionView"/>
+    <item android:id="@+id/mi_rotate_id"
+        android:title="@string/anim_rotate_title"
+        app:showAsAction="collapseActionView"/>
+    <item android:id="@+id/mi_translate_id"
+        android:title="@string/anim_translate_title"
+        app:showAsAction="collapseActionView"/>
+    <item android:id="@+id/mi_alpha_id"
+        android:title="@string/anim_alpha_title"
+        app:showAsAction="collapseActionView"/>
+</menu>
