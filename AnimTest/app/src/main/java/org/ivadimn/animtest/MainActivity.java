@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -44,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mi_alpha_id:
                 complexAnimation();
                 return true;
+            case R.id.mi_translate_id:
+                otherAnimation();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -57,10 +61,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void rotateAnimation() {
         float dest = 360f;
-        ObjectAnimator animation1 = ObjectAnimator.ofFloat(textView,
-                "rotation", dest);
-        animation1.setDuration(2000);
-        animation1.start();
+       // ObjectAnimator animation1 = ObjectAnimator.ofFloat(textView,
+         //       "rotation", dest);
+        //animation1.setDuration(2000);
+        ObjectAnimator animColor = ObjectAnimator.ofArgb(textView, "textColor", 0xFFFFF0, 0xFFFFFF);
+        animColor.setDuration(5000);
+         //AnimatorSet set = new AnimatorSet();
+        //set.play(animation1).with(animColor);
+        animColor.start();
     }
 
     private void complexAnimation() {
@@ -81,8 +89,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void otherAnimation() {
         AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(this,
-                R.anim.property_animator);
+                R.anim.change_color);
         set.setTarget(textView);
         set.start();
+
     }
 }
