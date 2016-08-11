@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Experiment</string>
+    <string name="single_value">Единственный выбор</string>
+    <string name="multi_value">Множественный выбор</string>
+    <string name="word_value">Слово</string>
+    <string name="radio_value">Radio Buttons</string>
+    <string name="about_text">
+    У лукоморья дуб зелёный;\n
+    Златая цепь на дубе том:\n
+    И днём и ночью <b>кот учёный</b>\n
+    Всё ходит по цепи кругом;\n
+    Идёт <b>направо</b> - песнь заводит,\n
+    <b>Налево</b> - сказку говорит.</string>
+</resources>
