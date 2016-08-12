@@ -40,14 +40,16 @@ public class MainActivity extends AppCompatActivity {
                     fragmentTransaction.replace(R.id.fragment_container, sgFragment);
                 break;
             case R.id.btn_multi_value:
-                Intent intent = new Intent(this, MultiActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(this, MultiActivity.class);
+                //startActivity(intent);
                 /*if (!wasFragment) {
                     fragmentTransaction.add(R.id.fragment_container, mtFragment);
                     wasFragment = true;
                 }
                 else
                     fragmentTransaction.replace(R.id.fragment_container, mtFragment);*/
+                SimpleDialogFragment sdf = new SimpleDialogFragment();
+                sdf.show(getSupportFragmentManager(), "MULTI_VALUE");
                 break;
             case R.id.btn_word_value:
                 if (!wasFragment) {
