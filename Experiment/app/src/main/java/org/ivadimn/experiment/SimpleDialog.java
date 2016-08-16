@@ -1,5 +1,6 @@
 package org.ivadimn.experiment;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialog;
@@ -17,7 +18,8 @@ public class SimpleDialog extends AppCompatDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog);
-        setTitle("Dialog");
+        setTitle("");
+
 
     }
 
