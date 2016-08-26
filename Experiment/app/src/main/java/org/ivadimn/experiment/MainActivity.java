@@ -2,6 +2,7 @@ package org.ivadimn.experiment;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
     WordFragment wdFragment;
     RadioFragment rfFragment;
     boolean wasFragment;
+
+    TypedArray colors;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         rfFragment = new RadioFragment();
         rfFragment.setList(new String[] {"один", "два", "три", "четыре"});
         wasFragment = false;
+        colors = getResources().obtainTypedArray(R.array.colors);
+        int c = colors.getColor(0, 0);
     }
 
 
