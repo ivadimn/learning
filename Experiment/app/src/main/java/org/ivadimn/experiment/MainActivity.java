@@ -54,8 +54,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                     fragmentTransaction.replace(R.id.fragment_container, mtFragment);*/
-                SimpleDialogFragment sdf = new SimpleDialogFragment();
-                sdf.show(getSupportFragmentManager(), "MULTI_VALUE");
+                //SimpleDialogFragment sdf = new SimpleDialogFragment();
+                //sdf.show(getSupportFragmentManager(), "MULTI_VALUE");
+                Intent intent = new Intent(this, ObjectActivity.class);
+                startActivity(intent);
+
                 break;
             case R.id.btn_word_value:
                 if (!wasFragment) {
