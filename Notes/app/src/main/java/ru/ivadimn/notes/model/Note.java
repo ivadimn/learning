@@ -24,6 +24,7 @@ public class Note implements Serializable, Parcelable {
 
 
     protected Note(Parcel in) {
+
         title = in.readString();
         content = in.readString();
     }
