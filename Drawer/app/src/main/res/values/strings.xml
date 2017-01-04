@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Drawer</string>
 
+    <string name="snackbar_text">Wi-Fi выключен</string>
+    <string name="snackbar_action">Закрыть</string>
+    <string name="snackbar_toast_action">Панель Snack Bar закрыта</string>
+
     <string-array name="cats_array_ru">
         <item>Васька</item>
         <item>Барсик</item>
