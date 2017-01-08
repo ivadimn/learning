@@ -3,84 +3,84 @@
 
     <item
         is-multidex="true"
-        jar="E:\git\Design-Demo-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.1"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="E:\git\Design-Demo-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-22.2.1_3ea03672816a294be6f0a0aa525b02677a8a2311\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\git\Design-Demo-master\app\build\intermediates\exploded-aar\com.android.support\design\22.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.1"
-        sha1="1821601ddbec5ff125653097812823388700af74">
-        <dex dex="E:\git\Design-Demo-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-22.2.1_491c51cac2a061f119e30e62340eca5ebd8e0fe9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\git\Design-Demo-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.1"
-        sha1="ab4333cb0370cc7265b00a0eae32eeb13d0fb398">
-        <dex dex="E:\git\Design-Demo-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_6bca67f87942e8bb28546395c0ed529aeb9b1d10\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\git\Design-Demo-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.1"
-        sha1="d20b01e22aaa551b206954dd2ad3797e8c661ba4">
-        <dex dex="E:\git\Design-Demo-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_293cb7e2f893a2f94009d4ec8adb589053355653\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\android-sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.1"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="E:\git\Design-Demo-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-22.2.1_b9f7896e5f20da7613139df6fb7888bedec93d6c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\git\Design-Demo-master\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.1"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="E:\git\Design-Demo-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-22.2.1_3a55c3e4579a2093844dacb122d6dad8073770c2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\git\Design-Demo-master\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.2.1\jars\classes.jar"
+        jar="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="22.0.1"
         sha1="3abb4b88f5a8a0584a9b01d3170d7165f12f8588">
-        <dex dex="E:\git\Design-Demo-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-22.2.1_1042e3d57204583c441039d8fd9e087eb76f2afa\classes.dex" />
+        <dex dex="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-22.2.1_3bc8ace3443584c9d34d89effc74932b630d72c4/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="E:\git\Design-Demo-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jar="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="22.0.1"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="E:\git\Design-Demo-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-22.2.1_44c8f36aca4d34a32f7cc5129c85c4959e1975ad\classes.dex" />
+        sha1="8e32b82a00f0122573e1d36105767a5ba8cf3ddc">
+        <dex dex="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_31abc7ae1ab0f0c56226da72d9955d76e716e2cd/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="E:\git\Design-Demo-master\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.2.1\jars\classes.jar"
+        jar="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="9091cd21e978fc8daabe9cdbe4013d38652d0342">
+        <dex dex="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_7461a10ebe94daf2a1ec9cdc560056aa636eebb0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="22.0.1"
         sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
-        <dex dex="E:\git\Design-Demo-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-22.2.1_1508dbc488fa7eaf40f952468a48da3f50a03469\classes.dex" />
+        <dex dex="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-22.2.1_8ff142366a8a7cf0c58397990acebe5cf7f09b2f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-22.2.1_a091d833054ab3ef95ef227c83b566cd7bebf8c3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vadim/AndroidSDK/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-22.2.1_24a7d3f23b2f6cbc754e4ac7b3c5b216d0be5edc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-22.2.1_10cb7eca1fe897edfeffe17de3e6906ee57d6c53/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="1821601ddbec5ff125653097812823388700af74">
+        <dex dex="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-22.2.1_317ae9913bee44ec25a1ab980382b92d06120c76/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/home/vadim/git/learning/Design-Demo-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-22.2.1_d56c824334db5db750809fd296053b18875134a1/classes.dex" />
     </item>
 
 </items>
