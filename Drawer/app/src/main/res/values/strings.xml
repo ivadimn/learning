@@ -15,4 +15,15 @@
         <item>Бублик (у Экслера)</item>
         <item>Дорофей (у Димона)</item>
     </string-array>
+
+    <string-array name="cats_array">
+        <item>vaska</item>
+        <item>barsik</item>
+        <item>murzik</item>
+        <item>ryzhik</item>
+        <item>begemot</item>
+        <item>matroskin</item>
+        <item>bublik</item>
+        <item>dorofey</item>
+    </string-array>
 </resources>
