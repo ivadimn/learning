@@ -5,6 +5,17 @@
     <string name="snackbar_action">Закрыть</string>
     <string name="snackbar_toast_action">Панель Snack Bar закрыта</string>
 
+
+    <string name="vaska">Васька</string>
+    <string name="barsik">Барсик</string>
+    <string name="murzik">Мурзик</string>
+    <string name="ryzhik">Рыжик</string>
+    <string name="begemot">Кот Бегемот</string>
+    <string name="matroskin">Кот Матроскин</string>
+    <string name="bublik">Бублик (у Экслера)</string>
+    <string name="dorofey">Дорофей (у Димона)</string>
+
+
     <string-array name="cats_array_ru">
         <item>Васька</item>
         <item>Барсик</item>
@@ -26,4 +37,8 @@
         <item>bublik</item>
         <item>dorofey</item>
     </string-array>
+    <string name="title_activity_main_d">MainD</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

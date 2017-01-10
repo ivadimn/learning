@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/vaska_id"
+            android:checked="true"
+            android:title="@string/vaska"
+        />
+        <item
+            android:id="@+id/barsik_id"
+            android:title="@string/barsik"
+            />
+        <item
+            android:id="@+id/murzik_id"
+            android:title="@string/murzik"
+            />
+        <item
+            android:id="@+id/ryzhik_id"
+            android:title="@string/ryzhik"
+            />
+        <item
+            android:id="@+id/begemot_id"
+            android:title="@string/begemot"
+            />
+        <item
+            android:id="@+id/matroskin_id"
+            android:title="@string/matroskin"
+            />
+        <item
+            android:id="@+id/bublik_id"
+            android:title="@string/bublik"
+            />
+        <item
+            android:id="@+id/dorofey_id"
+            android:title="@string/dorofey"
+            />
+    </group>
+</menu>
