@@ -44,4 +44,10 @@
 
     <string name="user_name">Имя:</string>
     <string name="message">Текст сообщения:</string>
+
+    <!-- Menu items -->
+    <string name="menu_itam_add">Add</string>
+    <string name="menu_item_edit">Edit</string>
+    <string name="menu_item_del">Delete</string>
+    <string name="title_activity_basik">ActivityBasik</string>
 </resources>

@@ -17,6 +17,7 @@ public class ActivityC extends AppCompatActivity implements NavigationView.OnNav
     public static final String TAG = "ACTIVITY_C";
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    ActionBar actionBar;
     FragmentList fragmentList  = new FragmentList();
     FragmentTwo fragmentTwo = new FragmentTwo();
 
@@ -28,8 +29,9 @@ public class ActivityC extends AppCompatActivity implements NavigationView.OnNav
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_id);
         navigationView = (NavigationView) findViewById(R.id.navigation_id);
         navigationView.setNavigationItemSelectedListener(this);
+
         // Включаем значок у ActionBar для управления выдвижной панелью щелчком
-        ActionBar actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -55,11 +57,14 @@ public class ActivityC extends AppCompatActivity implements NavigationView.OnNav
         switch(item.getItemId()) {
             case R.id.barsik_id:
                showFragment(fragmentList);
-                break;
+                setTitle(item.getTitle());
+               break;
             case R.id.begemot_id:
                 showFragment(fragmentTwo);
+                setTitle(item.getTitle());
                 break;
         }
+        item.setChecked(true);
         return true;
     }
 
@@ -69,5 +74,13 @@ public class ActivityC extends AppCompatActivity implements NavigationView.OnNav
         ft.commit();
         drawerLayout.closeDrawer(navigationView);
 
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        if (actionBar != null)
+            actionBar.setTitle(title);
+        else
+            super.setTitle(title);
     }
 }
