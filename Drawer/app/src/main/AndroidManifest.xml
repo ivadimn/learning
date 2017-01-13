@@ -21,7 +21,8 @@
         <activity
             android:name=".ActivityC"
             android:label="@string/title_activity_e"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ActivityF"></activity>
     </application>
 
 </manifest>
