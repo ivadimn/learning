@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 public class ActivityC extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,10 +33,12 @@ public class ActivityC extends AppCompatActivity implements NavigationView.OnNav
 
         // Включаем значок у ActionBar для управления выдвижной панелью щелчком
         actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         Log.d(TAG, "Before start fragment");
+
 
     }
 
@@ -83,4 +86,26 @@ public class ActivityC extends AppCompatActivity implements NavigationView.OnNav
         else
             super.setTitle(title);
     }
+
+    private DrawerLayout.DrawerListener drawerListener = new DrawerLayout.DrawerListener() {
+        @Override
+        public void onDrawerSlide(View drawerView, float slideOffset) {
+
+        }
+
+        @Override
+        public void onDrawerOpened(View drawerView) {
+
+        }
+
+        @Override
+        public void onDrawerClosed(View drawerView) {
+
+        }
+
+        @Override
+        public void onDrawerStateChanged(int newState) {
+
+        }
+    };
 }

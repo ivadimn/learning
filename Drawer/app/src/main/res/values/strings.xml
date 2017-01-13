@@ -50,4 +50,10 @@
     <string name="menu_item_edit">Edit</string>
     <string name="menu_item_del">Delete</string>
     <string name="title_activity_basik">ActivityBasik</string>
+    <string name="title_activity_e">ActivityE</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
