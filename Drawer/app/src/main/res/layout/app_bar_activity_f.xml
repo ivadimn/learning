@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/coordinator_f"
     android:fitsSystemWindows="true"
     tools:context=".ActivityF"
     >
@@ -25,5 +26,7 @@
 
 
     </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_activity_f"/>
 
 </android.support.design.widget.CoordinatorLayout>
