@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/windowBackground"
-    tools:context="ru.ivadimn.notes.ui.MainActivity">
+    tools:context="ru.ivadimn.notes.ui.activities.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
