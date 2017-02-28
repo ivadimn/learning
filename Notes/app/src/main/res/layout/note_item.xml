@@ -16,59 +16,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-        <LinearLayout
-            android:id="@+id/ll_note_text_id"
-            android:orientation="vertical"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/view_padding"
-                    android:layout_marginLeft="@dimen/view_margin"
-                    android:layout_marginRight="@dimen/view_margin"
-                    android:textStyle="bold"
-                    android:id="@+id/tv_title_id"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/view_padding"
-                    android:layout_marginLeft="@dimen/view_margin"
-                    android:layout_marginRight="@dimen/view_margin"
-                    android:id="@+id/tv_note_id"
-                    />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:id="@+id/lt_time_box_id"
-                android:background="@color/background_color">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/view_padding"
-                    android:layout_marginLeft="@dimen/view_margin"
-                    android:layout_marginRight="@dimen/view_margin"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="21.06.2016"
-                    android:textColor="@color/colorYellow"
-                    android:id="@+id/tv_datetime_id" />
-
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_padding"
+            android:layout_marginLeft="@dimen/view_margin"
+            android:layout_marginRight="@dimen/view_margin"
+            android:textStyle="bold"
+            android:id="@+id/tv_title_id"
+          />
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title_id"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/view_padding"
+            android:layout_marginLeft="@dimen/view_margin"
+            android:layout_marginRight="@dimen/view_margin"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="21.06.2016"
+            android:textColor="@color/colorYellow"
+            android:background="@color/background_color"
+            android:id="@+id/tv_datetime_id" />
 
     </RelativeLayout>
 

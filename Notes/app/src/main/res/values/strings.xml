@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Notes</string>
     <string name="header">Notes</string>
+
+    <!-- menu captions-->
+    <string name="menu_item_add">Add</string>
+    <string name="menu_item_del">Delete</string>
+    <string name="menu_item_edit">Edit</string>
+
+
+
 </resources>

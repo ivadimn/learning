@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Заметки</string>
     <string name="header">Заметки</string>
+
+    <!-- menu captions-->
+    <string name="menu_item_add">Добавить</string>
+    <string name="menu_item_del">Удалить</string>
+    <string name="menu_item_edit">Изменить</string>
 </resources>
