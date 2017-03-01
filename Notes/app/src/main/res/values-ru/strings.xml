@@ -6,4 +6,9 @@
     <string name="menu_item_add">Добавить</string>
     <string name="menu_item_del">Удалить</string>
     <string name="menu_item_edit">Изменить</string>
+    <string name="menu_item_clear">Очистить</string>
+
+    <string name="title">Заголовок</string>
+    <string name="text">Текст</string>
+
 </resources>

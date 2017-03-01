@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+            <EditText
+                android:id="@+id/edit_title_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/text_view_elevation"
+                android:hint="@string/title"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+            <EditText
+                android:id="@+id/edit_text_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="@dimen/text_view_elevation"
+                android:gravity="start"
+                android:hint="@string/text"
+                />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:id="@+id/fab_edit_id"
+        android:layout_gravity="end|bottom"
+        app:backgroundTint="@color/background_color"
+        app:fabSize="mini"
+        android:src="@android:drawable/ic_menu_save"
+        />
+</android.support.design.widget.CoordinatorLayout>

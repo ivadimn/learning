@@ -5,17 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/windowBackground"
     tools:context="ru.ivadimn.notes.ui.activities.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
+    <ListView
         android:id="@+id/list_notes_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:divider="@color/card_background_color"
+        android:dividerHeight="@dimen/elevation_size"
         >
 
-    </android.support.v7.widget.RecyclerView>
+    </ListView>
 </RelativeLayout>

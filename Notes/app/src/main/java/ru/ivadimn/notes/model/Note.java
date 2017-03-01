@@ -16,6 +16,10 @@ import java.util.GregorianCalendar;
 
 public class Note implements Serializable, Parcelable {
 
+    public static final String TITLE = "TITLE";
+    public static final String TEXT = "TEXT";
+    public static final String INDEX = "INDEX";
+
     private String title;
     private String content;
     private long moment;

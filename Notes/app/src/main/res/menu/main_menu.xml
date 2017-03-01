@@ -9,10 +9,10 @@
         android:title="@string/menu_item_add"
         />
 
-    <item android:id="@+id/mi_notedelete_id"
+    <item android:id="@+id/mi_clear_id"
         android:orderInCategory="3"
-        app:showAsAction="ifRoom"
-        android:icon="@android:drawable/ic_menu_delete"
+        app:showAsAction="never"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
         android:title="@string/menu_item_del"
         />
 

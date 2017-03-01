@@ -6,7 +6,10 @@
     <string name="menu_item_add">Add</string>
     <string name="menu_item_del">Delete</string>
     <string name="menu_item_edit">Edit</string>
+    <string name="menu_item_clear">Clear</string>
 
+    <string name="title">Title</string>
+    <string name="text">Text</string>
 
 
 </resources>

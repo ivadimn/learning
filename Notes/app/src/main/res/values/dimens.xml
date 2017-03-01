@@ -8,6 +8,7 @@
     <dimen name="view_margin">8dp</dimen>
     <dimen name="view_padding">4dp</dimen>
     <dimen name="button_padding">2dp</dimen>
-    <dimen name="stroke_width">2dp</dimen>
+    <dimen name="corner_radius">2dp</dimen>
     <dimen name="elevation_size">8dp</dimen>
+    <dimen name="text_view_elevation">8dp</dimen>
 </resources>
