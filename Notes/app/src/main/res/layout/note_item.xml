@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/view_padding"
     android:paddingBottom="@dimen/view_padding"
-
     card_view:cardCornerRadius="@dimen/corner_radius"
     card_view:cardBackgroundColor="@color/card_background_color"
     card_view:cardElevation="@dimen/elevation_size"

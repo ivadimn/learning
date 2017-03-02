@@ -1,7 +1,10 @@
 package ru.ivadimn.notes.ui.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +27,16 @@ public class NotesAdapter1 extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
     private List<Note> notes;
+    private int selectedColor;
+    private int fonColor;
+
 
     public NotesAdapter1(Context context, List<Note> notes) {
         this.context = context;
         this.inflater = LayoutInflater.from(context);
         this.notes = notes;
+        selectedColor = context.getColor(R.color.colorAccent);
+        fonColor = context.getColor(R.color.card_background_color);
     }
 
     @Override
@@ -65,6 +73,10 @@ public class NotesAdapter1 extends BaseAdapter {
 
         holder.tvTitle.setText(note.getTitle());
         holder.tvDateTime.setText(note.getMomentString());
+        if (note.isChecked())
+            v.setBackgroundColor(selectedColor);
+        else
+            v.setBackgroundColor(fonColor);
         return v;
     }
 

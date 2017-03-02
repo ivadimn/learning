@@ -13,7 +13,7 @@
         android:orderInCategory="3"
         app:showAsAction="never"
         android:icon="@android:drawable/ic_menu_close_clear_cancel"
-        android:title="@string/menu_item_del"
+        android:title="@string/menu_item_clear"
         />
 
 </menu>

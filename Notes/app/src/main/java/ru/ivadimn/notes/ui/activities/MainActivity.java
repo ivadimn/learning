@@ -3,10 +3,14 @@ package ru.ivadimn.notes.ui.activities;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -32,8 +36,13 @@ import ru.ivadimn.notes.model.Note;
 import ru.ivadimn.notes.ui.adapters.NotesAdapter;
 import ru.ivadimn.notes.ui.adapters.NotesAdapter1;
 
+
+/**
+ * На стили к сожалению время не хватило .....
+ */
 public class MainActivity extends AppCompatActivity implements AbsListView.MultiChoiceModeListener {
 
+    public static final String TAG = "MAIN_ACTIVITY";
     private static final int DATA_ADDED = 1;
     private static final int DATA_CHANGED = 2;
 
@@ -41,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
     private ListView listView;
     private NotesAdapter1 adapter;
     private App app;
+    private int checkedPosition = -1;
 
 
     @Override
@@ -56,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void initViews() {
         listView = (ListView) findViewById(R.id.list_notes_id);
 
@@ -130,6 +141,18 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
         adapter.notifyDataSetChanged();
     }
 
+    private void deleteNotes() {
+        int chCount = listView.getCheckedItemCount();
+        SparseBooleanArray spa = listView.getCheckedItemPositions();
+        List<Note> tmp = new ArrayList<>();
+        for (int i = 0; i < spa.size(); i++) {
+            if (spa.valueAt(i))
+                tmp.add(notes.get(spa.keyAt(i)));
+        }
+        notes.removeAll(tmp);
+        adapter.notifyDataSetChanged();
+    }
+
     private void clearNotes() {
         notes.clear();
         adapter.notifyDataSetChanged();
@@ -148,6 +171,7 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
             note.setTitle(data.getStringExtra(Note.TITLE));
             note.setContent(data.getStringExtra(Note.TEXT));
             note.setMoment(new Date());
+            note.setChecked(false);
             adapter.notifyDataSetChanged();
         }
 
@@ -156,17 +180,26 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
     @Override
     protected void onStop() {
         super.onStop();
+        clearChecked();
         app.saveNotes(notes);
 
     }
 
     @Override
-    public void onItemCheckedStateChanged(ActionMode actionMode, int i, long l, boolean b) {
-
+    public void onItemCheckedStateChanged(ActionMode actionMode, int position, long l, boolean b) {
+        Log.d(TAG,  position + " is checked = " + b);
+        notes.get(position).setChecked(b);
+        Menu menu = actionMode.getMenu();
+        if(listView.getCheckedItemCount() > 1)
+            menu.setGroupVisible(R.id.menu_group_edit, false);
+        else
+            menu.setGroupVisible(R.id.menu_group_edit, true);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        Log.d(TAG,  " Create action mode ");
         MenuInflater inflater = actionMode.getMenuInflater();
         inflater.inflate(R.menu.context_menu, menu);
         return true;
@@ -174,17 +207,44 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
 
     @Override
     public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        Log.d(TAG,  " Prepare action mode ");
         return false;
     }
 
     @Override
-    public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+    public boolean onActionItemClicked(ActionMode actionMode, MenuItem item) {
+        Log.d(TAG,  " OnActionItemClicked ");
+        switch (item.getItemId()) {
+            case R.id.mi_noteedit_id:
+                SparseBooleanArray spa = listView.getCheckedItemPositions();
+                for (int i = 0; i < spa.size(); i++) {
+                    if (spa.valueAt(i)) {
+                        editNote(spa.keyAt(i));
+                        listView.setItemChecked(spa.keyAt(i), false);
+                        break;
+                    }
+                }
+                break;
+            case R.id.mi_notedelete_id:
+                deleteNotes();
+                break;
+            default:
+                return super.onContextItemSelected(item);
+        }
         actionMode.finish();
-        return false;
+        return true;
     }
 
     @Override
     public void onDestroyActionMode(ActionMode actionMode) {
 
     }
+
+    private void clearChecked() {
+        for (int i = 0; i < notes.size(); i++) {
+            notes.get(i).setChecked(false);
+        }
+    }
+
+
 }

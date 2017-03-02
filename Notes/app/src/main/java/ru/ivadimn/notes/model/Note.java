@@ -23,6 +23,7 @@ public class Note implements Serializable, Parcelable {
     private String title;
     private String content;
     private long moment;
+    private boolean checked = false;
 
     public static final Calendar CALENDAR = new GregorianCalendar();
     private final DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
@@ -94,5 +95,13 @@ public class Note implements Serializable, Parcelable {
 
     public void setMoment(Date dateTime) {
         this.moment = dateTime.getTime();
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }
