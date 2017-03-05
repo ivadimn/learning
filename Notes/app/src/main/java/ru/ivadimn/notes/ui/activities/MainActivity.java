@@ -32,6 +32,8 @@ import java.util.List;
 
 import ru.ivadimn.notes.App;
 import ru.ivadimn.notes.R;
+import ru.ivadimn.notes.database.DataManage;
+import ru.ivadimn.notes.database.Values;
 import ru.ivadimn.notes.model.Note;
 import ru.ivadimn.notes.ui.adapters.NotesAdapter;
 import ru.ivadimn.notes.ui.adapters.NotesAdapter1;
@@ -39,6 +41,8 @@ import ru.ivadimn.notes.ui.adapters.NotesAdapter1;
 
 /**
  * На стили к сожалению время не хватило .....
+ * Пока используется ручное обращение к базе данных.....
+ * c DbFlow пока не разобрался - необходимо время
  */
 public class MainActivity extends AppCompatActivity implements AbsListView.MultiChoiceModeListener {
 
@@ -51,16 +55,26 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
     private NotesAdapter1 adapter;
     private App app;
     private int checkedPosition = -1;
+    DataManage dataManage = new DataManage();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        app = (App) getApplication();
+        List<Values> values = dataManage.selectAll(Note.shema);
+        notes = new ArrayList<>();
+        for (int i = 0; i < values.size(); i++) {
+            Note note = new Note();
+            note.setValues(values.get(i));
+            notes.add(note);
+        }
+        Log.d(TAG, "onCreate notes created");
+
+        /*app = (App) getApplication();
         notes = app.getNotes();
         if (notes == null)
-            notes = new ArrayList<>();
+            notes = new ArrayList<>();*/
         initViews();
 
 
@@ -163,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
         if (requestCode == DATA_ADDED && resultCode == RESULT_OK) {
             Note note = new Note(data.getStringExtra(Note.TITLE), data.getStringExtra(Note.TEXT));
             notes.add(note);
+            dataManage.insert(note);
             adapter.notifyDataSetChanged();
         } else if (requestCode == DATA_CHANGED && resultCode == RESULT_OK) {
             int index = data.getIntExtra(Note.INDEX, -1);
@@ -172,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
             note.setContent(data.getStringExtra(Note.TEXT));
             note.setMoment(new Date());
             note.setChecked(false);
+            dataManage.update(note);
             adapter.notifyDataSetChanged();
         }
 
@@ -181,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
     protected void onStop() {
         super.onStop();
         clearChecked();
-        app.saveNotes(notes);
+        //app.saveNotes(notes);
 
     }
 

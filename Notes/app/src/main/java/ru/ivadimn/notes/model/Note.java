@@ -10,11 +10,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import ru.ivadimn.notes.database.DbEntity;
+import ru.ivadimn.notes.database.DbShema;
+import ru.ivadimn.notes.database.Values;
+
 /**
  * Created by vadim on 12.10.16.
  */
 
-public class Note implements Serializable, Parcelable {
+public class Note extends DbEntity implements Parcelable {
 
     public static final String TITLE = "TITLE";
     public static final String TEXT = "TEXT";
@@ -27,6 +31,10 @@ public class Note implements Serializable, Parcelable {
 
     public static final Calendar CALENDAR = new GregorianCalendar();
     private final DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+
+    public Note() {
+        //No-op
+    }
 
     public Note(String title, String content) {
         this.title = title;
@@ -104,4 +112,74 @@ public class Note implements Serializable, Parcelable {
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
+
+    @Override
+    public Values getValues() {
+        return new Values(new Object[] {_id, title, content, moment});
+    }
+
+    @Override
+    public void setValues(Values values) {
+        _id = (int) values.get(0);
+        title = (String) values.get(1);
+        content = (String) values.get(2);
+        moment = (long) values.get(3);
+    }
+
+    @Override
+    public String[] getValuesString() {
+        return new String[] {title, content, String.valueOf(moment)};
+    }
+
+    @Override
+    public DbShema getShema() {
+        return shema;
+    }
+
+    public static DbShema shema = new DbShema() {
+        @Override
+        public String getTableName() {
+            return "NOTE";
+        }
+
+        @Override
+        public int getTypeColumn(int index) {
+            switch(index) {
+                case 0:
+                    return DbEntity.TYPE_INTEGER;
+                case 1:
+                    return DbEntity.TYPE_STRING;
+                case 2:
+                    return DbEntity.TYPE_STRING;
+                case 3:
+                    return DbEntity.TYPE_LONG;
+                default:
+                    return DbEntity.TYPE_NULL;
+            }
+        }
+
+        @Override
+        public String[] getColumns() {
+            return new String[] {"_id", "TITLE", "NTEXT", "MOMENT"};
+        }
+
+        @Override
+        public int getColumnsCount() {
+            return 4;
+        }
+
+        @Override
+        public String getKeyColumn() {
+            return "_id";
+        }
+
+        /**
+         * это надо переделать
+         * @return
+         */
+        @Override
+        public String getWhere() {
+            return "TITLE=? AND NTEXT=? AND MOMENT=? ";
+        }
+    };
 }

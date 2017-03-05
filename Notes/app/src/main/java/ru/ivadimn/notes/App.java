@@ -23,6 +23,16 @@ import ru.ivadimn.notes.ui.adapters.NotesAdapter;
 public class App extends Application {
     public static final String NOTES_FILE = "notes.txt";
 
+    private static App instance;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        instance = this;
+    }
+
+    public static App getInstance() {
+        return instance;
+    }
 
     /**
      * получить список заметок
