@@ -1,7 +1,12 @@
 package ru.ivadimn.notes;
 
 import android.app.Application;
+import android.provider.ContactsContract;
 import android.util.Log;
+
+import com.raizlabs.android.dbflow.config.FlowConfig;
+import com.raizlabs.android.dbflow.config.FlowManager;
+import com.raizlabs.android.dbflow.sql.language.Select;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,7 +18,10 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.ivadimn.notes.database.DataManage;
+import ru.ivadimn.notes.database.Values;
 import ru.ivadimn.notes.model.Note;
+import ru.ivadimn.notes.model.Note1;
 import ru.ivadimn.notes.ui.adapters.NotesAdapter;
 
 /**
@@ -28,6 +36,8 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+        FlowManager.init(new FlowConfig.Builder(this).build());
     }
 
     public static App getInstance() {
@@ -83,4 +93,12 @@ public class App extends Application {
         }
     }
 
+    /**
+     * получить список заметок из базы данных (DBFLOW)
+     * @return
+     */
+    public List<Note1> getNotes1() {
+        return new Select().from(Note1.class).queryList();
+
+    }
 }

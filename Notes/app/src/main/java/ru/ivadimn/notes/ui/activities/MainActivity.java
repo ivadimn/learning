@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
     private NotesAdapter1 adapter;
     private App app;
     private int checkedPosition = -1;
-    DataManage dataManage = new DataManage();
+    private DataManage dataManage = new DataManage();
+
 
 
     @Override
@@ -63,15 +64,18 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         List<Values> values = dataManage.selectAll(Note.shema);
-        notes = new ArrayList<>();
+        List<Note> notes = new ArrayList<>();
         for (int i = 0; i < values.size(); i++) {
             Note note = new Note();
             note.setValues(values.get(i));
             notes.add(note);
         }
+
+        app = (App) getApplication();
+        notes = app.getNotes();
         Log.d(TAG, "onCreate notes created");
 
-        /*app = (App) getApplication();
+        /*;
         notes = app.getNotes();
         if (notes == null)
             notes = new ArrayList<>();*/
@@ -151,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
     }
 
     private void deleteNote(int index) {
+       dataManage.delete(notes.get(index));
         notes.remove(index);
         adapter.notifyDataSetChanged();
     }
@@ -160,14 +165,19 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
         SparseBooleanArray spa = listView.getCheckedItemPositions();
         List<Note> tmp = new ArrayList<>();
         for (int i = 0; i < spa.size(); i++) {
-            if (spa.valueAt(i))
+            if (spa.valueAt(i)) {
                 tmp.add(notes.get(spa.keyAt(i)));
+                dataManage.delete(notes.get(spa.keyAt(i)));
+            }
         }
         notes.removeAll(tmp);
         adapter.notifyDataSetChanged();
     }
 
     private void clearNotes() {
+        for ( Note n : notes) {
+            dataManage.delete(n);
+        }
         notes.clear();
         adapter.notifyDataSetChanged();
     }

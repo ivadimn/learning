@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class NotesDatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "organizer";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 1;
 
     public NotesDatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -34,8 +34,8 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
                     + "TITLE TEXT, "
                     + "NTEXT TEXT);");
         }
-       if (oldVersion < 2) {
+       /*if (oldVersion < 2) {
             db.execSQL("ALTER TABLE NOTE ADD COLUMN MOMENT NUMERIC;");
-        }
+        }*/
     }
 }
