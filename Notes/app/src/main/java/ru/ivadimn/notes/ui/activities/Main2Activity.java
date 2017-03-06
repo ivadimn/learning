@@ -1,14 +1,8 @@
 package ru.ivadimn.notes.ui.activities;
 
 import android.content.Intent;
-import android.graphics.Rect;
-import android.net.Uri;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
@@ -21,10 +15,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.raizlabs.android.dbflow.sql.language.Select;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,68 +24,45 @@ import java.util.List;
 import ru.ivadimn.notes.App;
 import ru.ivadimn.notes.R;
 import ru.ivadimn.notes.database.DataManage;
-import ru.ivadimn.notes.database.Values;
 import ru.ivadimn.notes.model.Note;
-import ru.ivadimn.notes.ui.adapters.NotesAdapter;
+import ru.ivadimn.notes.model.Note1;
 import ru.ivadimn.notes.ui.adapters.NotesAdapter1;
+import ru.ivadimn.notes.ui.adapters.NotesAdapter2;
 
 
 /**
- *
- * Пока используется ручное обращение к базе данных.....
- * c DbFlow пока не разобрался - необходимо время
+ * здесь используется DbFlow
  */
-public class MainActivity extends AppCompatActivity implements AbsListView.MultiChoiceModeListener {
+public class Main2Activity extends AppCompatActivity implements AbsListView.MultiChoiceModeListener {
 
     public static final String TAG = "MAIN_ACTIVITY";
     private static final int DATA_ADDED = 1;
     private static final int DATA_CHANGED = 2;
 
-    private List<Note> notes;
+    private List<Note1> notes;
     private ListView listView;
-    private NotesAdapter1 adapter;
-    private App app;
+    private NotesAdapter2 adapter;
     private int checkedPosition = -1;
-    private DataManage dataManage = new DataManage();
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        List<Values> values = dataManage.selectAll(Note.shema);
-        notes = new ArrayList<>();
-        for (int i = 0; i < values.size(); i++) {
-            Note note = new Note();
-            note.setValues(values.get(i));
-            notes.add(note);
-        }
-
-
-        Log.d(TAG, "onCreate notes created");
-
-        /*;
-        notes = app.getNotes();
-        if (notes == null)
-            notes = new ArrayList<>();*/
+        setContentView(R.layout.activity_main2);
+        notes = new Select().from(Note1.class).queryList();
         initViews();
-
-
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     private void initViews() {
         listView = (ListView) findViewById(R.id.list_notes_id);
 
-        adapter = new NotesAdapter1(this, notes);
+        adapter = new NotesAdapter2(this, notes);
         listView.setAdapter(adapter);
 
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
         listView.setMultiChoiceModeListener(this);
         //registerForContextMenu(listView);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -145,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
     }
 
     public void editNote(int index) {
-        Note note = notes.get(index);
+        Note1 note = notes.get(index);
         Intent intent = new Intent(this, EditActivity.class);
         intent.putExtra(Note.TITLE, note.getTitle());
         intent.putExtra(Note.TEXT, note.getContent());
@@ -154,7 +122,6 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
     }
 
     private void deleteNote(int index) {
-        dataManage.delete(notes.get(index));
         notes.remove(index);
         adapter.notifyDataSetChanged();
     }
@@ -162,11 +129,11 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
     private void deleteNotes() {
         int chCount = listView.getCheckedItemCount();
         SparseBooleanArray spa = listView.getCheckedItemPositions();
-        List<Note> tmp = new ArrayList<>();
+        List<Note1> tmp = new ArrayList<>();
         for (int i = 0; i < spa.size(); i++) {
             if (spa.valueAt(i)) {
                 tmp.add(notes.get(spa.keyAt(i)));
-                dataManage.delete(notes.get(spa.keyAt(i)));
+                notes.get(spa.keyAt(i)).delete();
             }
         }
         notes.removeAll(tmp);
@@ -174,29 +141,30 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
     }
 
     private void clearNotes() {
-        for ( Note n : notes) {
-            dataManage.delete(n);
+        for ( Note1 n : notes) {
+            n.delete();
         }
         notes.clear();
         adapter.notifyDataSetChanged();
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == DATA_ADDED && resultCode == RESULT_OK) {
-            Note note = new Note(data.getStringExtra(Note.TITLE), data.getStringExtra(Note.TEXT));
+            Note1 note = new Note1(data.getStringExtra(Note.TITLE), data.getStringExtra(Note.TEXT));
             notes.add(note);
-            dataManage.insert(note);
+            note.save();
             adapter.notifyDataSetChanged();
         } else if (requestCode == DATA_CHANGED && resultCode == RESULT_OK) {
             int index = data.getIntExtra(Note.INDEX, -1);
             if (index < 0) return;
-            Note note = notes.get(index);
+            Note1 note = notes.get(index);
             note.setTitle(data.getStringExtra(Note.TITLE));
             note.setContent(data.getStringExtra(Note.TEXT));
             note.setMoment(new Date());
+            note.save();
             note.setChecked(false);
-            dataManage.update(note);
             adapter.notifyDataSetChanged();
         }
 
@@ -209,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
         //app.saveNotes(notes);
 
     }
+
 
     @Override
     public void onItemCheckedStateChanged(ActionMode actionMode, int position, long l, boolean b) {
@@ -270,6 +239,4 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
             notes.get(i).setChecked(false);
         }
     }
-
-
 }

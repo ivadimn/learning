@@ -8,6 +8,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import ru.ivadimn.notes.dbflow.NoteDatabase;
@@ -28,7 +29,7 @@ public class Note1 extends BaseModel {
     }
 
     @Column
-    @PrimaryKey
+    @PrimaryKey(autoincrement = true)
     private int _id;
     @Column
     private String title;
@@ -68,8 +69,8 @@ public class Note1 extends BaseModel {
         return moment;
     }
 
-    public void setMoment(long moment) {
-        this.moment = moment;
+    public void setMoment(Date dateTime) {
+        this.moment = dateTime.getTime();
     }
 
     public boolean isChecked() {
@@ -78,5 +79,9 @@ public class Note1 extends BaseModel {
 
     public void setChecked(boolean checked) {
         this.checked = checked;
+    }
+
+    public String getMomentString() {
+        return format.format(moment);
     }
 }
