@@ -1,0 +1,46 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="tab_layout_padding">2dp</dimen>
+
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">120dp</dimen>
+
+    <!-- размер фотографии-->
+
+    <dimen name="note_height">48dp</dimen>
+
+    <dimen name="image_width">56dp</dimen>
+    <dimen name="image_height">56dp</dimen>
+
+    <dimen name="time_width">84dp</dimen>
+    <dimen name="time_height">72dp</dimen>
+
+    <dimen name="main_image_width">56dp</dimen>
+    <dimen name="main_image_height">56dp</dimen>
+
+    <dimen name="text_margin">72dp</dimen>
+
+    <!--размеры отступов и полей-->
+    <dimen name="view_margin">8dp</dimen>
+    <dimen name="view_padding">4dp</dimen>
+    <dimen name="button_padding">2dp</dimen>
+    <dimen name="stroke_width">2dp</dimen>
+
+    <!-- радиус скругления -->
+    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="button_corner_radius">16dp</dimen>
+    <dimen name="elevation_size">8dp</dimen>
+    <dimen name="text_view_elevation">8dp</dimen>
+
+    <!-- длина текстовых меток-->
+    <dimen name="label_width">130dp</dimen>
+    <dimen name="label_text_size">18sp</dimen>
+    <dimen name="text_size">18sp</dimen>
+    <dimen name="edit_text_size">24sp</dimen>
+    <dimen name="button_text_size">32sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="digit_size">32sp</dimen>
+</resources>

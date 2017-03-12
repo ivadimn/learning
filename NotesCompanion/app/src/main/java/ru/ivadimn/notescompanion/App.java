@@ -1,10 +1,7 @@
-package ru.ivadimn.notes;
+package ru.ivadimn.notescompanion;
 
 import android.app.Application;
-import android.provider.ContactsContract;
 import android.util.Log;
-
-
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,12 +13,10 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import ru.ivadimn.notes.model.Note;
-
+import ru.ivadimn.notescompanion.model.Note;
 
 /**
- * Created by vadim on 28.02.17.
+ * Created by vadim on 12.03.17.
  */
 
 public class App extends Application {
@@ -44,10 +39,10 @@ public class App extends Application {
      * @return
      */
     public List<Note> getNotes() {
-        File file = new File(getFilesDir(), NOTES_FILE);
-        if (!file.exists()) return null;
-
         List<Note> noteList = new ArrayList<>();
+        File file = new File(getFilesDir(), NOTES_FILE);
+        if (!file.exists()) return noteList;
+
         try {
             ObjectInputStream inObj = new ObjectInputStream(new FileInputStream(file));
             Log.d("GET_NOTES", "Создан объект чтения заметок");
@@ -87,5 +82,4 @@ public class App extends Application {
             Log.d("APP", ex.getMessage());
         }
     }
-
 }

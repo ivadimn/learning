@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">NotesCompanion</string>
+
+    <string name="header">Notes</string>
+
+    <!-- menu captions-->
+    <string name="menu_item_add">Add</string>
+    <string name="menu_item_del">Delete</string>
+    <string name="menu_item_edit">Edit</string>
+    <string name="menu_item_clear">Clear</string>
+
+    <string name="title">Title</string>
+    <string name="text">Text</string>
+    <string name="note">Note</string>
+
+    <!-- dialog buttons-->
+    <string name="btn_ok">Ok</string>
+    <string name="btn_cancel">Cancel</string>
+    <!--  _______________________________________________________________ -->
+
+    <string-array name="page_title">
+        <item>Notes</item>
+        <item>Pictures</item>
+    </string-array>
+</resources>

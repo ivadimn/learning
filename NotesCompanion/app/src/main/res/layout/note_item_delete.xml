@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/view_padding"
+    android:paddingBottom="@dimen/view_padding"
+
+    card_view:cardCornerRadius="@dimen/view_margin"
+    card_view:cardBackgroundColor="@color/card_background_color"
+    card_view:cardElevation="@dimen/activity_horizontal_margin"
+    android:id="@+id/cv_note_id">
+    <RelativeLayout
+        android:id="@+id/rl_note_item_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/ch_ready_todelete_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:visibility="visible"
+            />
+
+
+        <LinearLayout
+            android:layout_toRightOf="@id/ch_ready_todelete_id"
+            android:id="@+id/ll_note_text_id"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/view_padding"
+                    android:layout_marginLeft="@dimen/view_margin"
+                    android:layout_marginRight="@dimen/view_margin"
+                    android:id="@+id/tv_title_id"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/note_height"
+                    android:layout_marginTop="@dimen/view_padding"
+                    android:layout_marginLeft="@dimen/view_margin"
+                    android:layout_marginRight="@dimen/view_margin"
+                    android:id="@+id/tv_note_id"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:id="@+id/lt_time_box_id"
+                android:background="@color/background_color">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/view_padding"
+                    android:layout_marginLeft="@dimen/view_margin"
+                    android:layout_marginRight="@dimen/view_margin"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="21.06.2016"
+                    android:textColor="@color/colorYellow"
+                    android:id="@+id/tv_datetime_id" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

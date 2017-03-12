@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="header">Заметки</string>
+
+    <!-- menu captions-->
+    <string name="menu_item_add">Добавить</string>
+    <string name="menu_item_del">Удалить</string>
+    <string name="menu_item_edit">Изменить</string>
+    <string name="menu_item_clear">Очистить</string>
+
+    <string name="title">Заголовок</string>
+    <string name="text">Текст</string>
+    <string name="note">Заметка</string>
+
+    <!-- dialog buttons-->
+    <string name="btn_ok">Сохранить</string>
+    <string name="btn_cancel">Отменить</string>
+
+    <string-array name="page_title">
+        <item>Заметки</item>
+        <item>Картинки</item>
+    </string-array>
+
+</resources>

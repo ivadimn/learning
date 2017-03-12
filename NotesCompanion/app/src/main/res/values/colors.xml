@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_50">#E3F2FD</color>
+    <color name="blue_100">#BBDEFB</color>
+    <color name="blue_200">#90CAF9</color>
+    <color name="blue_300">#64B5F6</color>
+    <color name="blue_400">#42A5F5</color>
+    <color name="blue_500">#2196F3</color>
+    <color name="blue_600">#1E88E5</color>
+    <color name="blue_700">#1976D2</color>
+    <color name="blue_800">#1565C0</color>
+    <color name="blue_900">#0D47A1</color>
+    <color name="blue_A100">#82B1FF</color>
+    <color name="blue_A200">#448AFF</color>
+    <color name="blue_A400">#2979FF</color>
+    <color name="blue_A700">#2962FF</color>
+
+    <color name="gray_50">#FAFAFA</color>
+    <color name="gray_100">#F5F5F5</color>
+    <color name="gray_200">#EEEEEE</color>
+    <color name="gray_300">#E0E0E0</color>
+    <color name="gray_400">#BDBDBD</color>
+    <color name="gray_500">#9E9E9E</color>
+    <color name="gray_600">#757575</color>
+    <color name="gray_700">#616161</color>
+    <color name="gray_800">#424242</color>
+    <color name="gray_900">#212121</color>
+
+
+    <color name="colorPrimary">@color/gray_600</color>
+    <color name="colorPrimaryDark">@color/gray_800</color>
+    <color name="textColorPrimary">@color/gray_800</color>
+    <color name="windowBackground">@color/gray_400</color>
+    <color name="navigationBarColor">@color/gray_900</color>
+    <color name="colorAccent">#FF5722</color>
+
+    <!-- Gray palette -->
+    <color name="text_color">#f2f1e4</color>
+
+    <color name="pressed_color">@color/blue_A100</color>
+
+    <!-- custom colors -->
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorBlue">#3F51B5</color>
+    <color name="colorGreen">#4CAF50</color>
+    <color name="colorRed">#F44336</color>
+    <color name="colorYellow">#FFF9C4</color>
+    <color name="colorGray">#999999</color>
+    <color name="colorLtGray">#474542</color>
+    <color name="colorDarkGray">#11160c</color>
+    <color name="colorLightGray">#7d837a</color>
+    <color name="colorMagenta">#F50057</color>
+
+    <!-- portrait colors-->
+    <color name="label_color">#9f9a9a</color>
+    <color name="link_color">#455891</color>
+    <color name="background_color">#1976D2</color>
+    <color name="card_background_color">#f2f1e4</color>
+    <color name="button_color">#bebdb4</color>
+
+    <!-- event color -->
+    <color name="empty_day_color">#bebdb4</color>
+    <color name="event_day_color">#0D47A1</color>
+    <color name="weekend_day_color">#79c47a</color>
+
+    <color name="fon_color">#000000</color>
+    <color name="red">#ffff0000</color>
+    <color name="green">#ff00ff00</color>
+    <color name="middle_gray">#dddddd</color>
+    <color name="gray">#999999</color>
+    <color name="dk_gray">#11160c</color>
+</resources>
