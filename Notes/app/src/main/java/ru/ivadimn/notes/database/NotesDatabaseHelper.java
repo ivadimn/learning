@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class NotesDatabaseHelper extends SQLiteOpenHelper {
+
     private static final String DB_NAME = "notes";
     private static final int DB_VERSION = 2;
 
@@ -31,11 +32,11 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
         if (oldVersion < 1) {
             db.execSQL("CREATE TABLE NOTE ("
                     + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + "TITLE TEXT, "
-                    + "NTEXT TEXT);");
+                    + "title TEXT, "
+                    + "ntext TEXT);");
         }
        if (oldVersion < 2) {
-            db.execSQL("ALTER TABLE NOTE ADD COLUMN MOMENT NUMERIC;");
+            db.execSQL("ALTER TABLE note ADD COLUMN moment NUMERIC;");
         }
     }
 }

@@ -160,7 +160,7 @@ public class Note extends DbEntity implements Parcelable {
 
         @Override
         public String[] getColumns() {
-            return new String[] {"_id", "TITLE", "NTEXT", "MOMENT"};
+            return new String[] {"_id", "title", "ntext", "moment"};
         }
 
         @Override
@@ -179,7 +179,7 @@ public class Note extends DbEntity implements Parcelable {
          */
         @Override
         public String getWhere() {
-            return "TITLE=? AND NTEXT=? AND MOMENT=? ";
+            return "title=? AND ntexr=? AND moment=? ";
         }
     };
 }

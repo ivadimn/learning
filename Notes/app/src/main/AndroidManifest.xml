@@ -13,7 +13,7 @@
 
         <provider
             android:authorities="ru.ivadimn.organizer"
-            android:name=".provider.NotesProvider"/>
+            android:name=".provider.NoteProvider"/>
 
         <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
