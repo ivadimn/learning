@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.ivadimn.notescompanion">
 
+    <uses-permission android:name="ru.ivadimn.organizer.notes.provader.READ_PROVIDER"/>
     <application
         android:name=".App"
         android:allowBackup="true"

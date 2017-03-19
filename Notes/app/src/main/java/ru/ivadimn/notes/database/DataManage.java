@@ -60,10 +60,10 @@ public class DataManage  {
         try {
             db = openHelper.getWritableDatabase();
             contentValues = getContentValues(entity);
-            db.insert(shema.getTableName(), null, contentValues);
-            entity.set_id(getId(db, entity));
-            Toast.makeText(App.getInstance().getBaseContext(), "Inserted ID = " + entity.get_id(),
-                    Toast.LENGTH_SHORT).show();
+            long rowID = db.insert(shema.getTableName(), null, contentValues);
+            entity.set_id(rowID);
+            Toast.makeText(App.getInstance().getBaseContext(), "Inserted ID = " + entity.get_id() +
+                            "Row ID = " + rowID, Toast.LENGTH_SHORT).show();
         }
         catch(SQLiteException e) {
             Toast.makeText(App.getInstance().getBaseContext(), "Database unavailable - " + e.getMessage(),
@@ -82,7 +82,7 @@ public class DataManage  {
             db = openHelper.getWritableDatabase();
             contentValues = getContentValues(entity);
             db.update(entity.getShema().getTableName(),
-                    contentValues, entity.getShema().getKeyColumn() +" = ?", new String[] {Integer.toString(entity.get_id())});
+                    contentValues, entity.getShema().getKeyColumn() +" = ?", new String[] {Long.toString(entity.get_id())});
         }
         catch(SQLiteException e) {
             Toast.makeText(App.getInstance().getBaseContext(), "Database unavailable - " + e.getMessage(),
@@ -98,7 +98,7 @@ public class DataManage  {
         try {
             db = openHelper.getWritableDatabase();
             db.delete(entity.getShema().getTableName(),  entity.getShema().getKeyColumn() + " = ?",
-                    new String[] {Integer.toString(entity.get_id())});
+                    new String[] {Long.toString(entity.get_id())});
         }
         catch(SQLiteException e) {
             Toast.makeText(App.getInstance().getBaseContext(), "Database unavailable - " + e.getMessage(),

@@ -1,9 +1,7 @@
-package ru.ivadimn.notes.provider;
+package ru.ivadimn.notescompanion.model;
 
 import android.net.Uri;
 import android.provider.BaseColumns;
-
-import ru.ivadimn.notes.model.Note;
 
 /**
  * Created by vadim on 19.03.2017.

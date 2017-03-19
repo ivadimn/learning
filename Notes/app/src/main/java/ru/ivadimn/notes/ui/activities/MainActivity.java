@@ -1,6 +1,7 @@
 package ru.ivadimn.notes.ui.activities;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
@@ -35,6 +36,7 @@ import ru.ivadimn.notes.R;
 import ru.ivadimn.notes.database.DataManage;
 import ru.ivadimn.notes.database.Values;
 import ru.ivadimn.notes.model.Note;
+import ru.ivadimn.notes.provider.NoteProviderMetaData;
 import ru.ivadimn.notes.ui.adapters.NotesAdapter;
 import ru.ivadimn.notes.ui.adapters.NotesAdapter1;
 
@@ -70,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements AbsListView.Multi
             note.setValues(values.get(i));
             notes.add(note);
         }
+        //Cursor cursor = getContentResolver().query(NoteProviderMetaData.NOTE_CONTENT_URI, null, null,
+        //        null, null);
 
 
         Log.d(TAG, "onCreate notes created");

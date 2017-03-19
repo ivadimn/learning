@@ -12,12 +12,12 @@ public abstract class DbEntity implements Row {
     public static final int TYPE_STRING = 4;
     public static final int TYPE_BLOB = 5;
 
-    protected int _id;
-    public int get_id() {
+    protected long _id;
+    public long get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(long _id) {
         this._id = _id;
     }
 

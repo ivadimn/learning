@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.ivadimn.notes">
 
+
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -11,9 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activities.EditActivity" />
 
-        <provider
-            android:authorities="ru.ivadimn.organizer"
-            android:name=".provider.NoteProvider"/>
+
 
         <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
@@ -22,6 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="ru.ivadimn.providers.organizer"
+            android:name=".provider.NoteProvider"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package ru.ivadimn.notescompanion.adapters;
 
+import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,6 +34,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteHolder> 
 
     public NotesAdapter(List<Note> notes) {
         this.notes = notes;
+    }
+
+    public void update(List<Note> notes, Cursor cursor) {
+        this.notes = notes;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -87,12 +93,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteHolder> 
                 return true;
             }
         });
-
     }
 
     @Override
     public int getItemCount() {
-        return notes.size();
+        return notes != null ? notes.size() : 0;
     }
 
     @Override

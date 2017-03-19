@@ -14,12 +14,13 @@ import java.util.GregorianCalendar;
  * Created by vadim on 12.10.16.
  */
 
-public class Note  implements Serializable, Parcelable {
+public class Note  implements Serializable {
 
     public static final String TITLE = "TITLE";
     public static final String TEXT = "TEXT";
     public static final String INDEX = "INDEX";
 
+    private long _id;
     private String title;
     private String content;
     private long moment;
@@ -38,10 +39,11 @@ public class Note  implements Serializable, Parcelable {
         this.moment = CALENDAR.getTime().getTime();
     }
 
-    public Note(String title, String content, Date moment) {
+    public Note(long id, String title, String content, long moment) {
+        this._id = id;
         this.title = title;
         this.content = content;
-        this.moment = moment.getTime();
+        this.moment = moment;
     }
 
     protected Note(Parcel in) {
@@ -50,27 +52,12 @@ public class Note  implements Serializable, Parcelable {
         content = in.readString();
     }
 
-    public static final Creator<Note> CREATOR = new Creator<Note>() {
-        @Override
-        public Note createFromParcel(Parcel in) {
-            return new Note(in);
-        }
-
-        @Override
-        public Note[] newArray(int size) {
-            return new Note[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
+    public long get_id() {
+        return _id;
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        String[] data = new String[] {title, content, " "};
-        parcel.writeStringArray(data);
+    public void set_id(long _id) {
+        this._id = _id;
     }
 
     public String getTitle() {

@@ -1,10 +1,16 @@
 package ru.ivadimn.notescompanion.fragments;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,6 +29,7 @@ import ru.ivadimn.notescompanion.adapters.NotesAdapter;
 import ru.ivadimn.notescompanion.interfaces.Listener;
 import ru.ivadimn.notescompanion.interfaces.LongListener;
 import ru.ivadimn.notescompanion.model.Note;
+import ru.ivadimn.notescompanion.model.NoteProviderMetaData;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -30,7 +37,8 @@ import static android.app.Activity.RESULT_OK;
  * Created by vadim on 04.12.16.
  */
 
-public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterface{
+public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterface,
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     private static NoteFragment instance;
 
@@ -59,7 +67,6 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         app = App.getInstance();
-        notes = app.getNotes();
         Log.d(TAG, "onCreate notes created");
     }
 
@@ -81,7 +88,24 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
         rvListNotes.setAdapter(adapter);
         initUI(view);
         Log.d(TAG, "onCreateView list created");
+        //readNotes();
+        getActivity().getSupportLoaderManager().initLoader(0, null, this);
         return view;
+    }
+
+    private void readNotes() {
+        String[] projection = new String[]{
+                NoteProviderMetaData.NoteTableMetaData._ID,
+                NoteProviderMetaData.NoteTableMetaData.TITLE,
+                NoteProviderMetaData.NoteTableMetaData.NTEXT,
+                NoteProviderMetaData.NoteTableMetaData.MOMENT };
+
+        Uri uri = NoteProviderMetaData.NOTE_CONTENT_URI;
+        Cursor c = getActivity().getContentResolver().query(uri, projection, null, null, null);
+        if (c != null) {
+            Log.d(TAG, "cursor not null");
+        }
+
     }
 
     private void initUI(View view) {
@@ -100,7 +124,7 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     @Override
     public void onStop() {
         super.onStop();
-        app.saveNotes(notes);
+        //app.saveNotes(notes);
         Log.d(TAG, "onStop");
     }
 
@@ -218,6 +242,40 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
 
     @Override
     public void onCancelClick() {
+
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        String[] projection = new String[]{
+                NoteProviderMetaData.NoteTableMetaData._ID,
+                NoteProviderMetaData.NoteTableMetaData.TITLE,
+                NoteProviderMetaData.NoteTableMetaData.NTEXT,
+                NoteProviderMetaData.NoteTableMetaData.MOMENT };
+        return new CursorLoader(getContext(),
+                NoteProviderMetaData.NOTE_CONTENT_URI, projection, null, null, null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data == null) return;
+        notes = new ArrayList<>(data.getCount());
+        int idIndex = data.getColumnIndex(NoteProviderMetaData.NoteTableMetaData._ID);
+        int titleIndex = data.getColumnIndex(NoteProviderMetaData.NoteTableMetaData.TITLE);
+        int ntextIndex = data.getColumnIndex(NoteProviderMetaData.NoteTableMetaData.NTEXT);
+        int momentIndex = data.getColumnIndex(NoteProviderMetaData.NoteTableMetaData.MOMENT);
+        for(data.moveToFirst(); !data.isAfterLast(); data.moveToNext()) {
+            long id = data.getLong(idIndex);
+            String title = data.getString(titleIndex);
+            String ntext = data.getString(ntextIndex);
+            long moment = data.getLong(momentIndex);
+            notes.add(new Note(id, title, ntext, moment));
+        }
+        adapter.update(notes, data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
 
     }
 }

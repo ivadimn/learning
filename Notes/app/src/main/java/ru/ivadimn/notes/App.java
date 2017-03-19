@@ -25,6 +25,8 @@ import ru.ivadimn.notes.model.Note;
  */
 
 public class App extends Application {
+
+    public static final String TAG = "APPLICATION";
     public static final String NOTES_FILE = "notes.txt";
 
     private static App instance;
@@ -32,7 +34,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
+        Log.d(TAG, "Application creted");
     }
 
     public static App getInstance() {

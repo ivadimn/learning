@@ -179,7 +179,7 @@ public class Note extends DbEntity implements Parcelable {
          */
         @Override
         public String getWhere() {
-            return "title=? AND ntexr=? AND moment=? ";
+            return "title=? AND ntext=? AND moment=? ";
         }
     };
 }

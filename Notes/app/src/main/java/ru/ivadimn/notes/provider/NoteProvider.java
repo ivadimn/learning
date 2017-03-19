@@ -53,7 +53,7 @@ public class NoteProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         Log.d(TAG, "onCreate NotePrivider");
-        dbHelper = new NotesDatabaseHelper(App.getInstance().getApplicationContext());
+        dbHelper = new NotesDatabaseHelper(getContext());
         return true;
     }
 
@@ -95,7 +95,7 @@ public class NoteProvider extends ContentProvider {
             case URI_NOTES:
                 return NoteProviderMetaData.NOTE_CONTENT_TYPE;
             case URI_NOTES_ID:
-                return NoteProviderMetaData.NOTE_CONTENT__ITEM_TYPE;
+                return NoteProviderMetaData.NOTE_CONTENT_ITEM_TYPE;
             default:
                 throw new IllegalArgumentException("Wrong URI: " + uri);
         }
@@ -104,6 +104,7 @@ public class NoteProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
+        Log.d(TAG, "Insert, " + uri.toString());
         if (URI_MATCHER.match(uri) != URI_NOTES)
             throw new IllegalArgumentException("Wrong URI: " + uri);
         db = dbHelper.getWritableDatabase();
@@ -115,11 +116,49 @@ public class NoteProvider extends ContentProvider {
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
-        return 0;
+        Log.d(TAG, "Delete, " + uri.toString());
+        switch(URI_MATCHER.match(uri)) {
+            case URI_NOTES:
+                Log.d(TAG, "URI_NOTES");
+                break;
+            case URI_NOTES_ID:
+                String id = uri.getLastPathSegment();
+                if (TextUtils.isEmpty(selection))
+                    selection = NoteProviderMetaData.NoteTableMetaData._ID + "=" + id;
+                else
+                    selection = selection + " AND " +
+                            NoteProviderMetaData.NoteTableMetaData._ID + "=" + id;
+                break;
+            default:
+                throw new IllegalArgumentException("Wrong URI: " + uri);
+        }
+        db = dbHelper.getWritableDatabase();
+        int cnt = db.delete(NoteProviderMetaData.NoteTableMetaData.TABLE_NAME, selection, selectionArgs);
+        getContext().getContentResolver().notifyChange(uri, null);
+        return cnt;
     }
 
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
-        return 0;
+        Log.d(TAG, "Update, " + uri.toString());
+        switch(URI_MATCHER.match(uri)) {
+            case URI_NOTES:
+                Log.d(TAG, "URI_NOTES");
+                break;
+            case URI_NOTES_ID:
+                String id = uri.getLastPathSegment();
+                if (TextUtils.isEmpty(selection))
+                    selection = NoteProviderMetaData.NoteTableMetaData._ID + "=" + id;
+                else
+                    selection = selection + " AND " +
+                            NoteProviderMetaData.NoteTableMetaData._ID + "=" + id;
+                break;
+            default:
+                throw new IllegalArgumentException("Wrong URI: " + uri);
+        }
+        db = dbHelper.getWritableDatabase();
+        int cnt = db.update(NoteProviderMetaData.NoteTableMetaData.TABLE_NAME, values, selection, selectionArgs);
+        getContext().getContentResolver().notifyChange(uri, null);
+        return cnt;
     }
 }
