@@ -1,5 +1,7 @@
 package ru.ivadimn.notescompanion.fragments;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Rect;
@@ -26,6 +28,7 @@ import ru.ivadimn.notescompanion.App;
 import ru.ivadimn.notescompanion.R;
 import ru.ivadimn.notescompanion.activities.EditActivity;
 import ru.ivadimn.notescompanion.adapters.NotesAdapter;
+import ru.ivadimn.notescompanion.adapters.NotesAdapter1;
 import ru.ivadimn.notescompanion.interfaces.Listener;
 import ru.ivadimn.notescompanion.interfaces.LongListener;
 import ru.ivadimn.notescompanion.model.Note;
@@ -46,11 +49,11 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     private static final int DATA_CHANGED = 2;
     public static final String TAG = "NOTE_FRAGMENT";
 
-    private List<Note> notes;
     private RecyclerView rvListNotes;
-    private NotesAdapter adapter;
+    private NotesAdapter1 adapter;
     private App app;
     private FloatingActionButton fab;
+    private Cursor cursor;
 
 
     public static NoteFragment getInstance() {
@@ -82,13 +85,13 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
                 outRect.bottom = 32;
             }
         });
-        adapter = new NotesAdapter(notes);
+        adapter = new NotesAdapter1();
         adapter.setListener(listener);
-        adapter.setLongListener(longListener);
+        //adapter.setLongListener(longListener);
         rvListNotes.setAdapter(adapter);
         initUI(view);
         Log.d(TAG, "onCreateView list created");
-        //readNotes();
+        //получаем курсоп в другом потоке
         getActivity().getSupportLoaderManager().initLoader(0, null, this);
         return view;
     }
@@ -113,10 +116,7 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!adapter.isDeleteMode())
-                    addNote();
-                else
-                    deleteNotes();
+                addNote();
             }
         });
     }
@@ -124,7 +124,6 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     @Override
     public void onStop() {
         super.onStop();
-        //app.saveNotes(notes);
         Log.d(TAG, "onStop");
     }
 
@@ -137,46 +136,20 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     }
 
     public void editNote(int index) {
-        Note note  = notes.get(index);
+        cursor.moveToPosition(index);
+        String title = cursor.getString(cursor.getColumnIndex(NoteProviderMetaData.NoteTableMetaData.TITLE));
+        String ntext = cursor.getString(cursor.getColumnIndex(NoteProviderMetaData.NoteTableMetaData.NTEXT));
         Bundle bundle = new Bundle();
         DlgFragment dlg = DlgFragment.getDlgFragment(this);
-        bundle.putInt(Note.INDEX, -1);
-        bundle.putString(Note.TITLE, note.getTitle());
-        bundle.putString(Note.TEXT, note.getContent());
+        bundle.putInt(Note.INDEX, index);
+        bundle.putString(Note.TITLE, title);
+        bundle.putString(Note.TEXT, ntext);
         dlg.setArguments(bundle);
         dlg.show(getFragmentManager(), DlgFragment.TAG);
     }
 
-    public void deleteNotes() {
-        List<Note> temp = new ArrayList<>(notes);
-        for (int i = 0; i < temp.size() ; i++) {
-            Note n = temp.get(i);
-            if (n.isReadyToDelete()) {
-                notes.remove(n);
-            }
-        }
-        adapter.notifyDataSetChanged();
-        adapter.setDeleteMode(false);
-        adapter.notifyItemRangeChanged(0, notes.size());
-        fab.setImageResource(android.R.drawable.ic_input_add);
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == DATA_ADDED && resultCode == RESULT_OK) {
-            Note note = new Note(data.getStringExtra(Note.TITLE), data.getStringExtra(Note.TEXT));
-            notes.add(note);
-            adapter.notifyDataSetChanged();
-        }
-        else if (requestCode == DATA_CHANGED && resultCode == RESULT_OK) {
-            int index = data.getIntExtra(Note.INDEX, -1);
-            if (index < 0) return;
-            Note note = notes.get(index);
-            note.setTitle(data.getStringExtra(Note.TITLE));
-            note.setContent(data.getStringExtra(Note.TEXT));
-            note.setMoment(new Date());
-            adapter.notifyDataSetChanged();
-        }
-    }
+
+
 
     public Listener listener = new Listener() {
         @Override
@@ -196,8 +169,6 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
 
         @Override
         public void onCheckBoxClick(View v, int i) {
-            Note note = notes.get(i);
-            note.setReadyToDelete(!note.isReadyToDelete());
             adapter.notifyDataSetChanged();
         }
     };
@@ -205,8 +176,7 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     public LongListener longListener = new LongListener() {
         @Override
         public void onClick(int i) {
-            adapter.setDeleteMode(!adapter.isDeleteMode());
-            adapter.notifyItemRangeChanged(0, notes.size());
+
             if (adapter.isDeleteMode())
                 fab.setImageResource(android.R.drawable.ic_input_delete);
             else
@@ -218,8 +188,6 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
         if (!adapter.isDeleteMode())
             editNote(i);
         else {
-            Note note = notes.get(i);
-            note.setReadyToDelete(!note.isReadyToDelete());
             adapter.notifyDataSetChanged();
         }
     }
@@ -227,15 +195,20 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
 
     @Override
     public void onOkClick(int index, String title, String content) {
-        Note note;
+        ContentResolver cr = getActivity().getContentResolver();
+        ContentValues cv = new ContentValues();
+        cv.put(NoteProviderMetaData.NoteTableMetaData.TITLE, title);
+        cv.put(NoteProviderMetaData.NoteTableMetaData.NTEXT, content);
+        cv.put(NoteProviderMetaData.NoteTableMetaData.MOMENT, System.currentTimeMillis());
         if (index == -1) {
-            note = new Note(title, content);
-            notes.add(note);
+            cr.insert(NoteProviderMetaData.NOTE_CONTENT_URI, cv);
         }
         else {
-            note = notes.get(index);
-            note.setTitle(title);
-            note.setContent(content);
+            cursor.moveToPosition(index);
+            long id = cursor.getLong(cursor.getColumnIndex(NoteProviderMetaData.NoteTableMetaData._ID));
+            Uri uri = NoteProviderMetaData.NOTE_CONTENT_URI;
+            Uri udateUri = Uri.withAppendedPath(uri, Long.toString(id));
+            cr.update(udateUri, cv, null, null);
         }
         adapter.notifyDataSetChanged();
     }
@@ -258,20 +231,8 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (data == null) return;
-        notes = new ArrayList<>(data.getCount());
-        int idIndex = data.getColumnIndex(NoteProviderMetaData.NoteTableMetaData._ID);
-        int titleIndex = data.getColumnIndex(NoteProviderMetaData.NoteTableMetaData.TITLE);
-        int ntextIndex = data.getColumnIndex(NoteProviderMetaData.NoteTableMetaData.NTEXT);
-        int momentIndex = data.getColumnIndex(NoteProviderMetaData.NoteTableMetaData.MOMENT);
-        for(data.moveToFirst(); !data.isAfterLast(); data.moveToNext()) {
-            long id = data.getLong(idIndex);
-            String title = data.getString(titleIndex);
-            String ntext = data.getString(ntextIndex);
-            long moment = data.getLong(momentIndex);
-            notes.add(new Note(id, title, ntext, moment));
-        }
-        adapter.update(notes, data);
+        cursor = data;
+        adapter.update(data);
     }
 
     @Override
