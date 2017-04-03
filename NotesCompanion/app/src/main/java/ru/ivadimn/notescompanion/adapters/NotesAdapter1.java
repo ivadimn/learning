@@ -1,5 +1,6 @@
 package ru.ivadimn.notescompanion.adapters;
 
+import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Handler;
@@ -31,12 +32,17 @@ public class NotesAdapter1 extends RecyclerView.Adapter<NotesAdapter1.ItemHolder
     public static final int VIEW_TYPE_NORMAL = 0;
     public static final int VIEW_TYPE_DELETE = 1;
 
+    private Context context;
     private Listener listener;
     private LongListener longListener;
 
     private final DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
     private boolean deleteMode = false;
     private Cursor cursor;
+
+    public NotesAdapter1(Context context) {
+        this.context = context;
+    }
 
     public void setListener(Listener listener) {
         this.listener = listener;
@@ -48,8 +54,10 @@ public class NotesAdapter1 extends RecyclerView.Adapter<NotesAdapter1.ItemHolder
 
     public void update(Cursor cursor) {
         this.cursor = cursor;
-        if (cursor != null)
+        if (cursor != null) {
             cursor.registerContentObserver(observer);
+            context.getContentResolver().registerContentObserver(NoteProviderMetaData.NOTE_CONTENT_URI, true, observer);
+        }
         notifyDataSetChanged();
     }
 
@@ -95,6 +103,7 @@ public class NotesAdapter1 extends RecyclerView.Adapter<NotesAdapter1.ItemHolder
     public int getItemCount() {
         return (cursor == null) ? 0 : cursor.getCount();
     }
+
     private ContentObserver observer = new ContentObserver(new Handler()) {
         @Override
         public void onChange(boolean selfChange) {

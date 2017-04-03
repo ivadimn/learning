@@ -85,7 +85,7 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
                 outRect.bottom = 32;
             }
         });
-        adapter = new NotesAdapter1();
+        adapter = new NotesAdapter1(getContext());
         adapter.setListener(listener);
         //adapter.setLongListener(longListener);
         rvListNotes.setAdapter(adapter);
@@ -147,9 +147,6 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
         dlg.setArguments(bundle);
         dlg.show(getFragmentManager(), DlgFragment.TAG);
     }
-
-
-
 
     public Listener listener = new Listener() {
         @Override
