@@ -35,6 +35,7 @@ public class NotesAdapter1 extends RecyclerView.Adapter<NotesAdapter1.ItemHolder
     private Context context;
     private Listener listener;
     private LongListener longListener;
+    private LayoutInflater inflater;
 
     private final DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
     private boolean deleteMode = false;
@@ -42,6 +43,7 @@ public class NotesAdapter1 extends RecyclerView.Adapter<NotesAdapter1.ItemHolder
 
     public NotesAdapter1(Context context) {
         this.context = context;
+        this.inflater = LayoutInflater.from(context);
     }
 
     public void setListener(Listener listener) {
@@ -55,8 +57,8 @@ public class NotesAdapter1 extends RecyclerView.Adapter<NotesAdapter1.ItemHolder
     public void update(Cursor cursor) {
         this.cursor = cursor;
         if (cursor != null) {
-            cursor.registerContentObserver(observer);
-            context.getContentResolver().registerContentObserver(NoteProviderMetaData.NOTE_CONTENT_URI, true, observer);
+            //cursor.registerContentObserver(observer);
+            //context.getContentResolver().registerContentObserver(NoteProviderMetaData.NOTE_CONTENT_URI, true, observer);
         }
         notifyDataSetChanged();
     }
@@ -69,9 +71,9 @@ public class NotesAdapter1 extends RecyclerView.Adapter<NotesAdapter1.ItemHolder
     public ItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         if (viewType == VIEW_TYPE_DELETE)
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_item_delete, parent, false);
+            view = inflater.inflate(R.layout.note_item_delete, parent, false);
         else
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_item, parent, false);
+            view = inflater.inflate(R.layout.note_item, parent, false);
 
         Log.d(TAG, "onCreateViewHolder - deleteMode = " + deleteMode);
         return new NotesAdapter1.ItemHolder(view);

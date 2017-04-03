@@ -3,10 +3,12 @@ package ru.ivadimn.notescompanion.fragments;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -54,6 +56,7 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     private App app;
     private FloatingActionButton fab;
     private Cursor cursor;
+    private NoteObserver observer;
 
 
     public static NoteFragment getInstance() {
@@ -70,6 +73,7 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         app = App.getInstance();
+        observer = new NoteObserver(new Handler());
         Log.d(TAG, "onCreate notes created");
     }
 
@@ -119,6 +123,20 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
                 addNote();
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getContentResolver().registerContentObserver(NoteProviderMetaData.NOTE_CONTENT_URI, false, observer);
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().getContentResolver().unregisterContentObserver(observer);
+        Log.d(TAG, "onPause");
     }
 
     @Override
@@ -235,5 +253,27 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    public class NoteObserver extends ContentObserver {
+
+        /**
+         * Creates a content observer.
+         *
+         * @param handler The handler to run {@link #onChange} on, or null if none.
+         */
+        public NoteObserver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            this.onChange(selfChange, null);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            adapter.notifyDataSetChanged();
+        }
     }
 }
