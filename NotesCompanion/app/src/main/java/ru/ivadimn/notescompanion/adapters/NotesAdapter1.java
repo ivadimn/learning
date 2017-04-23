@@ -21,6 +21,7 @@ import ru.ivadimn.notescompanion.interfaces.Listener;
 import ru.ivadimn.notescompanion.interfaces.LongListener;
 import ru.ivadimn.notescompanion.model.Note;
 import ru.ivadimn.notescompanion.model.NoteProviderMetaData;
+import ru.ivadimn.notescompanion.model.OrganizerContract;
 
 /**
  * Created by vadim on 02.04.2017.
@@ -57,8 +58,7 @@ public class NotesAdapter1 extends RecyclerView.Adapter<NotesAdapter1.ItemHolder
     public void update(Cursor cursor) {
         this.cursor = cursor;
         if (cursor != null) {
-            //cursor.registerContentObserver(observer);
-            //context.getContentResolver().registerContentObserver(NoteProviderMetaData.NOTE_CONTENT_URI, true, observer);
+            cursor.registerContentObserver(observer);
         }
         notifyDataSetChanged();
     }
@@ -82,9 +82,9 @@ public class NotesAdapter1 extends RecyclerView.Adapter<NotesAdapter1.ItemHolder
     @Override
     public void onBindViewHolder(ItemHolder holder, final int position) {
         if(!cursor.moveToPosition(position)) return;
-        String title = cursor.getString(cursor.getColumnIndex(NoteProviderMetaData.NoteTableMetaData.TITLE));
-        String ntext = cursor.getString(cursor.getColumnIndex(NoteProviderMetaData.NoteTableMetaData.NTEXT));
-        long moment = cursor.getLong(cursor.getColumnIndex(NoteProviderMetaData.NoteTableMetaData.MOMENT));
+        String title = cursor.getString(cursor.getColumnIndex(OrganizerContract.Notes.TITLE));
+        String ntext = cursor.getString(cursor.getColumnIndex(OrganizerContract.Notes.NTEXT));
+        long moment = cursor.getLong(cursor.getColumnIndex(OrganizerContract.Notes.MOMENT));
         String strMoment = format.format(moment);
         holder.bind(title, ntext, strMoment);
         holder.getTvNote().setOnClickListener(new View.OnClickListener() {
@@ -105,14 +105,6 @@ public class NotesAdapter1 extends RecyclerView.Adapter<NotesAdapter1.ItemHolder
     public int getItemCount() {
         return (cursor == null) ? 0 : cursor.getCount();
     }
-
-    private ContentObserver observer = new ContentObserver(new Handler()) {
-        @Override
-        public void onChange(boolean selfChange) {
-            super.onChange(selfChange);
-            notifyDataSetChanged();
-        }
-    };
 
     /////////////////////////////////////////////////////////////////////////////////
     class ItemHolder extends RecyclerView.ViewHolder {
@@ -152,4 +144,13 @@ public class NotesAdapter1 extends RecyclerView.Adapter<NotesAdapter1.ItemHolder
             return cardView;
         }
     }
+
+    private ContentObserver observer = new ContentObserver(new Handler()) {
+        @Override
+        public void onChange(boolean selfChange) {
+            super.onChange(selfChange);
+            notifyDataSetChanged();
+            Log.d(TAG, "Provider onChanged");
+        }
+    };
 }

@@ -35,6 +35,7 @@ import ru.ivadimn.notescompanion.interfaces.Listener;
 import ru.ivadimn.notescompanion.interfaces.LongListener;
 import ru.ivadimn.notescompanion.model.Note;
 import ru.ivadimn.notescompanion.model.NoteProviderMetaData;
+import ru.ivadimn.notescompanion.model.OrganizerContract;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -56,7 +57,6 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     private App app;
     private FloatingActionButton fab;
     private Cursor cursor;
-    private NoteObserver observer;
 
 
     public static NoteFragment getInstance() {
@@ -73,7 +73,6 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         app = App.getInstance();
-        observer = new NoteObserver(new Handler());
         Log.d(TAG, "onCreate notes created");
     }
 
@@ -101,13 +100,9 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     }
 
     private void readNotes() {
-        String[] projection = new String[]{
-                NoteProviderMetaData.NoteTableMetaData._ID,
-                NoteProviderMetaData.NoteTableMetaData.TITLE,
-                NoteProviderMetaData.NoteTableMetaData.NTEXT,
-                NoteProviderMetaData.NoteTableMetaData.MOMENT };
+        String[] projection = OrganizerContract.Notes.PROJECTION_ALL;
 
-        Uri uri = NoteProviderMetaData.NOTE_CONTENT_URI;
+        Uri uri = OrganizerContract.Notes.CONTENT_URI;
         Cursor c = getActivity().getContentResolver().query(uri, projection, null, null, null);
         if (c != null) {
             Log.d(TAG, "cursor not null");
@@ -128,14 +123,12 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().getContentResolver().registerContentObserver(NoteProviderMetaData.NOTE_CONTENT_URI, false, observer);
         Log.d(TAG, "onResume");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        getActivity().getContentResolver().unregisterContentObserver(observer);
         Log.d(TAG, "onPause");
     }
 
@@ -155,8 +148,8 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
 
     public void editNote(int index) {
         cursor.moveToPosition(index);
-        String title = cursor.getString(cursor.getColumnIndex(NoteProviderMetaData.NoteTableMetaData.TITLE));
-        String ntext = cursor.getString(cursor.getColumnIndex(NoteProviderMetaData.NoteTableMetaData.NTEXT));
+        String title = cursor.getString(cursor.getColumnIndex(OrganizerContract.Notes.TITLE));
+        String ntext = cursor.getString(cursor.getColumnIndex(OrganizerContract.Notes.NTEXT));
         Bundle bundle = new Bundle();
         DlgFragment dlg = DlgFragment.getDlgFragment(this);
         bundle.putInt(Note.INDEX, index);
@@ -212,16 +205,16 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
     public void onOkClick(int index, String title, String content) {
         ContentResolver cr = getActivity().getContentResolver();
         ContentValues cv = new ContentValues();
-        cv.put(NoteProviderMetaData.NoteTableMetaData.TITLE, title);
-        cv.put(NoteProviderMetaData.NoteTableMetaData.NTEXT, content);
-        cv.put(NoteProviderMetaData.NoteTableMetaData.MOMENT, System.currentTimeMillis());
+        cv.put(OrganizerContract.Notes.TITLE, title);
+        cv.put(OrganizerContract.Notes.NTEXT, content);
+        cv.put(OrganizerContract.Notes.MOMENT, System.currentTimeMillis());
         if (index == -1) {
-            cr.insert(NoteProviderMetaData.NOTE_CONTENT_URI, cv);
+            cr.insert(OrganizerContract.Notes.CONTENT_URI, cv);
         }
         else {
             cursor.moveToPosition(index);
-            long id = cursor.getLong(cursor.getColumnIndex(NoteProviderMetaData.NoteTableMetaData._ID));
-            Uri uri = NoteProviderMetaData.NOTE_CONTENT_URI;
+            long id = cursor.getLong(cursor.getColumnIndex(OrganizerContract.Notes._ID));
+            Uri uri = OrganizerContract.Notes.CONTENT_URI;
             Uri udateUri = Uri.withAppendedPath(uri, Long.toString(id));
             cr.update(udateUri, cv, null, null);
         }
@@ -235,13 +228,9 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        String[] projection = new String[]{
-                NoteProviderMetaData.NoteTableMetaData._ID,
-                NoteProviderMetaData.NoteTableMetaData.TITLE,
-                NoteProviderMetaData.NoteTableMetaData.NTEXT,
-                NoteProviderMetaData.NoteTableMetaData.MOMENT };
+        String[] projection = OrganizerContract.Notes.PROJECTION_ALL;
         return new CursorLoader(getContext(),
-                NoteProviderMetaData.NOTE_CONTENT_URI, projection, null, null, null);
+                OrganizerContract.Notes.CONTENT_URI, projection, null, null, null);
     }
 
     @Override
@@ -252,28 +241,7 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
+        adapter.update(null);
     }
 
-    public class NoteObserver extends ContentObserver {
-
-        /**
-         * Creates a content observer.
-         *
-         * @param handler The handler to run {@link #onChange} on, or null if none.
-         */
-        public NoteObserver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            this.onChange(selfChange, null);
-        }
-
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            adapter.notifyDataSetChanged();
-        }
-    }
 }
