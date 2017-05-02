@@ -15,7 +15,7 @@ import ru.ivadimn.notescompanion.fragments.PagerFragment;
 
  public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
-    public static final int PAGE_COUNT = 2;
+    public static final int PAGE_COUNT = 3;
     private List<PagerFragment> pages = new ArrayList<PagerFragment>(PAGE_COUNT);
 
     public MainPagerAdapter(FragmentManager fm) {

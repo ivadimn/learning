@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import ru.ivadimn.notescompanion.R;
 import ru.ivadimn.notescompanion.adapters.MainPagerAdapter;
+import ru.ivadimn.notescompanion.fragments.GestureFragment;
 import ru.ivadimn.notescompanion.fragments.NoteFragment;
 import ru.ivadimn.notescompanion.fragments.PagerFragment;
 import ru.ivadimn.notescompanion.fragments.PictureFragment;
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
         pf = new PictureFragment();
         pf.setTitle(titles[1]);
         pagerAdapter.addPage(pf, 1);
+
+        pf = new GestureFragment();
+        pf.setTitle(titles[2]);
+        pagerAdapter.addPage(pf, 2);
 
 
         viewPager.setAdapter(pagerAdapter);

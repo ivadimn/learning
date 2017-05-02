@@ -19,6 +19,7 @@
     <string-array name="page_title">
         <item>Заметки</item>
         <item>Картинки</item>
+        <item>Жесты</item>
     </string-array>
 
 </resources>

@@ -21,5 +21,6 @@
     <string-array name="page_title">
         <item>Notes</item>
         <item>Pictures</item>
+        <item>Gesture</item>
     </string-array>
 </resources>
