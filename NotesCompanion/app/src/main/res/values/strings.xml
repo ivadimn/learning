@@ -22,5 +22,6 @@
         <item>Notes</item>
         <item>Pictures</item>
         <item>Gesture</item>
+        <item>Contacts</item>
     </string-array>
 </resources>

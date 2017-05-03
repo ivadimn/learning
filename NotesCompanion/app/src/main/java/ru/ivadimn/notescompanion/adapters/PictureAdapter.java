@@ -64,7 +64,7 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.RVHolder
                 image.setImageResource(R.drawable.ic_mood_black_24dp);
             }
             tvName.setText(person.getName());
-            tvPhone.setText(person.getPhone());
+
         }
     }
 }

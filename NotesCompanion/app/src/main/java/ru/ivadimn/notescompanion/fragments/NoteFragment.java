@@ -47,6 +47,8 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
         LoaderManager.LoaderCallbacks<Cursor> {
 
     private static NoteFragment instance;
+    private static final int  loaderId = 0;
+
 
     private static final int DATA_ADDED = 1;
     private static final int DATA_CHANGED = 2;
@@ -95,7 +97,7 @@ public class NoteFragment extends PagerFragment implements DlgFragment.DlgInterf
         initUI(view);
         Log.d(TAG, "onCreateView list created");
         //получаем курсоп в другом потоке
-        getActivity().getSupportLoaderManager().initLoader(0, null, this);
+        getActivity().getSupportLoaderManager().initLoader(loaderId, null, this);
         return view;
     }
 
