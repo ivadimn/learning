@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import ru.ivadimn.notescompanion.R;
 import ru.ivadimn.notescompanion.adapters.ContactsAdapter;
+import ru.ivadimn.notescompanion.listeners.LIClickListener;
 import ru.ivadimn.notescompanion.model.Person;
 
 /**
@@ -34,6 +36,7 @@ public class ContactsFragment extends PagerFragment
     private List<Person> persons;
     private RecyclerView rv;
     private ContactsAdapter adapter;
+    private LIClickListener listener;
 
     @Override
     public void onCreate(Bundle args) {
@@ -51,6 +54,18 @@ public class ContactsFragment extends PagerFragment
         rv = (RecyclerView) view.findViewById(R.id.contacts_rvlist_id);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setAdapter(adapter);
+        listener = new LIClickListener(getActivity(), rv, new LIClickListener.ItemClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Toast.makeText(getContext(), "Clicked on " + position + " position", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        });
+        rv.addOnItemTouchListener(listener );
 
         return view;
     }
