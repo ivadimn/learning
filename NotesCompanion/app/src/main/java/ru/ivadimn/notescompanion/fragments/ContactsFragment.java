@@ -62,6 +62,7 @@ public class ContactsFragment extends PagerFragment
 
             @Override
             public void onLongClick(View view, int position) {
+                Toast.makeText(getContext(), "Clicked on " + position + " position", Toast.LENGTH_LONG).show();
 
             }
         });
