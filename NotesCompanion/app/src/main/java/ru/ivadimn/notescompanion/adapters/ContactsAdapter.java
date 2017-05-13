@@ -2,6 +2,7 @@ package ru.ivadimn.notescompanion.adapters;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,13 +63,12 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         }
 
         public void bind(Person p) {
-            InputStream in = p.getStreamPhoto();
-            if ( in == null) {
+            Drawable avatar = p.getImage();
+            if ( avatar == null) {
                 image.setImageResource(R.drawable.ic_mood_black_24dp);
             }
             else {
-                Drawable dr = Drawable.createFromStream(in, p.getName());
-                image.setImageDrawable(dr);
+                image.setImageDrawable(avatar);
             }
             tvName.setText(p.getName());
             StringBuilder sb = new StringBuilder();

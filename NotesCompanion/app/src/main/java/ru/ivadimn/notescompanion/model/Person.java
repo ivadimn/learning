@@ -1,11 +1,17 @@
 package ru.ivadimn.notescompanion.model;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
 import android.provider.ContactsContract;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Created by vadim on 27.04.17.
@@ -36,7 +42,7 @@ public class Person  {
     private int hasPhoneNumber;
     private List<String> phones = new ArrayList<>();
     private List<String> emails = new ArrayList<>();
-    private InputStream streamPhoto;
+    private Drawable image;
 
     private int photo;
 
@@ -48,15 +54,20 @@ public class Person  {
         this.id = id;
         this.name = name;
         this.hasPhoneNumber = hasPhoneNumber;
-        this.streamPhoto = in;
+
+        if (in != null) {
+            image = Drawable.createFromStream(in, name);
+        }
+        else
+            image = null;
     }
 
-    public InputStream getStreamPhoto() {
-        return streamPhoto;
+    public Drawable getImage() {
+        return image;
     }
 
-    public void setStreamPhoto(InputStream streamPhoto) {
-        this.streamPhoto = streamPhoto;
+    public void setImage(Drawable image) {
+        this.image = image;
     }
 
     public String getName() {

@@ -11,7 +11,7 @@
         android:layout_width="229dp"
         android:layout_height="204dp"
         app:srcCompat="@drawable/ic_mood_black_24dp"
-        app:layout_marginTop="@dimen/view_margin"
+        android:layout_marginTop="@dimen/view_margin"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />

@@ -1,11 +1,14 @@
 package ru.ivadimn.notescompanion.fragments;
 
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContentResolverCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +42,15 @@ public class ContactsFragment extends PagerFragment
     private ContactsAdapter adapter;
     private LIClickListener listener;
 
+    private ProgressDialog loadDlg;
+
     @Override
     public void onCreate(Bundle args) {
         super.onCreate(args);
         persons = new ArrayList<>();
         adapter = new ContactsAdapter(persons);
         getActivity().getSupportLoaderManager().initLoader(loaderId, null, this);
+
     }
 
     @Nullable
@@ -98,7 +105,10 @@ public class ContactsFragment extends PagerFragment
 
             InputStream in = ContactsContract.Contacts.openContactPhotoInputStream(getActivity().getContentResolver(),
                     Uri.withAppendedPath(Person.CONTACT_URI, String.valueOf(id)));
+
             Person p = new Person(id, displayName, hasNumber, in);
+            if (hasNumber > 0)
+                p.setPhones(getPhones(id));
             persons.add(p);
         }
         adapter.updateData(persons);
@@ -107,5 +117,19 @@ public class ContactsFragment extends PagerFragment
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         persons = null;
+    }
+
+    private List<String> getPhones(int id) {
+        List<String> ps = new ArrayList<>();
+        String[] projection = {Person.PHONE_CONTACT_ID, Person.NUMBER};
+        ContentResolver cr = getActivity().getContentResolver();
+        Cursor cursor = cr.query(Person.NUMBER_URI, projection, Person.PHONE_CONTACT_ID + " = ?",
+                new String[] {String.valueOf(id)}, Person.NUMBER);
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                ps.add(cursor.getString(cursor.getColumnIndex(Person.NUMBER)));
+            }
+        }
+        return ps;
     }
 }
