@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Обработка контактов</string>
+
+    <string name="btn_contacts">Контакты</string>
+    <string name="btn_raw_contacts">Сырые контакты</string>
+
+    <string name="id">_ИД</string>
+    <string name="contact_id">Контанкт ИД</string>
+    <string name="account_name">Имя уч. записи</string>
+    <string name="account_type">Тип уч. записи</string>
+    <string name="ringtone">Мелодия</string>
+</resources>

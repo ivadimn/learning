@@ -3,6 +3,8 @@ package ru.ivadimn.notescompanion.fragments;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -20,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,6 +102,7 @@ public class ContactsFragment extends PagerFragment
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        Bitmap bmp;
         while (data.moveToNext()) {
             int id = data.getInt(data.getColumnIndex(Person._ID));
             String displayName =  data.getString(data.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
@@ -106,8 +111,20 @@ public class ContactsFragment extends PagerFragment
             InputStream in = ContactsContract.Contacts.openContactPhotoInputStream(getActivity().getContentResolver(),
                     Uri.withAppendedPath(Person.CONTACT_URI, String.valueOf(id)));
 
-            Person p = new Person(id, displayName, hasNumber, in);
-            if (hasNumber > 0)
+            if (in != null)
+                bmp = BitmapFactory.decodeStream(in);
+            else
+                bmp = null;
+
+            try {
+                if (in != null)
+                    in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Person p = new Person(id, displayName, bmp);
+
+            if (hasNumber != 0)
                 p.setPhones(getPhones(id));
             persons.add(p);
         }

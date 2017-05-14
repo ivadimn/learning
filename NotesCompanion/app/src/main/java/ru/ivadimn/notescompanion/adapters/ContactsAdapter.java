@@ -63,12 +63,12 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         }
 
         public void bind(Person p) {
-            Drawable avatar = p.getImage();
+            Bitmap avatar = p.getImage();
             if ( avatar == null) {
                 image.setImageResource(R.drawable.ic_mood_black_24dp);
             }
             else {
-                image.setImageDrawable(avatar);
+                image.setImageBitmap(avatar);
             }
             tvName.setText(p.getName());
             StringBuilder sb = new StringBuilder();

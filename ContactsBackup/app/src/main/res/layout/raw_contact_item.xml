@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/view_margin"
+    android:background="#f3f3b7">
+
+    <TextView
+        android:id="@+id/tvtitle_id_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/view_padding"
+        android:text="@string/id"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+    <TextView
+        android:id="@+id/tv_id_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/tvtitle_id_id"/>
+
+    <TextView
+        android:id="@+id/tvtitle_contactid_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contact_id"
+        android:layout_margin="@dimen/view_padding"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvtitle_id_id"
+        />
+    <TextView
+        android:id="@+id/tv_contactid_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/tvtitle_contactid_id"
+        app:layout_constraintTop_toTopOf="@id/tvtitle_contactid_id"/>
+
+    <TextView
+        android:id="@+id/tvtitle_name_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/account_name"
+        android:layout_margin="@dimen/view_padding"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvtitle_contactid_id"/>
+    <TextView
+        android:id="@+id/tv_name_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/tvtitle_name_id"
+        app:layout_constraintTop_toTopOf="@id/tvtitle_name_id"
+        />
+
+    <TextView
+        android:id="@+id/tvtitle_type_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/account_type"
+        android:layout_margin="@dimen/view_padding"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvtitle_name_id"/>
+    <TextView
+        android:id="@+id/tv_type_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/tvtitle_type_id"
+        app:layout_constraintTop_toTopOf="@id/tvtitle_type_id"/>
+
+    <TextView
+        android:id="@+id/tvtitle_ring_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ringtone"
+        android:layout_margin="@dimen/view_padding"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvtitle_type_id"/>
+    <TextView
+        android:id="@+id/tv_ring_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/tvtitle_ring_id"
+        app:layout_constraintTop_toTopOf="@id/tvtitle_ring_id"/>
+
+</android.support.constraint.ConstraintLayout>
