@@ -24,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showContacts(View view) {
-
-        Toast.makeText(this, "Show Contacts", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, RestoreActivity.class);
+        startActivity(intent);
+        //Toast.makeText(this, "Show Contacts", Toast.LENGTH_SHORT).show();
     }
 
     public void showRawContacts(View view) {

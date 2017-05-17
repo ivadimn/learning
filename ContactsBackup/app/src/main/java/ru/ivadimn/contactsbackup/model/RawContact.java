@@ -28,6 +28,10 @@ public class RawContact {
     private String accountName;
     private String accountType;
     private String customRingtone;
+    public RawContact(String accountName, String accountType) {
+        this.accountName = accountName;
+        this.accountType = accountType;
+    }
 
     public RawContact(long _id, long contactId, String accountName, String accountType, String customRingtone) {
         this._id = _id;

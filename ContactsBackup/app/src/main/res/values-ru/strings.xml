@@ -10,4 +10,11 @@
     <string name="account_name">Имя уч. записи</string>
     <string name="account_type">Тип уч. записи</string>
     <string name="ringtone">Мелодия</string>
+
+    <string name="family">Фамилия</string>
+    <string name="name">Имя</string>
+    <string name="phone">Телефон</string>
+    <string name="email">Email</string>
+
+    <string name="restore">Восстановить</string>
 </resources>
