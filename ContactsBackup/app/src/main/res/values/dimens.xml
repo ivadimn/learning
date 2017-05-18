@@ -9,7 +9,8 @@
     <dimen name="image_height">56dp</dimen>
 
     <!--размеры отступов и полей-->
-    <dimen name="view_margin">16dp</dimen>
+    <dimen name="view_margin">8dp</dimen>
     <dimen name="view_padding">4dp</dimen>
+    <dimen name="edit_margin">96dp</dimen>
 
 </resources>
