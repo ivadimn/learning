@@ -70,15 +70,53 @@
         android:layout_marginTop="@dimen/view_margin"
         android:background="@color/colorEditBackground"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ed_family_id"
+        app:layout_constraintTop_toBottomOf="@id/ed_phone1_id"
         />
     <TextView
-        android:id="@+id/tv_titlephone1_id"
+        android:id="@+id/tv_titlephone2_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/phone"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/ed_phone1_id"
+        app:layout_constraintBottom_toBottomOf="@id/ed_phone2_id"
+        />
+
+    <EditText
+        android:id="@+id/ed_email1_id"
+        android:layout_width="309dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/view_margin"
+        android:background="@color/colorEditBackground"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ed_phone2_id"
+        />
+    <TextView
+        android:id="@+id/tv_titleemail1_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ed_email1_id"
+        />
+
+    <EditText
+        android:id="@+id/ed_email2_id"
+        android:layout_width="309dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/view_margin"
+        android:background="@color/colorEditBackground"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ed_email1_id"
+        />
+    <TextView
+        android:id="@+id/tv_titleemail2_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ed_email2_id"
         />
 
     <Button

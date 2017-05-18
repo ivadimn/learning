@@ -25,12 +25,12 @@ public class RestoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restore);
 
-        txtGiven = (EditText) findViewById(R.id.tv_given_id);
-        /*txtFamily = (EditText) findViewById(R.id.tv_family_id);
-        txtPhone1 = (EditText) findViewById(R.id.tv_phone1_id);
-        txtPhone2 = (EditText) findViewById(R.id.tv_phone2_id);
-        txtEmail1 = (EditText) findViewById(R.id.tv_email1_id);
-        txtEmail2 = (EditText) findViewById(R.id.tv_email2_id);*/
+        txtGiven = (EditText) findViewById(R.id.ed_given_id);
+        txtFamily = (EditText) findViewById(R.id.ed_family_id);
+        txtPhone1 = (EditText) findViewById(R.id.ed_phone1_id);
+        txtPhone2 = (EditText) findViewById(R.id.ed_phone2_id);
+        txtEmail1 = (EditText) findViewById(R.id.ed_email1_id);
+        txtEmail2 = (EditText) findViewById(R.id.ed_email2_id);
         btnRestore = (Button) findViewById(R.id.btn_restore_id);
 
     }
