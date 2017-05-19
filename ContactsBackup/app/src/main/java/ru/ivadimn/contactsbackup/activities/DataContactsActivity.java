@@ -20,7 +20,11 @@ import java.util.List;
 
 import ru.ivadimn.contactsbackup.R;
 import ru.ivadimn.contactsbackup.model.DataContact;
+import ru.ivadimn.contactsbackup.model.DataElement;
 import ru.ivadimn.contactsbackup.model.Element;
+import ru.ivadimn.contactsbackup.model.Email;
+import ru.ivadimn.contactsbackup.model.PersonName;
+import ru.ivadimn.contactsbackup.model.Phone;
 
 public class DataContactsActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -58,7 +62,7 @@ public class DataContactsActivity extends AppCompatActivity implements LoaderMan
         sb.append("Типы данных: \n");
         while(data.moveToNext()) {
             String itemType = data.getString(data.getColumnIndex(DataContact.MIME_TYPE));
-            Element e = getDataElement(data, itemType);
+            DataElement e = getDataElement(data, itemType);
             if (e != null)
                 dataList.addElement(e);
         }
@@ -69,8 +73,8 @@ public class DataContactsActivity extends AppCompatActivity implements LoaderMan
             image.setImageBitmap(bmp);
         else
             image.setImageResource(android.R.drawable.picture_frame);
-        List<Element> list = dataList.getDataList();
-        for (Element e : list) {
+        List<DataElement> list = dataList.getDataElements();
+        for (DataElement e : list) {
             List<String> fs = e.getKeyList();
             for (String s : fs) {
                 sb.append(s + " : " + e.getValue(s) + "\n");
@@ -85,30 +89,17 @@ public class DataContactsActivity extends AppCompatActivity implements LoaderMan
 
     }
 
-    public Element getDataElement(Cursor data, String itemType) {
-
-        switch(itemType) {
-            case DataContact.STRUCT_NAME_TYPE:
-                return getElements(data, itemType, DataContact.getStructNameFields());
-            case DataContact.PHONE_TYPE:
-                return getElements(data, itemType, DataContact.getPhoneFields());
-            case DataContact.EMAIL_TYPE:
-                return getElements(data, itemType, DataContact.getEmailFields());
-            case DataContact.PHOTO_TYPE:
-                getPhoto(data, itemType);
-                return null;
-            default:
-                return null;
+    public DataElement getDataElement(Cursor data, String itemType) {
+        DataElement de = DataElement.createElement(itemType);
+        if (de != null) {
+            String fields[] = de.getFieldNames();
+            for (int i = 0; i < fields.length; i++) {
+                de.addValue(fields[i], data.getString(data.getColumnIndex(fields[i])));
+            }
         }
+        return de;
     }
 
-    public Element getElements(Cursor data, String itemType, String[] fileds) {
-        Element e = new Element(itemType);
-        for (int i = 0; i < fileds.length; i++) {
-            e.addElement(fileds[i], data.getString(data.getColumnIndex(fileds[i])));
-        }
-        return e;
-    }
 
     public Bitmap getPhoto(Cursor data, String itemType) {
         Bitmap bmp = null;

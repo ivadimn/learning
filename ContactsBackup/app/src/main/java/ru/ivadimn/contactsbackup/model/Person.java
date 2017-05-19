@@ -8,15 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by vadim on 14.05.2017.
+ * Created by vadim on 27.04.17.
  */
 
 public class Person {
 
-    //сырые контакты
-
-    //таблица contacts
-    public static final Uri CONTACT_URI = ContactsContract.Contacts.CONTENT_URI;         //uri щбщего списка кантактов
+    public static final Uri CONTACT_URI = ContactsContract.Contacts.CONTENT_URI;
     public static final String _ID = ContactsContract.Contacts._ID;
     public static final String PHOTO_ID = ContactsContract.Contacts.PHOTO_ID;
     public static final String PHOTO_FILE_ID = ContactsContract.Contacts.PHOTO_FILE_ID;
@@ -41,11 +38,13 @@ public class Person {
     private List<String> emails = new ArrayList<>();
     private Bitmap image;
 
+    private int photo;
+
     public Person() {
         //no-op
     }
 
-    public Person(int id, String name, String hasPhoneNumber, Bitmap bmp) {
+    public Person(int id, String name, Bitmap bmp) {
         this.id = id;
         this.name = name;
         this.hasPhoneNumber = hasPhoneNumber;
@@ -66,6 +65,14 @@ public class Person {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(int photo) {
+        this.photo = photo;
     }
 
     public List<String> getPhones() {

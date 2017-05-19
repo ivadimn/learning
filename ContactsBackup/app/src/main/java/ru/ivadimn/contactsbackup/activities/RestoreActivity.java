@@ -37,6 +37,6 @@ public class RestoreActivity extends AppCompatActivity {
 
     public void restore(View view) {
         DataContact data = new DataContact();
-        Element e = new Element(DataContact.PHONE_TYPE);
+
     }
 }

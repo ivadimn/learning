@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.ivadimn.contactsbackup.model.DataContact;
+import ru.ivadimn.contactsbackup.model.DataElement;
 import ru.ivadimn.contactsbackup.model.Element;
 import ru.ivadimn.contactsbackup.model.RawContact;
 
@@ -39,14 +40,14 @@ public class Restore {
         builder.withValue(RawContact.ACCOUT_NAME, null);
         builder.withValue(RawContact.ACCOUT_TYPE, null);
         op.add(builder.build());
-        List<Element> dataList = data.getDataList();
-        for (Element e : dataList) {
+        List<DataElement> dataList = data.getDataElements();
+        for (DataElement e : dataList) {
             List<String> keys = e.getKeyList();
             for (String key : keys) {
                 String val = e.getValue(key);
                 builder = ContentProviderOperation.newInsert(DataContact.DATA_CONTACT_URI);
                 builder.withValueBackReference(DataContact.CONTACT_ID, 0);
-                builder.withValue(e.getMime(), val);
+                builder.withValue(e.getMimeType(), val);
                 op.add(builder.build());
             }
         }

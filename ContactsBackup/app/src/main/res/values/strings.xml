@@ -14,7 +14,12 @@
     <string name="name">Name</string>
     <string name="phone">Phone</string>
     <string name="email">Email</string>
-
     <string name="restore">Restore</string>
+
+    <string-array name="struct_name_fields">
+        <item>Name</item>
+        <item>First name</item>
+        <item>Second name</item>
+    </string-array>
 
 </resources>
