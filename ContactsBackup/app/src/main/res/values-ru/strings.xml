@@ -23,4 +23,13 @@
         <item>Имя</item>
         <item>Фамилия</item>
     </string-array>
+    <string-array name="phone_fields">
+        <item>Номер</item>
+        <item>Метка</item>
+        <item>Тип</item>
+    </string-array>
+    <string-array name="email_fields">
+        <item>Адрес</item>
+        <item>Имя</item>
+    </string-array>
 </resources>

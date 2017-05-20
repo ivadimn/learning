@@ -19,8 +19,9 @@ public class DataContact {
     public static final String _ID = ContactsContract.Data._ID;
     public static final String CONTACT_ID = ContactsContract.Data.CONTACT_ID;
     public static final String MIME_TYPE = ContactsContract.Data.MIMETYPE;
+    public static final String PHOTO_MIME_TYPE = ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE;
 
-    public static final String PHOTO_TYPE = ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE;
+    //эти типы данных на развитие
     public static final String ORGANIZATION_TYPE = ContactsContract.CommonDataKinds.Organization.CONTENT_ITEM_TYPE;
     public static final String IM_TYPE = ContactsContract.CommonDataKinds.Im.CONTENT_ITEM_TYPE;
     public static final String NICK_NAME_TYPE = ContactsContract.CommonDataKinds.Nickname.CONTENT_ITEM_TYPE;
@@ -32,12 +33,19 @@ public class DataContact {
     public static final String RELATION_TYPE = ContactsContract.CommonDataKinds.Relation.CONTENT_ITEM_TYPE;
     public static final String SIP_ADDRESS_TYPE = ContactsContract.CommonDataKinds.SipAddress.CONTENT_ITEM_TYPE;
 
+    public DataContact() {
+        //no-op
+    }
+
+    public DataContact(long contactId) {
+        this.contactId = contactId;
+    }
+
     //наименование столбцов photo
     public static final String PHOTO_ID = ContactsContract.CommonDataKinds.Photo.PHOTO;
     public static final String PHOTO_FILE_ID = ContactsContract.CommonDataKinds.Photo.PHOTO_FILE_ID;
 
     private List<DataElement> dataList = new ArrayList<>();
-
 
     public void addElement(DataElement e) {
         dataList.add(e);
@@ -46,8 +54,9 @@ public class DataContact {
         return dataList;
     }
 
+    private long contactId;
     private Bitmap photo;
-    private String photoFile;
+    private byte[] photoBytes;
 
     public Bitmap getPhoto() {
         /*ByteBuffer  buffer = ByteBuffer.allocate(photo.getByteCount());
@@ -56,15 +65,31 @@ public class DataContact {
         return photo;
     }
 
+    public String getName() {
+        for (DataElement de : dataList) {
+            if (de.getMimeType() == PersonName.MIME_TYPE )
+                return de.getValue(PersonName.DISPLAY_NAME);
+        }
+        return null;
+    }
+
     public void setPhoto(Bitmap photo) {
         this.photo = photo;
     }
 
-    public String getPhotoFile() {
-        return photoFile;
+    public byte[] getPhotoBytes() {
+        return photoBytes;
     }
 
-    public void setPhotoFile(String photoFile) {
-        this.photoFile = photoFile;
+    public void setPhotoBytes(byte[] photoBytes) {
+        this.photoBytes = photoBytes;
+    }
+
+    public long getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(long contactId) {
+        this.contactId = contactId;
     }
 }

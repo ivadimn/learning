@@ -14,9 +14,7 @@ import java.util.List;
 public class Person {
 
     public static final Uri CONTACT_URI = ContactsContract.Contacts.CONTENT_URI;
-    public static final String _ID = ContactsContract.Contacts._ID;
-    public static final String PHOTO_ID = ContactsContract.Contacts.PHOTO_ID;
-    public static final String PHOTO_FILE_ID = ContactsContract.Contacts.PHOTO_FILE_ID;
+    public static final String _ID = ContactsContract.Contacts._ID;                //Contact ID в других таблицах
     public static final String DISPLAY_NAME = ContactsContract.Contacts.DISPLAY_NAME;
     public static final String HAS_PHONE_NUMBER = ContactsContract.Contacts.HAS_PHONE_NUMBER;
 

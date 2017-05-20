@@ -60,6 +60,7 @@ public class DataContactsActivity extends AppCompatActivity implements LoaderMan
         StringBuilder sb = new StringBuilder();
         Log.d(TAG, "Загрузка данных завершена");
         sb.append("Типы данных: \n");
+
         while(data.moveToNext()) {
             String itemType = data.getString(data.getColumnIndex(DataContact.MIME_TYPE));
             DataElement e = getDataElement(data, itemType);
@@ -67,7 +68,7 @@ public class DataContactsActivity extends AppCompatActivity implements LoaderMan
                 dataList.addElement(e);
         }
 
-        sb.append("Фото файл : " + dataList.getPhotoFile());
+
         Bitmap bmp = dataList.getPhoto();
         if (bmp != null)
             image.setImageBitmap(bmp);
@@ -103,10 +104,7 @@ public class DataContactsActivity extends AppCompatActivity implements LoaderMan
 
     public Bitmap getPhoto(Cursor data, String itemType) {
         Bitmap bmp = null;
-        String fname = data.getString(data.getColumnIndex(DataContact.PHOTO_FILE_ID));
         byte[] photo = data.getBlob(data.getColumnIndex(DataContact.PHOTO_ID));
-        if (fname != null)
-            dataList.setPhotoFile(fname);
         if (photo != null) {
             bmp = BitmapFactory.decodeByteArray(photo, 0, photo.length);
             dataList.setPhoto(bmp);

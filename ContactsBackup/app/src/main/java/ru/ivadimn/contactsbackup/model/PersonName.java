@@ -16,6 +16,11 @@ public class PersonName extends DataElement {
 
 
     @Override
+    public String getDescription(String key) {
+        return null;
+    }
+
+    @Override
     public String getMimeType() {
         return MIME_TYPE;
     }

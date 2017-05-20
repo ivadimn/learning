@@ -14,6 +14,11 @@ public class Email extends DataElement {
     public static final String EMAIL_NAME = ContactsContract.CommonDataKinds.Email.DISPLAY_NAME;
 
     @Override
+    public String getDescription(String key) {
+        return null;
+    }
+
+    @Override
     public String getMimeType() {
         return MIME_TYPE;
     }

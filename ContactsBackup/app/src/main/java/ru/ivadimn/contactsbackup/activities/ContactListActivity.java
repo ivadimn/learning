@@ -16,27 +16,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.ivadimn.contactsbackup.R;
-import ru.ivadimn.contactsbackup.listeners.RVItemListener;
+import ru.ivadimn.contactsbackup.adapters.ContactsAdapter;
 import ru.ivadimn.contactsbackup.adapters.RawContactsAdapter;
+import ru.ivadimn.contactsbackup.data.ReadProvider;
+import ru.ivadimn.contactsbackup.listeners.RVItemListener;
 import ru.ivadimn.contactsbackup.model.DataContact;
 import ru.ivadimn.contactsbackup.model.RawContact;
 
-public class RawContacts extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class ContactListActivity extends AppCompatActivity
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private List<RawContact> rawContacts = new ArrayList<>();
     private RecyclerView recyclerView;
-    private RawContactsAdapter adapter;
+    private ContactsAdapter adapter;
     private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_contact_list);
         context = getBaseContext();
-        setContentView(R.layout.activity_raw_contacts);
         getSupportLoaderManager().initLoader(RawContact.LOADER_ID, null, this);
-        recyclerView = (RecyclerView) findViewById(R.id.rv_rawcontacts_id);
+        recyclerView = (RecyclerView) findViewById(R.id.rv_contact_list_id);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RawContactsAdapter();
+        adapter = new ContactsAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.addOnItemTouchListener(new RVItemListener(context, recyclerView, listener));
     }
@@ -50,21 +53,25 @@ public class RawContacts extends AppCompatActivity implements LoaderManager.Load
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        ReadProvider read = new ReadProvider(this, DataContact.DATA_CONTACT_URI);
         while(data.moveToNext()) {
             int _id = data.getInt(data.getColumnIndex(RawContact._ID));
             int contactId = data.getInt(data.getColumnIndex(RawContact.CONTACT_ID));
             String accountName = data.getString(data.getColumnIndex(RawContact.ACCOUT_NAME));
             String accountType = data.getString(data.getColumnIndex(RawContact.ACCOUT_TYPE));
             String customRingtone = data.getString(data.getColumnIndex(RawContact.CUSTOM_RINGTONE));
-
-            rawContacts.add(new RawContact(_id, contactId, accountName, accountType, customRingtone));
+            RawContact rc = new RawContact(_id, contactId, accountName, accountType, customRingtone);
+            read.initCursor(null, DataContact.CONTACT_ID + " = ?", new String[] {String.valueOf(contactId)}, null);
+            read.getData(rc.getData());
+            read.closeCursor();
+            rawContacts.add(rc);
         }
         adapter.updateData(rawContacts);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        rawContacts.clear();
+
     }
 
     private RVItemListener.OnRVItemClickListener listener = new RVItemListener.OnRVItemClickListener() {
@@ -74,7 +81,6 @@ public class RawContacts extends AppCompatActivity implements LoaderManager.Load
             intent.putExtra(DataContact.CONTACT_ID, rawContacts.get(position).getContactId());
             startActivity(intent);
         }
-
         @Override
         public void onLongClick(View view, int position) {
 

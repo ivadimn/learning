@@ -25,6 +25,12 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp">
                 <TextView
+                    android:id="@+id/tv_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/view_margin"
+                    android:textStyle="bold"/>
+                <TextView
                     android:id="@+id/tv_name_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -21,5 +21,14 @@
         <item>First name</item>
         <item>Second name</item>
     </string-array>
+    <string-array name="phone_fields">
+        <item>Number</item>
+        <item>Label</item>
+        <item>Type</item>
+    </string-array>
+    <string-array name="email_fields">
+        <item>Address</item>
+        <item>Name</item>
+    </string-array>
 
 </resources>

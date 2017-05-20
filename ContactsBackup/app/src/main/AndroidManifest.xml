@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".activities.RawContacts" />
         <activity android:name=".activities.DataContactsActivity" />
-        <activity android:name=".activities.RestoreActivity"></activity>
+        <activity android:name=".activities.RestoreActivity" />
+        <activity android:name=".activities.ContactListActivity"></activity>
     </application>
 
 </manifest>

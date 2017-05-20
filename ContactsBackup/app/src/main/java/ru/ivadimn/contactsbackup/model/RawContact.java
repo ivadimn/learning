@@ -31,6 +31,7 @@ public class RawContact {
     public RawContact(String accountName, String accountType) {
         this.accountName = accountName;
         this.accountType = accountType;
+        data = new DataContact();
     }
 
     public RawContact(long _id, long contactId, String accountName, String accountType, String customRingtone) {
@@ -39,6 +40,13 @@ public class RawContact {
         this.accountName = accountName;
         this.accountType = accountType;
         this.customRingtone = customRingtone;
+        data = new DataContact(contactId);
+    }
+
+    private DataContact data;
+
+    public DataContact getData() {
+        return data;
     }
 
     public long get_id() {

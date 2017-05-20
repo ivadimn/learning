@@ -9,6 +9,7 @@ import java.util.HashMap;
  */
 
 public class Phone  extends DataElement {
+
     public static final String MIME_TYPE = ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE;
     //наименование столбцов телефона
     public static final String NUMBER = ContactsContract.CommonDataKinds.Phone.NUMBER;
@@ -18,6 +19,11 @@ public class Phone  extends DataElement {
     private String number;
     private String label;
     private String type;
+
+    @Override
+    public String getDescription(String key) {
+        return null;
+    }
 
     @Override
     public String getMimeType() {

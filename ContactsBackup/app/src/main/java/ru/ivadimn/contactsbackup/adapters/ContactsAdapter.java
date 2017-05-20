@@ -1,6 +1,7 @@
 package ru.ivadimn.contactsbackup.adapters;
 
 import android.graphics.Bitmap;
+import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import ru.ivadimn.notescompanion.R;
-import ru.ivadimn.notescompanion.model.Person;
+import ru.ivadimn.contactsbackup.R;
+import ru.ivadimn.contactsbackup.model.DataContact;
+import ru.ivadimn.contactsbackup.model.RawContact;
+
 
 /**
  * Created by vadim on 03.05.17.
@@ -19,13 +22,16 @@ import ru.ivadimn.notescompanion.model.Person;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactHolder> {
 
-    private List<Person> persons;
+    private List<RawContact> persons;
 
-    public ContactsAdapter(List<Person> persons) {
+    public ContactsAdapter() {
+        //no-op
+    }
+    public ContactsAdapter(List<RawContact> persons) {
         this.persons = persons;
     }
 
-    public void updateData(List<Person> persons) {
+    public void updateData(List<RawContact> persons) {
         this.persons = persons;
         notifyDataSetChanged();
     }
@@ -49,30 +55,27 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     public class ContactHolder extends RecyclerView.ViewHolder {
 
         private ImageView image;
+        private TextView tvId;
         private TextView tvName;
-        private TextView tvPhones;
+
 
         public ContactHolder(View itemView) {
             super(itemView);
             image = (ImageView) itemView.findViewById(R.id.img_photo_id);
             tvName = (TextView) itemView.findViewById(R.id.tv_name_id);
-            tvPhones = (TextView) itemView.findViewById(R.id.tv_phone_id);
+            tvId = (TextView) itemView.findViewById(R.id.tv_id);
         }
 
-        public void bind(Person p) {
-            Bitmap avatar = p.getImage();
+        public void bind(RawContact p) {
+            Bitmap avatar = p.getData().getPhoto();
             if ( avatar == null) {
                 image.setImageResource(R.drawable.ic_mood_black_24dp);
             }
             else {
                 image.setImageBitmap(avatar);
             }
-            tvName.setText(p.getName());
-            StringBuilder sb = new StringBuilder();
-            for (String s : p.getPhones()) {
-                sb.append(s + "\n");
-            }
-            tvPhones.setText(sb.toString());
+            tvId.setText(String.valueOf(p.getContactId()));
+            tvName.setText(p.getData().getName());
         }
 
     }
