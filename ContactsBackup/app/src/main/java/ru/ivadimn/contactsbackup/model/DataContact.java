@@ -43,7 +43,7 @@ public class DataContact {
 
     //наименование столбцов photo
     public static final String PHOTO_ID = ContactsContract.CommonDataKinds.Photo.PHOTO;
-    public static final String PHOTO_FILE_ID = ContactsContract.CommonDataKinds.Photo.PHOTO_FILE_ID;
+
 
     private List<DataElement> dataList = new ArrayList<>();
 
@@ -58,6 +58,22 @@ public class DataContact {
     private Bitmap photo;
     private byte[] photoBytes;
 
+    private PersonName name;
+    private List<Phone> phones = new ArrayList<>();
+    private List<Email> emails = new ArrayList<>();
+
+    public void addPhone(Phone phone) {
+        phones.add(phone);
+    }
+
+    public void addEmail(Email email) {
+        emails.add(email);
+    }
+
+    public void setName(PersonName name) {
+        this.name = name;
+    }
+
     public Bitmap getPhoto() {
         /*ByteBuffer  buffer = ByteBuffer.allocate(photo.getByteCount());
         photo.copyPixelsToBuffer(buffer);
@@ -66,11 +82,23 @@ public class DataContact {
     }
 
     public String getName() {
+        return name.getDisplayName();
+    }
+
+    /*public String[] getPhoneTypes() {
+        List<String> list = new ArrayList<>();
         for (DataElement de : dataList) {
-            if (de.getMimeType() == PersonName.MIME_TYPE )
-                return de.getValue(PersonName.DISPLAY_NAME);
+            if (de.getMimeType() == Phone.MIME_TYPE )
+                list.add(de.getValue(Phone.TYPE));
         }
-        return null;
+        return (String[]) list.toArray();
+    }*/
+
+    public List<Phone> getPhones() {
+        return phones;
+    }
+    public List<Email> getEmails() {
+        return emails;
     }
 
     public void setPhoto(Bitmap photo) {

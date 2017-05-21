@@ -13,8 +13,13 @@ import java.util.Set;
 
 public abstract class DataElement {
 
-    private HashMap<String, String> values = new HashMap<>();
+    private String mimeType;
 
+    protected DataElement(String mimeType) {
+        this.mimeType = mimeType;
+    }
+
+    private HashMap<String, String> values = new HashMap<>();
 
     public HashMap<String, String> getValues() {
         return values;
@@ -49,4 +54,5 @@ public abstract class DataElement {
 
     public abstract String getMimeType();
     public abstract String[] getFieldNames();
+    public abstract String[] getStringValues();
 }

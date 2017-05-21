@@ -14,6 +14,20 @@ public class PersonName extends DataElement {
     public static final String GIVEN_NAME = ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME;
     public static final String FAMILY_NAME = ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME;
 
+    public PersonName() {
+        super(MIME_TYPE);
+    }
+
+    public PersonName(String displayName, String givenName, String familyName) {
+        super(MIME_TYPE);
+        this.displayName = displayName;
+        this.givenName = givenName;
+        this.familyName = familyName;
+    }
+
+    private String displayName;
+    private String givenName;
+    private String familyName;
 
     @Override
     public String getDescription(String key) {
@@ -28,5 +42,34 @@ public class PersonName extends DataElement {
     @Override
     public String[] getFieldNames() {
         return new String[] {DISPLAY_NAME, GIVEN_NAME, FAMILY_NAME};
+    }
+
+    @Override
+    public String[] getStringValues() {
+        return new String[] {displayName, givenName, familyName};
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getGivenName() {
+        return givenName;
+    }
+
+    public void setGivenName(String givenName) {
+        this.givenName = givenName;
+    }
+
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
     }
 }

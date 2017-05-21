@@ -10,6 +10,9 @@ import android.support.v4.content.Loader;
 
 import ru.ivadimn.contactsbackup.model.DataContact;
 import ru.ivadimn.contactsbackup.model.DataElement;
+import ru.ivadimn.contactsbackup.model.Email;
+import ru.ivadimn.contactsbackup.model.PersonName;
+import ru.ivadimn.contactsbackup.model.Phone;
 
 /**
  * Created by vadim on 20.05.2017.
@@ -44,6 +47,7 @@ public class ReadProvider {
         data.close();
     }
 
+
     public void getData(DataContact dataContact) {
         while(data.moveToNext()) {
             String itemType = data.getString(data.getColumnIndex(DataContact.MIME_TYPE));
@@ -51,7 +55,7 @@ public class ReadProvider {
             if (e != null)
                 dataContact.addElement(e);
             else if (itemType.equals(DataContact.PHOTO_MIME_TYPE)) {
-                byte[] photo = getPhoto();
+                byte[] photo = readPhoto();
                 if (photo != null) {
                     Bitmap bmp = BitmapFactory.decodeByteArray(photo, 0, photo.length);
                     dataContact.setPhoto(bmp);
@@ -61,6 +65,53 @@ public class ReadProvider {
         }
     }
 
+    public void readData(DataContact dataContact) {
+        while(data.moveToNext()) {
+            String itemType = data.getString(data.getColumnIndex(DataContact.MIME_TYPE));
+            switch(itemType) {
+                case PersonName.MIME_TYPE:
+                    dataContact.setName(readPersonName());
+                    break;
+                case Phone.MIME_TYPE:
+                    dataContact.addPhone(readPhone());
+                    break;
+                case Email.MIME_TYPE:
+                    dataContact.addEmail(readEmail());
+                    break;
+                case DataContact.PHOTO_MIME_TYPE:
+                    byte[] photo = readPhoto();
+                    if (photo != null) {
+                        Bitmap bmp = BitmapFactory.decodeByteArray(photo, 0, photo.length);
+                        dataContact.setPhoto(bmp);
+                        dataContact.setPhotoBytes(photo);
+                    }
+                    break;
+            }
+        }
+    }
+
+    public Phone readPhone() {
+        return new Phone(
+                data.getString(data.getColumnIndex(Phone.NUMBER)),
+                data.getString(data.getColumnIndex(Phone.LABEL)),
+                data.getInt(data.getColumnIndex(Phone.TYPE))
+        );
+    }
+
+    public Email readEmail() {
+        return new Email(
+                data.getString(data.getColumnIndex(Email.ADDRESS)),
+                data.getString(data.getColumnIndex(Email.EMAIL_NAME))
+                );
+    }
+
+    public PersonName readPersonName() {
+        return new PersonName(
+                data.getString(data.getColumnIndex(PersonName.DISPLAY_NAME)),
+                data.getString(data.getColumnIndex(PersonName.GIVEN_NAME)),
+                data.getString(data.getColumnIndex(PersonName.FAMILY_NAME))
+        );
+    }
     private DataElement getDataElement(String itemType) {
         DataElement de = DataElement.createElement(itemType);
         if (de != null) {
@@ -72,7 +123,7 @@ public class ReadProvider {
         return de;
     }
 
-    private byte[] getPhoto() {
+    private byte[] readPhoto() {
         Bitmap bmp = null;
         byte[] photo = data.getBlob(data.getColumnIndex(DataContact.PHOTO_ID));
         return photo;

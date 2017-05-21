@@ -68,5 +68,7 @@ public class RawContactsAdapter extends RecyclerView.Adapter<RawContactsAdapter.
             tvType.setText(rc.getAccountType());
             tvRing.setText(rc.getCustomRingtone());
         }
+
+        
     }
 }

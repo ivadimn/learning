@@ -21,6 +21,11 @@ import ru.ivadimn.contactsbackup.adapters.RawContactsAdapter;
 import ru.ivadimn.contactsbackup.data.ReadProvider;
 import ru.ivadimn.contactsbackup.listeners.RVItemListener;
 import ru.ivadimn.contactsbackup.model.DataContact;
+import ru.ivadimn.contactsbackup.model.DataElement;
+import ru.ivadimn.contactsbackup.model.DataElementDisplay;
+import ru.ivadimn.contactsbackup.model.Email;
+import ru.ivadimn.contactsbackup.model.PersonName;
+import ru.ivadimn.contactsbackup.model.Phone;
 import ru.ivadimn.contactsbackup.model.RawContact;
 
 public class ContactListActivity extends AppCompatActivity
@@ -62,7 +67,8 @@ public class ContactListActivity extends AppCompatActivity
             String customRingtone = data.getString(data.getColumnIndex(RawContact.CUSTOM_RINGTONE));
             RawContact rc = new RawContact(_id, contactId, accountName, accountType, customRingtone);
             read.initCursor(null, DataContact.CONTACT_ID + " = ?", new String[] {String.valueOf(contactId)}, null);
-            read.getData(rc.getData());
+            //read.getData(rc.getData());
+            read.readData(rc.getData());
             read.closeCursor();
             rawContacts.add(rc);
         }
@@ -77,13 +83,34 @@ public class ContactListActivity extends AppCompatActivity
     private RVItemListener.OnRVItemClickListener listener = new RVItemListener.OnRVItemClickListener() {
         @Override
         public void onClick(View view, int position) {
-            Intent intent = new Intent(context, DataContactsActivity.class);
-            intent.putExtra(DataContact.CONTACT_ID, rawContacts.get(position).getContactId());
+            RawContact rw = rawContacts.get(position);
+            Intent intent = new Intent(context, ContactDetailActivity.class);
+            String n = rw.getData().getName();
+            intent.putExtra(PersonName.MIME_TYPE, n);
+            byte[] photo = rw.getData().getPhotoBytes();
+            intent.putExtra(DataContact.PHOTO_MIME_TYPE, photo);
+            ArrayList<DataElementDisplay> de = getDisplayElements(rw);
+            intent.putParcelableArrayListExtra(DataElementDisplay.LIST_ELEMENT, de);
             startActivity(intent);
         }
+
         @Override
         public void onLongClick(View view, int position) {
 
         }
     };
+
+    private ArrayList<DataElementDisplay> getDisplayElements(RawContact rw) {
+        ArrayList<DataElementDisplay> list = new ArrayList<>();
+        List<Phone> ps = rw.getData().getPhones();
+        for (Phone p : ps) {
+            list.add(new DataElementDisplay(Phone.MIME_TYPE, p.getStringValues()));
+        }
+        List<Email> es = rw.getData().getEmails();
+        for (Email e : es ) {
+            list.add(new DataElementDisplay(Email.MIME_TYPE, e.getStringValues()));
+        }
+        return list;
+    }
+
 }
