@@ -85,7 +85,7 @@ public class ContactListActivity extends AppCompatActivity
         public void onClick(View view, int position) {
             RawContact rw = rawContacts.get(position);
             Intent intent = new Intent(context, ContactDetailActivity.class);
-            String n = rw.getData().getName();
+            String n = rw.getData().getName().getDisplayName();
             intent.putExtra(PersonName.MIME_TYPE, n);
             byte[] photo = rw.getData().getPhotoBytes();
             intent.putExtra(DataContact.PHOTO_MIME_TYPE, photo);

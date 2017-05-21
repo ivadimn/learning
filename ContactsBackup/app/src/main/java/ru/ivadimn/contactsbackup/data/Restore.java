@@ -1,12 +1,8 @@
 package ru.ivadimn.contactsbackup.data;
 
 import android.content.ContentProviderOperation;
-import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.OperationApplicationException;
-import android.net.Uri;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -16,7 +12,6 @@ import java.util.List;
 
 import ru.ivadimn.contactsbackup.model.DataContact;
 import ru.ivadimn.contactsbackup.model.DataElement;
-import ru.ivadimn.contactsbackup.model.Element;
 import ru.ivadimn.contactsbackup.model.RawContact;
 
 /**

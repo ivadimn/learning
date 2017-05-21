@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showRawContacts(View view) {
-        Intent intent = new Intent(this, RawContacts.class);
+        Intent intent = new Intent(this, RestoreActivity.class);
 
         startActivity(intent);
         //Toast.makeText(this, "Show Raw Contacts", Toast.LENGTH_SHORT).show();

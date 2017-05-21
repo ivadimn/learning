@@ -7,8 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import ru.ivadimn.contactsbackup.R;
-import ru.ivadimn.contactsbackup.model.DataContact;
-import ru.ivadimn.contactsbackup.model.Element;
+import ru.ivadimn.contactsbackup.data.WriteProvider;
+import ru.ivadimn.contactsbackup.model.Email;
+import ru.ivadimn.contactsbackup.model.PersonName;
+import ru.ivadimn.contactsbackup.model.Phone;
+import ru.ivadimn.contactsbackup.model.RawContact;
 
 public class RestoreActivity extends AppCompatActivity {
 
@@ -36,7 +39,16 @@ public class RestoreActivity extends AppCompatActivity {
     }
 
     public void restore(View view) {
-        DataContact data = new DataContact();
-
+        RawContact rw = new RawContact(null, null);
+        String displayName = txtGiven.getText().toString() + " " +
+                txtFamily.getText().toString();
+        rw.getData().setName(new PersonName(displayName, txtGiven.getText().toString(), txtFamily.getText().toString()));
+        rw.getData().addPhone(new Phone(txtPhone1.getText().toString(), "label1", 2));
+        rw.getData().addPhone(new Phone(txtPhone2.getText().toString(), "label2", 2));
+        rw.getData().addEmail(new Email(txtEmail1.getText().toString(), "email name 1"));
+        rw.getData().addEmail(new Email(txtEmail2.getText().toString(), "email name 2"));
+        WriteProvider wp = new WriteProvider(this);
+        wp.writeData(rw);
+        //wp.wd();
     }
 }

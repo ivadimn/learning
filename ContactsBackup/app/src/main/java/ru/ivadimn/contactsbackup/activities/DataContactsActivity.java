@@ -4,15 +4,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.provider.ContactsContract;
-import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.StringBuilderPrinter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,10 +18,6 @@ import java.util.List;
 import ru.ivadimn.contactsbackup.R;
 import ru.ivadimn.contactsbackup.model.DataContact;
 import ru.ivadimn.contactsbackup.model.DataElement;
-import ru.ivadimn.contactsbackup.model.Element;
-import ru.ivadimn.contactsbackup.model.Email;
-import ru.ivadimn.contactsbackup.model.PersonName;
-import ru.ivadimn.contactsbackup.model.Phone;
 
 public class DataContactsActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 

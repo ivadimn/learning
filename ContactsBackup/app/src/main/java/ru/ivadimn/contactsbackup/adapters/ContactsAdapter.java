@@ -75,7 +75,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
                 image.setImageBitmap(avatar);
             }
             tvId.setText(String.valueOf(p.getContactId()));
-            tvName.setText(p.getData().getName());
+            tvName.setText(p.getData().getName().getDisplayName());
         }
 
     }

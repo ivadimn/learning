@@ -50,6 +50,7 @@
         android:layout_marginLeft="@dimen/edit_margin"
         android:layout_marginTop="@dimen/view_margin"
         android:background="@color/colorEditBackground"
+        android:inputType="phone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ed_family_id"
         />
@@ -69,6 +70,7 @@
         android:layout_marginLeft="@dimen/edit_margin"
         android:layout_marginTop="@dimen/view_margin"
         android:background="@color/colorEditBackground"
+        android:inputType="phone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ed_phone1_id"
         />
@@ -88,6 +90,7 @@
         android:layout_marginLeft="@dimen/edit_margin"
         android:layout_marginTop="@dimen/view_margin"
         android:background="@color/colorEditBackground"
+        android:inputType="textEmailAddress"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ed_phone2_id"
         />
@@ -107,6 +110,7 @@
         android:layout_marginLeft="@dimen/edit_margin"
         android:layout_marginTop="@dimen/view_margin"
         android:background="@color/colorEditBackground"
+        android:inputType="textEmailAddress"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ed_email1_id"
         />

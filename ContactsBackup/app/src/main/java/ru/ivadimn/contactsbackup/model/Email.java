@@ -45,4 +45,20 @@ public class Email extends DataElement {
     public String[] getStringValues() {
         return new String[] {address, emailName};
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEmailName() {
+        return emailName;
+    }
+
+    public void setEmailName(String emailName) {
+        this.emailName = emailName;
+    }
 }

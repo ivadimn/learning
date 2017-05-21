@@ -17,7 +17,7 @@ public class DataContact {
     public static final Uri DATA_CONTACT_URI = ContactsContract.Data.CONTENT_URI;
 
     public static final String _ID = ContactsContract.Data._ID;
-    public static final String CONTACT_ID = ContactsContract.Data.CONTACT_ID;
+    public static final String CONTACT_ID = ContactsContract.Contacts.Data.RAW_CONTACT_ID;
     public static final String MIME_TYPE = ContactsContract.Data.MIMETYPE;
     public static final String PHOTO_MIME_TYPE = ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE;
 
@@ -81,8 +81,8 @@ public class DataContact {
         return photo;
     }
 
-    public String getName() {
-        return name.getDisplayName();
+    public PersonName getName() {
+        return name;
     }
 
     /*public String[] getPhoneTypes() {

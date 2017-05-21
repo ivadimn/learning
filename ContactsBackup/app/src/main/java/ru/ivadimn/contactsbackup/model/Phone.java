@@ -34,7 +34,7 @@ public class Phone  extends DataElement {
 
     public String getStringType() {
         int resId = ContactsContract.CommonDataKinds.Phone.getTypeLabelResource(type);
-        return App.getInstance().getStringFromResource(resId);
+        return App.getInstance().getResources().getString(resId);
     }
 
     @Override
@@ -56,5 +56,29 @@ public class Phone  extends DataElement {
                 {number,
                  String.valueOf(type),
                  label};
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }
