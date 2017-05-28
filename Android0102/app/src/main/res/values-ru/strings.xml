@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Андроил0102</string>
+    <string name="is_predicate_true">Верно ли это высказывание?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+</resources>

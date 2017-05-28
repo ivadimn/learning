@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="ru.ivadimn.android0102.ui.MainActivity">
+
+    <TextView
+        android:id="@+id/tv_title_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/is_predicate_true"
+        android:textSize="@dimen/text_title_size"
+        android:textColor="@color/colorText"
+        android:layout_marginTop="@dimen/margin_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_size"
+        android:layout_margin="@dimen/margin_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        app:cardBackgroundColor="@color/colorWindow"
+        app:cardCornerRadius="@dimen/corner_radius"
+        app:cardElevation="@dimen/card_elevation"
+        >
+        <TextView
+            android:id="@+id/tv_content_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/text_content_size"
+            android:gravity="center"
+            />
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_yes_id"
+        android:tag="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_size"
+        android:text="@string/yes"
+        android:textColor="@color/colorText"
+        android:textAllCaps="false"
+        android:elevation="@dimen/card_elevation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        android:background="@drawable/button_selector"
+        android:onClick="onClick"
+        />
+    <Button
+        android:id="@+id/btn_no_id"
+        android:tag="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_size"
+        android:text="@string/no"
+        android:textColor="@color/colorText"
+        android:textAllCaps="false"
+        android:elevation="@dimen/card_elevation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        android:background="@drawable/button_selector"
+        android:onClick="onClick"
+        />
+
+
+
+
+</android.support.constraint.ConstraintLayout>

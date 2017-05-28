@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Android0102</string>
+    <string name="is_predicate_true">Is predicate true?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="predicate1">Некоторые пальмы являются ромашками.\n
+        Все ромашки громко кричат.\n Следовательно, все пальмы громко кричат.</string>
+    <string name="predicate2">Все бабочки плавают на спине.\n
+        Все журавли являются бабочками.\n
+        Следовательно, все журавли умеют плавать на спине.</string>
+    <string name="predicate3">Некоторые кроты являются ботинками.\n
+        Некоторые ботинки плохо танцуют.\n
+        Следовательно, некоторые кроты плохо танцуют.</string>
+    <string name="predicate4">Два созвездия никогда не бывают похожи друг на друга.\n
+        Окна и двери выглядят совершенно одинаково.\n
+        Следовательно, окна и двери не являются двумя созвездиями.</string>
+    <string-array name="perdicates">
+        <item>@string/predicate1</item>
+        <item>@string/predicate2</item>
+        <item>@string/predicate3</item>
+        <item>@string/predicate4</item>
+    </string-array>
+
+    <string-array name="values">
+        <item>false</item>
+        <item>true</item>
+        <item>false</item>
+        <item>true</item>
+    </string-array>
+
+    <string name="true_answer">Вы правильно ответили!</string>
+    <string name="false_answer">Вы неправильно ответили!</string>
+    <string name="finish">Работа завершена</string>
+</resources>
