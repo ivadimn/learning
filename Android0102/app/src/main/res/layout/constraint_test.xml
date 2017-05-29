@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Левый constraint view_1 привязан к левой стороне ConstraintLayout.
+    Верхний constraint view_1 — к верхней стороне ConstraintLayout.
+    Правый и нижний constraint не привязаны -->
+    <TextView
+        android:id="@+id/view_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="view_1"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Левый constraint у view_2 привязан к правой стороне view_1.
+           Constraint базовой линии view_2 — к базовой линии view_1.
+           Нижний и верхний constraint привязывать нельзя, так как есть привязка по базовой линии.
+           Правый constraint не привязан. -->
+    <TextView
+        android:id="@+id/view_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="view_2"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@id/view_1"
+        app:layout_constraintBaseline_toBaselineOf="@id/view_1"/>
+
+    <!-- Левый constraint view_3 привязан к правой стороне view_1.
+           Верхний constraint view_3 — к нижней стороне view_1.
+           Правый и нижний constraint не привязаны. -->
+    <TextView
+        android:id="@+id/view_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="view_3"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/view_1"
+        app:layout_constraintLeft_toRightOf="@id/view_1"/>
+
+    <!-- Левый constraint view_4 привязан к правой стороне view_2.
+           Нижний constraint view_4 — к нижней стороне view_2.
+           Правый и верхний constraint не привязаны. -->
+    <TextView
+        android:id="@+id/view_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="view_4"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/view_1"
+        app:layout_constraintLeft_toRightOf="@id/view_2"/>
+
+</android.support.constraint.ConstraintLayout>
