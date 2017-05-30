@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import ru.ivadimn.android0102.R;
 import ru.ivadimn.android0102.model.Predicate;
@@ -48,19 +50,51 @@ public class MainActivity extends AppCompatActivity {
         else
             Toast.makeText(tvContent.getContext(), R.string.false_answer, Toast.LENGTH_SHORT).show();
 
-        nextPredicate();
+         nextPredicate();
     }
 
     private void nextPredicate() {
         if (++currentIndex < predicates.size()) {
             String content = predicates.get(currentIndex).getContent();
-            tvContent.setText(content);
+            //попытка сделать смену текста с задержкой
+            new Timer().schedule(new ShowMessageOnTimer(content), 2000);
         }
         else {
             Toast.makeText(this, R.string.finish, Toast.LENGTH_SHORT).show();
-            this.finish();
+            //что бы не сразу Activity закрылась
+            new Timer().schedule(new FinishOnTimer(), 4000);
         }
     }
 
+
+    class ShowMessageOnTimer extends TimerTask {
+
+        private String message;
+        public ShowMessageOnTimer(String message) {
+            this.message = message;
+        }
+
+        @Override
+        public void run() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    tvContent.setText(message);
+                }
+            });
+        }
+    }
+
+    class FinishOnTimer extends TimerTask {
+        @Override
+        public void run() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                }
+            });
+        }
+    }
 
 }
