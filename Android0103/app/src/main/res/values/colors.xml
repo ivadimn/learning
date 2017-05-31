@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/blue900</color>
+    <color name="colorPrimaryDark">@color/blueA700</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorWindow">#fcf4c4</color>
+    <color name="colorBackground">@color/blue300</color>
+    <color name="colorText">#ffffff</color>
+
+    <color name="blue50">#e3f2fd</color>
+    <color name="blue100">#bbdefb</color>
+    <color name="blue200">#90caf9</color>
+    <color name="blue300">#64b5f6</color>
+    <color name="blue400">#42a5f5</color>
+    <color name="blue500">#2196f3</color>
+    <color name="blue600">#1e88e5</color>
+    <color name="blue700">#1976d2</color>
+    <color name="blue800">#1565c0</color>
+    <color name="blue900">#0d47a1</color>
+    <color name="blueA100">#82b1ff</color>
+    <color name="blueA200">#448aff</color>
+    <color name="blueA400">#2979ff</color>
+    <color name="blueA700">#2962ff</color>
+</resources>
