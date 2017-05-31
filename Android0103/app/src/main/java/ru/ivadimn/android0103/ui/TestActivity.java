@@ -1,5 +1,6 @@
 package ru.ivadimn.android0103.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,9 +17,13 @@ import ru.ivadimn.android0103.model.Predicate;
 
 public class TestActivity extends AppCompatActivity {
 
+    public static final String TOTAL_COUNT = "TOTAL_COUNT";
+    public static final String RIGHT_COUNT = "RIGHT_COUNT";
+
     private List<Predicate> predicates = new ArrayList<>();
     private TextView tvContent;
     private int currentIndex = 0;
+    private int rightCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +50,10 @@ public class TestActivity extends AppCompatActivity {
         boolean val = predicates.get(currentIndex).isRight();
         boolean tag = Boolean.valueOf((String) view.getTag());
 
-        if (val == tag)
+        if (val == tag) {
             Toast.makeText(tvContent.getContext(), R.string.true_answer, Toast.LENGTH_SHORT).show();
+            rightCount++;
+        }
         else
             Toast.makeText(tvContent.getContext(), R.string.false_answer, Toast.LENGTH_SHORT).show();
 
@@ -91,9 +98,16 @@ public class TestActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    finish();
+                    endTest();
                 }
             });
         }
+    }
+    private void endTest() {
+        Intent intent = new Intent();
+        intent.putExtra(TOTAL_COUNT, predicates.size());
+        intent.putExtra(RIGHT_COUNT, rightCount);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

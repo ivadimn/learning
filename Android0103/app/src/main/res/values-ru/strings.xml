@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Android0103</string>
+
+    <string name="email_adddress">Адрес электронной почты</string>
+    <string name="subject">Тема</string>
+    <string name="content">Содержание</string>
+    <string name="send">Отправить</string>
+
+    <string name="is_predicate_true">Верно ли высказывание?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+
+    <string name="pass_test">Пройти тест</string>
+    <string name="send_email">Послать сообщение</string>
+</resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="ru.ivadimn.android0103.ui.TestActivity">
+    tools:context="ru.ivadimn.android0103.temp.TestActivity">
 
     <TextView
         android:id="@+id/tv_title_id"

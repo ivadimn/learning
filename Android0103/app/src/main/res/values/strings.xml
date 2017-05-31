@@ -6,6 +6,9 @@
     <string name="content">Content</string>
     <string name="send">Send</string>
 
+    <string name="pass_test">Pass test</string>
+    <string name="send_email">Send email</string>
+
     <string name="is_predicate_true">Is predicate true?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
