@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ru.ivadimn.android0103.ui.PrivateActivity">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_person_name_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_size"
+        android:layout_marginRight="@dimen/margin_size"
+        android:layout_marginTop="@dimen/margin_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/margin_size"
+        android:layout_marginEnd="@dimen/margin_size">
+        <EditText
+            android:id="@+id/et_person_name_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:hint="@string/person_name"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_person_phone_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_size"
+        android:layout_marginRight="@dimen/margin_size"
+        android:layout_marginTop="@dimen/margin_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_person_name_id"
+        >
+        <EditText
+            android:id="@+id/et_person_phone_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="phone"
+            android:hint="@string/phone_number"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+   <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_person_email_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_size"
+        android:layout_marginRight="@dimen/margin_size"
+        android:layout_marginTop="@dimen/margin_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_person_phone_id"
+        >
+        <EditText
+            android:id="@+id/et_person_email_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email_adddress"
+
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_save_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_size"
+        android:padding="@dimen/padding_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/save"
+        android:textColor="@color/colorText"
+        android:background="@drawable/button_selector"
+        android:onClick="onClick"
+        />
+
+</android.support.constraint.ConstraintLayout>

@@ -5,6 +5,10 @@
     <string name="subject">Тема</string>
     <string name="content">Содержание</string>
     <string name="send">Отправить</string>
+    <string name="save">Сохранить</string>
+    <string name="person_name">Имя</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="close">Закрыть</string>
 
     <string name="is_predicate_true">Верно ли высказывание?</string>
     <string name="yes">Да</string>
@@ -12,5 +16,12 @@
 
     <string name="pass_test">Пройти тест</string>
     <string name="send_email">Послать сообщение</string>
+    <string name="private_activity">Закрытая активность</string>
+    <string name="start_check_activity">Запуск активности с проверкой</string>
+
     <string name="no_activity">Нет подходящей активности.</string>
+
+    <string name="text_check_dial">Проверка запуска звонилки</string>
+    <string name="action_dial_string">Строка для ACTION_DIAL</string>
+    <string name="right_string">Правильная строка: \"tel:2223366\"</string>
 </resources>
