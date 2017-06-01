@@ -50,7 +50,7 @@ public class EmailActivity extends Activity {
             startActivity(intent);
         }
         catch(ActivityNotFoundException ex) {
-            Toast.makeText(this, "Email клиент не установлен", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_activity, Toast.LENGTH_LONG).show();
         }
     }
 

@@ -8,6 +8,7 @@
 
     <string name="pass_test">Pass test</string>
     <string name="send_email">Send email</string>
+    <string name="start_check_activity">Start activity with check</string>
 
     <string name="is_predicate_true">Is predicate true?</string>
     <string name="yes">Yes</string>
@@ -41,4 +42,6 @@
     <string name="true_answer">Вы правильно ответили!</string>
     <string name="false_answer">Вы неправильно ответили!</string>
     <string name="finish">Работа завершена</string>
+
+    <string name="no_activity">There are no compatible activity.</string>
 </resources>

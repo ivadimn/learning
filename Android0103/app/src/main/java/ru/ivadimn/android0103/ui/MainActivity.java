@@ -1,6 +1,8 @@
 package ru.ivadimn.android0103.ui;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 sendEmail();
                 break;
             case R.id.btn_check_id:
+                checkActivity();
                 break;
         }
     }
@@ -39,6 +42,17 @@ public class MainActivity extends AppCompatActivity {
     private void sendEmail() {
         Intent intent = new Intent(this, EmailActivity.class);
         startActivity(intent);
+    }
+
+    private  void checkActivity() {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("8999215549"));
+        try {
+            startActivity(intent);
+        }
+        catch(ActivityNotFoundException ex) {
+            Toast.makeText(this, R.string.no_activity, Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
