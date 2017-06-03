@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Android0104</string>
+
+    <string name="calc">Калькулятор</string>
+    <string name="btn2">Btn 2</string>
+    <string name="btn3">Btn 3</string>
+
+    <string name="op_mult">*</string>
+    <string name="op_div">/</string>
+    <string name="op_plus">+</string>
+    <string name="op_minus">-</string>
+    <string name="equal">=</string>
+    <string name="clear">CLS</string>
 </resources>
