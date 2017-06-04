@@ -11,7 +11,7 @@ public class ProgressActivity extends AppCompatActivity {
 
     private static final String PROGRESS_VALUE = "PROGRESS_VALUE";
 
-    private final int MAX_COUNT = 10;
+    private final int MAX_COUNT = 20;
     private ProgressBar progressBar;
     private TextView tvProgress;
     private Handler handler;
@@ -60,7 +60,15 @@ public class ProgressActivity extends AppCompatActivity {
         public void run() {
             if (progressValue <  MAX_COUNT) {
                 setProgressValue(++progressValue);
-                handler.postDelayed(load, 300);
+                handler.postDelayed(load, 500);
+            }
+            else {
+                try {
+                    Thread.sleep(3000);
+                    finish();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     };

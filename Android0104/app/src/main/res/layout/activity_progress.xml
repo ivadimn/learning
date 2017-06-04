@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:progress="0"
-        android:max="10"
+        android:max="20"
         android:indeterminate="false"
         />
     <TextView

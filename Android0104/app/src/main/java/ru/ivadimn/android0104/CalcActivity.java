@@ -19,6 +19,7 @@ public class CalcActivity extends Activity {
     private static final String OPER_CLS = "CLS";
     private static final String EQUAL = "=";
     private static final String OPERATION = "OPERATION";
+    private static final String RESULT = "RESULT";
 
 
     private String operation = "";
@@ -40,6 +41,7 @@ public class CalcActivity extends Activity {
         if (savedInstanceState != null) {
             operation = savedInstanceState.getString(OPERATION);
             tvOper.setText(operation);
+            tvResult.setText(String.valueOf(savedInstanceState.getString(RESULT)));
         }
     }
 
@@ -62,12 +64,13 @@ public class CalcActivity extends Activity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(OPERATION, operation);
+        outState.putString(RESULT, tvResult.getText().toString());
     }
 
     private void showResult() {
         double op1;
         double op2;
-        double result = 0;
+        double result=0;
         try {
             op1 = Double.valueOf(etOp1.getText().toString());
             op2 = Double.valueOf(etOp2.getText().toString());
@@ -83,7 +86,7 @@ public class CalcActivity extends Activity {
                 break;
             case OPER_DIV:
                 if (op2 == 0)
-                    result = Double.NaN;
+                    result = Double.POSITIVE_INFINITY;
                 else
                     result = op1 / op2;
                 break;
