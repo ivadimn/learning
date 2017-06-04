@@ -16,9 +16,14 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.btn_calc_id :
-                Intent intent = new Intent(this, CalcActivity.class);
-                startActivity(intent);
+                Intent calcIntent = new Intent(this, CalcActivity.class);
+                startActivity(calcIntent);
                 break;
+            case R.id.btn2_id:
+                Intent progressIntent = new Intent(this, ProgressActivity.class);
+                startActivity(progressIntent);
+                break;
+
         }
     }
 

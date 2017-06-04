@@ -28,7 +28,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_calc_id"
         app:layout_constraintBottom_toTopOf="@+id/btn3_id"
-        android:text="@string/btn2"
+        android:text="@string/btn_progress_bar"
         android:onClick="onClick"
         />
 
