@@ -11,4 +11,6 @@
     <string name="op_minus">-</string>
     <string name="equal">=</string>
     <string name="clear">CLS</string>
+
+    <string name="multi_window">Multiwindow mode</string>
 </resources>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ru.ivadimn.android0104.MainActivity">
+    tools:context="ru.ivadimn.android0104.MainActivity"
+    android:id="@+id/main_activity_id">
 
     <Button
         android:id="@+id/btn_calc_id"
@@ -27,21 +28,17 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_calc_id"
-        app:layout_constraintBottom_toTopOf="@+id/btn3_id"
         android:text="@string/btn_progress_bar"
         android:onClick="onClick"
         />
 
-    <Button
-        android:id="@+id/btn3_id"
-        android:layout_width="0dp"
-        android:layout_margin="@dimen/margin_size"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/tv_multi_window_id"
+        android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn2_id"
-        android:text="@string/btn3"
-        android:onClick="onClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="multi window"
         />
 
 

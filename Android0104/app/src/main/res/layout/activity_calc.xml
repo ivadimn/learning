@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ru.ivadimn.android0104.CalcActivity">
+    tools:context="ru.ivadimn.android0104.CalcActivity"
+    android:id="@+id/calc_activity_id">
 
     <EditText
         android:id="@+id/et_op1_id"

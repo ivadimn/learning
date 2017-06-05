@@ -2,6 +2,8 @@ package ru.ivadimn.android0104;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +30,7 @@ public class CalcActivity extends Activity {
     private TextView tvResult;
     private TextView tvOper;
 
+    private ConstraintLayout constraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +41,37 @@ public class CalcActivity extends Activity {
         tvResult = (TextView) findViewById(R.id.tv_result_id);
         tvOper = (TextView) findViewById(R.id.tv_op_id);
 
+        constraintLayout = (ConstraintLayout) findViewById(R.id.calc_activity_id);
         if (savedInstanceState != null) {
             operation = savedInstanceState.getString(OPERATION);
             tvOper.setText(operation);
             tvResult.setText(String.valueOf(savedInstanceState.getString(RESULT)));
         }
+        if (isInMultiWindowMode() || isInPictureInPictureMode())
+            setActivityRes(Color.MAGENTA);
+    }
+
+    @Override
+    public void onMultiWindowModeChanged(boolean isInMultiWindowMode) {
+        super.onMultiWindowModeChanged(isInMultiWindowMode);
+        if (isInMultiWindowMode)
+            setActivityRes(Color.MAGENTA);
+        else
+            setActivityRes(Color.WHITE);
+    }
+
+    @Override
+    public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode);
+        if (isInPictureInPictureMode)
+            setActivityRes(Color.MAGENTA);
+        else
+            setActivityRes(Color.WHITE);
+    }
+
+
+    private void setActivityRes(int color) {
+        constraintLayout.setBackgroundColor(color);
     }
 
     public void onClick(View view) {
