@@ -52,6 +52,8 @@ public class DynamicActivity extends AppCompatActivity {
 
         LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(
                 matchParent, wrapContent);
+
+        lParams.setMargins(8, 8, 8, 8);
         TextView textView = new TextView(this);
 
         textView.setText(etText.getText().toString());
