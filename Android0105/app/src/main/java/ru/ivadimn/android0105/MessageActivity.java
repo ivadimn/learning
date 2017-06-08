@@ -13,6 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MessageActivity extends AppCompatActivity {
 
     private Button btnAdd;
@@ -20,9 +23,10 @@ public class MessageActivity extends AppCompatActivity {
     private LinearLayout layout;
 
     private LayoutInflater inflater;
-    final int wrapContent = LinearLayout.LayoutParams.WRAP_CONTENT;
-    int matchParent = LinearLayout.LayoutParams.MATCH_PARENT;
 
+    final int matchParent = LinearLayout.LayoutParams.MATCH_PARENT;
+
+    private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +55,25 @@ public class MessageActivity extends AppCompatActivity {
 
     public void onClick(View view) {
 
-        View child = inflater.inflate(R.layout.message_item, null);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(matchParent, 72);
-        Resources res = getResources();
+        TextView tvLogo;
+        TextView tvMessage;
+        TextView tvTime;
 
-        params.setMargins(8, 8, 8, 0);
+        View child = inflater.inflate(R.layout.message_item, null);
+        tvLogo = (TextView) child.findViewById(R.id.tv_logo_id);
+        tvMessage = (TextView) child.findViewById(R.id.tv_message_id);
+        tvTime = (TextView) child.findViewById(R.id.tv_time_id);
+
+        int height = (int) getResources().getDimension(R.dimen.message_item_size);
+        int marginSize = (int) getResources().getDimension(R.dimen.margin_size);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(matchParent, height);
+        params.setMargins(marginSize, marginSize, marginSize, 0);
         child.setLayoutParams(params);
+
+        String message = etText.getText().toString();
+        tvLogo.setText(message.substring(0, 1).toUpperCase());
+        tvMessage.setText(message);
+        tvTime.setText(format.format(new Date()));
         layout.addView(child);
     }
 }

@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_message_id:
                 startDynamicActivity(MessageActivity.class);
                 break;
+            case R.id.btn_grid_id:
+                startDynamicActivity(GridActivity.class);
+                break;
         }
     }
 

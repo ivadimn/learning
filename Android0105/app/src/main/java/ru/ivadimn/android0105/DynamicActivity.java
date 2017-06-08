@@ -52,10 +52,10 @@ public class DynamicActivity extends AppCompatActivity {
 
         LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(
                 matchParent, wrapContent);
-
-        lParams.setMargins(8, 8, 8, 8);
+        int marginSize = (int) getResources().getDimension(R.dimen.margin_size);
+        lParams.setMargins(marginSize, marginSize, marginSize, 0);
         TextView textView = new TextView(this);
-
+        textView.setTextSize(getResources().getDimension(R.dimen.text_title_size));
         textView.setText(etText.getText().toString());
         layout.addView(textView, lParams);
     }
