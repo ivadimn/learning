@@ -15,7 +15,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        Intent intent = new Intent(this, DynamicActivity.class);
+        switch(view.getId()) {
+            case R.id.btn_dynamic_id:
+                startDynamicActivity(DynamicActivity.class);
+                break;
+            case R.id.btn_message_id:
+                startDynamicActivity(MessageActivity.class);
+                break;
+        }
+    }
+
+    private void startDynamicActivity(Class c) {
+        Intent intent = new Intent(this, c);
         startActivity(intent);
     }
 }

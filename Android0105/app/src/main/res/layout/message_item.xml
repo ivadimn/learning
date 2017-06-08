@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/padding_size">
+    android:layout_height="@dimen/message_item_size"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/padding_size"
+
+    android:background="@color/colorMessageBackground"
+    >
 
     <TextView
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:background="#e7bd54"/>
+        android:id="@+id/tv_logo_id"
+        android:layout_width="@dimen/logo_size"
+        android:layout_height="@dimen/logo_size"
+        android:background="@color/colorTextBackground"
+        android:gravity="center"
+        android:textSize="@dimen/text_logo_size"
+        android:text="M"
+        />
+    <TextView
+        android:id="@+id/tv_message_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_size"
+        android:layout_toRightOf="@id/tv_logo_id"
+        android:textSize="@dimen/text_title_size"
+        android:textColor="@color/colorText"
+        android:text="Message"
+        />
+    <TextView
+        android:id="@+id/tv_time_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/time_text_size"
+        android:textColor="@color/colorText"
+        android:text="08.06.2017 08:56"
+        />
 
 </RelativeLayout>
