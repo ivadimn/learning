@@ -5,6 +5,7 @@
 
 
     <!-- размер фотографии-->
+    <dimen name="item_height">72dp</dimen>
     <dimen name="image_width">56dp</dimen>
     <dimen name="image_height">56dp</dimen>
     <dimen name="big_image_width">128dp</dimen>

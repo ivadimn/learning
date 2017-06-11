@@ -1,5 +1,7 @@
 package ru.ivadimn.android0106.model;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by vadim on 11.06.2017.
  */
@@ -12,6 +14,7 @@ public class Person {
     private String email;
     private String organization;
     private String hobbys;
+    private Bitmap photo;
 
     public Person() {
         //no-op
@@ -63,5 +66,13 @@ public class Person {
 
     public void setHobbys(String hobbys) {
         this.hobbys = hobbys;
+    }
+
+    public Bitmap getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Bitmap photo) {
+        this.photo = photo;
     }
 }
