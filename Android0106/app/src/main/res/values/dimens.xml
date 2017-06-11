@@ -1,0 +1,21 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <!-- размер фотографии-->
+    <dimen name="image_width">56dp</dimen>
+    <dimen name="image_height">56dp</dimen>
+    <dimen name="big_image_width">128dp</dimen>
+    <dimen name="big_image_height">128dp</dimen>
+
+    <!--размеры отступов и полей-->
+    <dimen name="view_margin">8dp</dimen>
+    <dimen name="view_padding">4dp</dimen>
+    <dimen name="edit_margin">96dp</dimen>
+
+    <dimen name="number_text_size">18dp</dimen>
+    <dimen name="number_type_text_size">12dp</dimen>
+
+</resources>
