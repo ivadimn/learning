@@ -12,19 +12,19 @@ public class Person {
     private String name;
     private String phone;
     private String email;
-    private String organization;
     private String hobbys;
     private Bitmap photo;
+
+    private boolean isDelete = false;
 
     public Person() {
         //no-op
     }
 
-    public Person(String name, String phone, String email, String organization, String hobbys) {
+    public Person(String name, String phone, String email, String hobbys) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.organization = organization;
         this.hobbys = hobbys;
     }
 
@@ -52,14 +52,6 @@ public class Person {
         this.email = email;
     }
 
-    public String getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(String organization) {
-        this.organization = organization;
-    }
-
     public String getHobbys() {
         return hobbys;
     }
@@ -74,5 +66,13 @@ public class Person {
 
     public void setPhoto(Bitmap photo) {
         this.photo = photo;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
     }
 }
