@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Android0107</string>
+
+    <string name="person_name">Name</string>
+    <string name="person_phone">Phone</string>
+    <string name="person_email">E-mail</string>
+    <string name="person_hobbys">Hobbys</string>
+
+    <string name="menu_item_edit">Edit</string>
+    <string name="menu_item_save">Save</string>
+    <string name="menu_item_back">Back</string>
+    <string name="menu_item_del">Delete</string>
 </resources>
