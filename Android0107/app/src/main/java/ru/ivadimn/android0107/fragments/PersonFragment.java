@@ -97,13 +97,15 @@ public class PersonFragment extends Fragment {
         phone = (EditText) v.findViewById(R.id.person_phone_id);
         email = (EditText) v.findViewById(R.id.person_email_id);
         hobbys = (EditText) v.findViewById(R.id.person_hobby_id);
+        photo.setImageResource(R.drawable.person_big);
     }
 
-    public void initData() {
+    public void initData(int m) {
         clearViews();
+        setEditEnable(false);
         Person p = listener.getSelectedPerson();
-        if (p == null) {
-            mode = ADD;
+        mode = m;
+        if (mode == ADD) {
             photo.setImageResource(R.drawable.person_big);
             setEditEnable(true);
             return;
@@ -130,6 +132,8 @@ public class PersonFragment extends Fragment {
     }
 
     public void setEditEnable(boolean enable) {
+        if (!enable)
+            clearViews();
         isEditPhoto = enable;
         name.setEnabled(enable);
         phone.setEnabled(enable);
@@ -161,7 +165,7 @@ public class PersonFragment extends Fragment {
         return p;
     }
 
-    private void clearViews() {
+    public void clearViews() {
         name.setText("");
         phone.setText("");
         email.setText("");

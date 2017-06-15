@@ -18,17 +18,19 @@ import ru.ivadimn.android0107.fragments.PersonListFragment;
 import ru.ivadimn.android0107.model.Person;
 import ru.ivadimn.android0107.model.Repository;
 
+
+/**
+ * Как то всё сложновато получилось, но в принципе работает
+ * знаний пока не хватает
+ */
 public class MainActivity extends AppCompatActivity implements PersonListFragment.OnSelectItemListener,
         PersonFragment.OnPersonFragmentListener {
-
-
     public static final int VIEW_LIST = 0;
     public static final int VIEW_PERSON = 1;
 
-
     private boolean  deleteMode = false;
     private boolean  editMode = false;
-    private int modeView = VIEW_LIST;
+    private int modeView;
 
     private int selectedIndex = -1;
     private boolean isTablet;
@@ -64,8 +66,6 @@ public class MainActivity extends AppCompatActivity implements PersonListFragmen
         else {
             initUIPhone();
         }
-
-
     }
 
     @Override
@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements PersonListFragmen
         itemSave = menu.findItem(R.id.item_save_id);
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -95,7 +94,12 @@ public class MainActivity extends AppCompatActivity implements PersonListFragmen
                 break;
             case R.id.item_back_id:
                 editMode = false;
-                viewPager.setCurrentItem(0, true);
+                if (!isTablet)
+                    viewPager.setCurrentItem(0, true);
+                else {
+                    modeView = VIEW_LIST;
+                    updateMenu();
+                }
                 break;
             case R.id.item_edit_id:
                 editMode = true;
@@ -120,21 +124,35 @@ public class MainActivity extends AppCompatActivity implements PersonListFragmen
     @Override
     public void onSelectItem(int position) {
         selectedIndex = position;
-        editMode = (selectedIndex < 0);
-        personFragment.initData();
+        editMode = false;
+        personFragment.initData(PersonFragment.VIEW);
         if (!isTablet)
             viewPager.setCurrentItem(1, true);
         else {
             modeView = VIEW_PERSON;
             updateMenu();
         }
-
     }
 
     @Override
     public void setDeleteMode(boolean mode) {
         deleteMode = true;
+        modeView = VIEW_LIST;
+        personFragment.setEditEnable(false);
         updateMenu();
+    }
+
+    @Override
+    public void onAddItem() {
+        selectedIndex = -1;
+        personFragment.initData(PersonFragment.ADD);
+        editMode = true;
+        if (!isTablet)
+            viewPager.setCurrentItem(1, true);
+        else {
+            modeView = VIEW_PERSON;
+            updateMenu();
+        }
     }
 
 
@@ -157,11 +175,29 @@ public class MainActivity extends AppCompatActivity implements PersonListFragmen
             personListFragment.deletePersons();
             deleteMode = false;
             selectedIndex = -1;
-            personFragment.initData();
-
+            personFragment.clearViews();
+            personFragment.setEditEnable(false);
+            modeView = VIEW_LIST;
+            updateMenu();
         }
     }
 
+    private void updatePerson() {
+        Person p = personFragment.getData();
+        if (selectedIndex < 0)
+            Repository.addPerson(p);
+        else
+            Repository.setPerson(selectedIndex, p);
+
+        personListFragment.updateList(true);
+        editMode = false;
+        if (!isTablet)
+            viewPager.setCurrentItem(0, true);
+        else {
+            modeView = VIEW_LIST;
+            updateMenu();
+        }
+    }
 
     private void updateMenu() {
         switch(modeView) {
@@ -184,30 +220,18 @@ public class MainActivity extends AppCompatActivity implements PersonListFragmen
     }
 
     private void updatePersonMenu() {
-        itemBack.setVisible(!isTablet);
+        if(!isTablet)
+            itemBack.setVisible(true);
+        else
+            itemBack.setVisible(editMode);
         itemEdit.setVisible(!editMode);
         itemSave.setVisible(editMode);
     }
 
-    private void updatePerson() {
-        Person p = personFragment.getData();
-        if (selectedIndex < 0)
-            Repository.addPerson(p);
-        else
-            Repository.setPerson(selectedIndex, p);
 
-        personListFragment.updateList(true);
-        editMode = false;
-        if (!isTablet)
-            viewPager.setCurrentItem(0, true);
-        else {
-            modeView = VIEW_LIST;
-            updateMenu();
-        }
-
-    }
 
     private void initUIPhone() {
+        modeView = VIEW_LIST;
         adapter = new FragmentPagerAdapter(getSupportFragmentManager());
 
         adapter.addFragment(personListFragment);
@@ -237,24 +261,11 @@ public class MainActivity extends AppCompatActivity implements PersonListFragmen
     }
 
     private void initUITablet() {
+        modeView = VIEW_LIST;
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.list_container, personListFragment, PersonListFragment.TAG)
                 .add(R.id.person_container, personFragment, personFragment.TAG)
                 .commit();
-        findViewById(R.id.list_container).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                modeView = VIEW_LIST;
-                updateMenu();
-            }
-        });
-        findViewById(R.id.person_container).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                modeView = VIEW_PERSON;
-                updateMenu();
-            }
-        });
     }
 
 }

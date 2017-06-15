@@ -41,6 +41,7 @@ public class PersonListFragment extends Fragment {
     public interface OnSelectItemListener {
         public void onSelectItem(int position);
         public void setDeleteMode(boolean mode);
+        public void onAddItem();
     }
 
     private OnSelectItemListener selectListener;
@@ -82,15 +83,12 @@ public class PersonListFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectListener.onSelectItem(-1);
+                selectListener.onAddItem();
             }
         });
         return view;
     }
-
-
-
-    //обработка событий адаптера
+   //обработка событий адаптера
     private PersonAdapter.PersonClickListener listener = new PersonAdapter.PersonClickListener() {
         @Override
         public void onClick(View view, int position) {
@@ -122,6 +120,9 @@ public class PersonListFragment extends Fragment {
     }
 
     public void cancelDelete() {
+        for (Person p : persons) {
+            p.setDelete(false);
+        }
         adapter.setDeleteMode(false);
         adapter.notifyItemRangeChanged(0, adapter.getItemCount());
         adapter.notifyDataSetChanged();
