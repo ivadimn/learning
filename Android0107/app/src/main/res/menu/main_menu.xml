@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <group android:id="@+id/group_id"
+    <group android:id="@+id/list_group_id"
         android:visible="false">
-        <item android:id="@+id/item_back_id"
-            android:title="@string/menu_item_back"
+        <item android:id="@+id/item_cancel_id"
+            android:title="@string/menu_item_cancel"
             app:showAsAction="always"
             />
         <item android:id="@+id/item_delete_id"
             android:title="@string/menu_item_del"
             app:showAsAction="always"
+            />
+    </group>
+    <group android:id="@+id/edit_group_id"
+        android:visible="false">
+        <item android:id="@+id/item_back_id"
+            android:title="@string/menu_item_back"
+            android:icon="@android:drawable/ic_input_delete"
+            app:showAsAction="always"
+            />
+        <item android:id="@+id/item_edit_id"
+            android:title="@string/menu_item_edit"
+            app:showAsAction="always"
+            />
+        <item android:id="@+id/item_save_id"
+            android:title="@string/menu_item_save"
+            app:showAsAction="always"
+            android:visible="false"
             />
     </group>
 </menu>

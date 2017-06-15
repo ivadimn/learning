@@ -21,6 +21,7 @@ import ru.ivadimn.android0107.App;
 import ru.ivadimn.android0107.R;
 import ru.ivadimn.android0107.adapters.PersonAdapter;
 import ru.ivadimn.android0107.model.Person;
+import ru.ivadimn.android0107.model.Repository;
 
 /**
  * Created by vadim on 14.06.2017.
@@ -28,11 +29,10 @@ import ru.ivadimn.android0107.model.Person;
 
 public class PersonListFragment extends Fragment {
 
-    private static final int PERSON_ADD = 1;
-    private static final int PERSON_VIEW = 2;
+    public static final String TAG = "LIST_PERSONS";
 
     private RecyclerView list;
-    private List<Person> persons = new ArrayList<>();
+    private List<Person> persons;
     private PersonAdapter adapter;
     private FloatingActionButton fab;
     private Menu menu;
@@ -40,6 +40,7 @@ public class PersonListFragment extends Fragment {
 
     public interface OnSelectItemListener {
         public void onSelectItem(int position);
+        public void setDeleteMode(boolean mode);
     }
 
     private OnSelectItemListener selectListener;
@@ -64,7 +65,7 @@ public class PersonListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        persons = App.getInstance().loadPersons();
+        persons = Repository.getPersons();
     }
 
     @Nullable
@@ -81,30 +82,13 @@ public class PersonListFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //addPerson();
+                selectListener.onSelectItem(-1);
             }
         });
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.main_menu, menu);
-        this.menu = menu;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.item_back_id:
-                //undoDelete();
-                break;
-            case R.id.item_delete_id:
-                //deletePersons();
-                break;
-        }
-        return true;
-    }
 
     //обработка событий адаптера
     private PersonAdapter.PersonClickListener listener = new PersonAdapter.PersonClickListener() {
@@ -115,11 +99,32 @@ public class PersonListFragment extends Fragment {
 
         @Override
         public void onLongClick(View view, int position) {
-            menu.setGroupVisible(R.id.group_id, true);
+            //menu.setGroupVisible(R.id.group_id, true);
             adapter.setDeleteMode(true);
             adapter.notifyItemRangeChanged(0, adapter.getItemCount());
+            selectListener.setDeleteMode(true);
         }
     };
 
+
+    public void deletePersons() {
+        List<Person> temp = new ArrayList<>(persons);
+        for (Person p : temp) {
+            if (p.isDelete()) {
+                persons.remove(p);
+            }
+        }
+        cancelDelete();
+    }
+
+    public void updateList(boolean dataonly) {
+        adapter.notifyDataSetChanged();
+    }
+
+    public void cancelDelete() {
+        adapter.setDeleteMode(false);
+        adapter.notifyItemRangeChanged(0, adapter.getItemCount());
+        adapter.notifyDataSetChanged();
+    }
 
 }

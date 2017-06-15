@@ -8,6 +8,10 @@
 
     <string name="menu_item_edit">Edit</string>
     <string name="menu_item_save">Save</string>
+    <string name="menu_item_cancel">Cancel</string>
     <string name="menu_item_back">Back</string>
     <string name="menu_item_del">Delete</string>
+
+    <string name="list">List persons</string>
+    <string name="person">Person</string>
 </resources>
