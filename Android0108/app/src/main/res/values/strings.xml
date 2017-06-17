@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Android0108</string>
+    <string name="drawers">Drawers</string>
+    <string name="planets">Planets</string>
+    <string name="other">Other</string>
+    <string name="anything">Anything</string>
+
+</resources>

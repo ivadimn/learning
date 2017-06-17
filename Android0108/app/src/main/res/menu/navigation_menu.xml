@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/main_group_id">
+        <item android:id="@+id/item_list_drawer_id"
+            android:title="@string/drawers"
+            android:icon="@android:drawable/ic_menu_slideshow"
+            />
+        <item android:id="@+id/item_list_planet_id"
+            android:title="@string/planets"
+            android:icon="@android:drawable/ic_menu_gallery"/>
+    </group>
+
+
+    <item android:id="@+id/menu_others_id"
+        android:title="@string/other">
+        <menu xmlns="http://schemas.android.com/apk/res-auto">
+            <item android:id="@+id/item_other_id"
+                android:title="@string/anything"
+                />
+        </menu>
+    </item>
+
+</menu>
