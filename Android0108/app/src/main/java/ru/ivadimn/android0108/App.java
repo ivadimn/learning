@@ -32,6 +32,12 @@ public class App extends Application {
     R.drawable.tropinin, R.drawable.venetsianov, R.drawable.bryullov,
     R.drawable.a_ivanov, R.drawable.fedotov};
 
+    private int[] plnets_imgs = {
+            R.drawable.a02mercury, R.drawable.a03venus, R.drawable.a04earth,
+            R.drawable.a05moon, R.drawable.a06mars, R.drawable.a07jupiter,
+            R.drawable.a08saturn
+    };
+
     public static final String PACKAGE = "ru.ivadimn.android0108";
     private static App instance;
     @Override
@@ -48,7 +54,8 @@ public class App extends Application {
         switch(type) {
             case Repository.DRAWERS:
                 return getDrawers();
-
+            case Repository.PLANETS:
+                return getPlanets();
             default:
                 return null;
         }
@@ -61,6 +68,15 @@ public class App extends Application {
         String[] descs = getResources().getStringArray(R.array.drawers_description);
         for (int i = 0; i < titles.length; i++) {
             list.add(new ObjectInfo(titles[i], descs[i], drawers_imgs[i]));
+        }
+        return list;
+    }
+    private List<ObjectInfo> getPlanets() {
+        List<ObjectInfo> list = new ArrayList<>();
+        String[] titles = getResources().getStringArray(R.array.planets_name);
+        String[] descs = getResources().getStringArray(R.array.planets_description);
+        for (int i = 0; i < titles.length; i++) {
+            list.add(new ObjectInfo(titles[i], descs[i], plnets_imgs[i]));
         }
         return list;
     }

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import ru.ivadimn.android0108.model.Repository;
 public class ChildListFragment extends Fragment {
 
     private static final String TYPE = "TYPE";
+    private static final String TAG = "ChildListFragment";
 
     public interface OnChildClickListener {
         public void onChildClick(View v, String description);
@@ -47,6 +49,19 @@ public class ChildListFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnChildClickListener)
+            childListener = (OnChildClickListener) context;
+        else if (getParentFragment() instanceof OnChildClickListener) {
+            childListener = (OnChildClickListener) getParentFragment();
+        }
+        else {
+            throw new RuntimeException("This context is not OnChildClickListener interface");
+        }
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
@@ -55,6 +70,20 @@ public class ChildListFragment extends Fragment {
             objects = Repository.getObjects(bundle.getString(TYPE));
         else
             objects = Repository.getObjects(Repository.DRAWERS);
+        Log.d(TAG, "OnCreate");
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "OnResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "OnPause");
     }
 
     @Nullable
@@ -83,7 +112,5 @@ public class ChildListFragment extends Fragment {
         }
     };
 
-    public void setChildListener(OnChildClickListener l) {
-        this.childListener = l;
-    }
+
 }

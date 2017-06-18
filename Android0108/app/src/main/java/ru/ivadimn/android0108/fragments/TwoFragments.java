@@ -17,14 +17,29 @@ import ru.ivadimn.android0108.model.Repository;
 
 public class TwoFragments extends NavigationFragment implements ChildListFragment.OnChildClickListener{
 
+    private static final String TYPE = "TYPE";
+
+
     private ChildListFragment listFragment;
     private ChildDetailFragment detailFragment;
+
+    public static TwoFragments getInstance(String type) {
+        TwoFragments tf = new TwoFragments();
+        Bundle bundle = new Bundle();
+        bundle.putString(TYPE, type);
+        tf.setArguments(bundle);
+        return tf;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        listFragment = ChildListFragment.getInstance(Repository.DRAWERS);
-        listFragment.setChildListener(this);
+        Bundle bundle = getArguments();
+        if (bundle != null)
+            listFragment = ChildListFragment.getInstance(bundle.getString(TYPE));
+        else
+            listFragment = ChildListFragment.getInstance(Repository.DRAWERS);
+
         detailFragment = ChildDetailFragment.getInstance();
     }
 

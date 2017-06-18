@@ -1,5 +1,6 @@
 package ru.ivadimn.android0108.model;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 
@@ -17,9 +18,7 @@ public class Repository {
     private static List<ObjectInfo> objects;
 
     public static List<ObjectInfo> getObjects(String type) {
-        if (objects == null) {
-            objects = App.getInctance().getObjects(DRAWERS);
-        }
+        objects = App.getInctance().getObjects(type);
         return objects;
     }
 

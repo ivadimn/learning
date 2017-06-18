@@ -14,7 +14,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import ru.ivadimn.android0108.fragments.NavigationFragment;
+import ru.ivadimn.android0108.fragments.OtherFragment;
 import ru.ivadimn.android0108.fragments.TwoFragments;
+import ru.ivadimn.android0108.model.Repository;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -75,10 +77,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        NavigationFragment fragment;
         switch(item.getItemId()) {
             case R.id.item_list_drawer_id:
-                NavigationFragment fragment = new TwoFragments();
+                fragment = TwoFragments.getInstance(Repository.DRAWERS);
                 fragment.setTitle(getString(R.string.drawers));
+                showFragment(fragment);
+                break;
+            case R.id.item_list_planet_id:
+                fragment = TwoFragments.getInstance(Repository.PLANETS);
+                fragment.setTitle(getString(R.string.planets));
+                showFragment(fragment);
+                break;
+            case R.id.item_other_id:
+                fragment = new OtherFragment();
+                fragment.setTitle(getString(R.string.other));
                 showFragment(fragment);
                 break;
         }
@@ -90,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void showFragment(NavigationFragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container_id, fragment)
-                .addToBackStack(fragment.getTitle())
+                .addToBackStack(null)
                 .commit();
     }
 }
