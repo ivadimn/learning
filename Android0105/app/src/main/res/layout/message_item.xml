@@ -4,7 +4,6 @@
     android:layout_height="@dimen/message_item_size"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="@dimen/padding_size"
-
     android:background="@color/colorMessageBackground"
     >
 

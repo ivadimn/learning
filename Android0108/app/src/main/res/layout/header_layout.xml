@@ -3,6 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="@dimen/header_height"
+    android:padding="16dp"
+    android:gravity="bottom"
     android:background="@android:color/holo_green_light">
 
     <TextView
