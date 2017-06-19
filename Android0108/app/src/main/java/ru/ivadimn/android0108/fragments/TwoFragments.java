@@ -22,6 +22,7 @@ public class TwoFragments extends NavigationFragment implements ChildListFragmen
 
     private ChildListFragment listFragment;
     private ChildDetailFragment detailFragment;
+    private String typeInfo;
 
     public static TwoFragments getInstance(String type) {
         TwoFragments tf = new TwoFragments();
@@ -41,20 +42,36 @@ public class TwoFragments extends NavigationFragment implements ChildListFragmen
             listFragment = ChildListFragment.getInstance(Repository.DRAWERS);
 
         detailFragment = ChildDetailFragment.getInstance();
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getChildFragmentManager().beginTransaction()
+                .add(R.id.list_container_id, listFragment)
+                .add(R.id.detail_container_id, detailFragment)
+                .commit();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.twofragment_layout, container, false);
-
-        getChildFragmentManager().beginTransaction()
-                .add(R.id.list_container_id, listFragment)
-                .add(R.id.detail_container_id, detailFragment)
-                .commit();
-
         return view;
     }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getChildFragmentManager().beginTransaction()
+                .remove(listFragment)
+                .remove(detailFragment)
+                .commit();
+    }
+
 
     @Override
     public void onChildClick(View v, String description) {

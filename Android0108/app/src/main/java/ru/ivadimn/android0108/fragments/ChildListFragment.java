@@ -40,6 +40,7 @@ public class ChildListFragment extends Fragment {
     private RecyclerView listView;
     private ObjectAdapter adapter;
 
+
     public static ChildListFragment getInstance(String type) {
         ChildListFragment fragment = new ChildListFragment();
         Bundle bundle = new Bundle();

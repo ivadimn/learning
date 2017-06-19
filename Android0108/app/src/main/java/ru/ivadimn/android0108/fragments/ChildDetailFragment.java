@@ -25,8 +25,7 @@ public class ChildDetailFragment extends Fragment {
     private static ChildDetailFragment instance;
 
     public static ChildDetailFragment getInstance() {
-        if (instance == null)
-         instance = new ChildDetailFragment();
+        instance = new ChildDetailFragment();
         return instance;
     }
 
