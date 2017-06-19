@@ -6,4 +6,6 @@
     <color name="colorTextBackground">#e7bd54</color>
     <color name="colorMessageBackground">#1071ef</color>
     <color name="colorText">#f5f2f2</color>
+    <color name="background_color">#235ab3</color>
+    <color name="card_background_color">#f2f1e4</color>
 </resources>

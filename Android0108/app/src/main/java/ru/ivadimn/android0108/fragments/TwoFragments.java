@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ru.ivadimn.android0108.R;
+import ru.ivadimn.android0108.model.ObjectInfo;
 import ru.ivadimn.android0108.model.Repository;
 
 /**
@@ -74,7 +75,7 @@ public class TwoFragments extends NavigationFragment implements ChildListFragmen
 
 
     @Override
-    public void onChildClick(View v, String description) {
-        detailFragment.setDescription(description);
+    public void onChildClick(View v, ObjectInfo object) {
+        detailFragment.setObject(object);
     }
 }

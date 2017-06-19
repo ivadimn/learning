@@ -18,11 +18,11 @@
             />
     </ScrollView>
     <Button
-        android:id="@+id/btn_edit_id"
+        android:id="@+id/btn_view_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_size"
         android:layout_weight="0.5"
-        android:text="@string/edit"
+        android:text="@string/view"
         />
 </LinearLayout>

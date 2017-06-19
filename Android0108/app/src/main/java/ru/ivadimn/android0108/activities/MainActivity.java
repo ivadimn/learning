@@ -1,4 +1,4 @@
-package ru.ivadimn.android0108;
+package ru.ivadimn.android0108.activities;
 
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import ru.ivadimn.android0108.R;
 import ru.ivadimn.android0108.fragments.NavigationFragment;
 import ru.ivadimn.android0108.fragments.OtherFragment;
 import ru.ivadimn.android0108.fragments.TwoFragments;

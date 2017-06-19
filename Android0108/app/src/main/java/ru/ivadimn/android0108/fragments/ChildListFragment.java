@@ -31,7 +31,7 @@ public class ChildListFragment extends Fragment {
     private static final String TAG = "ChildListFragment";
 
     public interface OnChildClickListener {
-        public void onChildClick(View v, String description);
+        public void onChildClick(View v, ObjectInfo object);
     }
 
     private OnChildClickListener childListener;
@@ -109,7 +109,7 @@ public class ChildListFragment extends Fragment {
         @Override
         public void onItemClick(View view, int position) {
             if (childListener != null)
-                childListener.onChildClick(view, objects.get(position).getDescription());
+                childListener.onChildClick(view, objects.get(position));
         }
     };
 
