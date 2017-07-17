@@ -2,8 +2,6 @@ package ru.ivadimn.contactsbackup.data;
 
 import android.content.ContentProviderOperation;
 import android.content.Context;
-import android.content.OperationApplicationException;
-import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.util.Log;
 
@@ -11,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.ivadimn.contactsbackup.model.DataContact;
-import ru.ivadimn.contactsbackup.model.DataElement;
 import ru.ivadimn.contactsbackup.model.Email;
 import ru.ivadimn.contactsbackup.model.PersonName;
 import ru.ivadimn.contactsbackup.model.Phone;
@@ -81,7 +78,7 @@ public class WriteProvider  {
     private void prepareName(ArrayList<ContentProviderOperation> op,
                              PersonName pname) {
         ContentProviderOperation.Builder builder = ContentProviderOperation.newInsert(DataContact.DATA_CONTACT_URI);
-        builder.withValueBackReference(DataContact.CONTACT_ID, 0);
+        builder.withValueBackReference(DataContact.RAW_CONTACT_ID, 0);
         builder.withValue(DataContact.MIME_TYPE, PersonName.MIME_TYPE);
         builder.withValue(PersonName.DISPLAY_NAME, pname.getDisplayName());
         builder.withValue(PersonName.GIVEN_NAME, pname.getGivenName());
@@ -94,7 +91,7 @@ public class WriteProvider  {
         ContentProviderOperation.Builder builder;
         for (Phone p : phones) {
             builder = ContentProviderOperation.newInsert(DataContact.DATA_CONTACT_URI);
-            builder.withValueBackReference(DataContact.CONTACT_ID, 0);
+            builder.withValueBackReference(DataContact.RAW_CONTACT_ID, 0);
             builder.withValue(DataContact.MIME_TYPE, Phone.MIME_TYPE);
             builder.withValue(Phone.NUMBER, p.getNumber());
             builder.withValue(Phone.TYPE, p.getType());
@@ -108,7 +105,7 @@ public class WriteProvider  {
         ContentProviderOperation.Builder builder;
         for (Email e : emails) {
             builder = ContentProviderOperation.newInsert(DataContact.DATA_CONTACT_URI);
-            builder.withValueBackReference(DataContact.CONTACT_ID, 0);
+            builder.withValueBackReference(DataContact.RAW_CONTACT_ID, 0);
             builder.withValue(DataContact.MIME_TYPE, Email.MIME_TYPE);
             builder.withValue(Email.ADDRESS, e.getAddress());
             builder.withValue(Email.EMAIL_NAME, e.getEmailName());

@@ -17,11 +17,9 @@ import java.util.List;
 
 import ru.ivadimn.contactsbackup.R;
 import ru.ivadimn.contactsbackup.adapters.ContactsAdapter;
-import ru.ivadimn.contactsbackup.adapters.RawContactsAdapter;
 import ru.ivadimn.contactsbackup.data.ReadProvider;
 import ru.ivadimn.contactsbackup.listeners.RVItemListener;
 import ru.ivadimn.contactsbackup.model.DataContact;
-import ru.ivadimn.contactsbackup.model.DataElement;
 import ru.ivadimn.contactsbackup.model.DataElementDisplay;
 import ru.ivadimn.contactsbackup.model.Email;
 import ru.ivadimn.contactsbackup.model.PersonName;
@@ -66,9 +64,9 @@ public class ContactListActivity extends AppCompatActivity
             String accountType = data.getString(data.getColumnIndex(RawContact.ACCOUT_TYPE));
             String customRingtone = data.getString(data.getColumnIndex(RawContact.CUSTOM_RINGTONE));
             RawContact rc = new RawContact(_id, contactId, accountName, accountType, customRingtone);
-            read.initCursor(null, DataContact.CONTACT_ID + " = ?", new String[] {String.valueOf(contactId)}, null);
+            read.initCursor(null, DataContact.RAW_CONTACT_ID + " = ?", new String[] {String.valueOf(contactId)}, null);
             //read.getData(rc.getData());
-            read.readData(rc.getData());
+            read.readData(rc);
             read.closeCursor();
             rawContacts.add(rc);
         }

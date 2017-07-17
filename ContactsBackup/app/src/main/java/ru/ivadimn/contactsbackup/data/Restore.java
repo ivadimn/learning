@@ -41,7 +41,7 @@ public class Restore {
             for (String key : keys) {
                 String val = e.getValue(key);
                 builder = ContentProviderOperation.newInsert(DataContact.DATA_CONTACT_URI);
-                builder.withValueBackReference(DataContact.CONTACT_ID, 0);
+                builder.withValueBackReference(DataContact.RAW_CONTACT_ID, 0);
                 builder.withValue(e.getMimeType(), val);
                 op.add(builder.build());
             }

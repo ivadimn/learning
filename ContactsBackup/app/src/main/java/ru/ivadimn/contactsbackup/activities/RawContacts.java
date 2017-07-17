@@ -71,7 +71,7 @@ public class RawContacts extends AppCompatActivity implements LoaderManager.Load
         @Override
         public void onClick(View view, int position) {
             Intent intent = new Intent(context, DataContactsActivity.class);
-            intent.putExtra(DataContact.CONTACT_ID, rawContacts.get(position).getContactId());
+            intent.putExtra(DataContact.RAW_CONTACT_ID, rawContacts.get(position).getContactId());
             startActivity(intent);
         }
 

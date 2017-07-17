@@ -32,7 +32,7 @@ public class DataContactsActivity extends AppCompatActivity implements LoaderMan
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        contactId = intent.getLongExtra(DataContact.CONTACT_ID, 0);
+        contactId = intent.getLongExtra(DataContact.RAW_CONTACT_ID, 0);
         setContentView(R.layout.activity_data_contacts);
         tvData = (TextView) findViewById(R.id.tv_data_id);
         image  = (ImageView) findViewById(R.id.img_photo_id);
@@ -43,7 +43,7 @@ public class DataContactsActivity extends AppCompatActivity implements LoaderMan
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Loader<Cursor> loader = new CursorLoader(this, DataContact.DATA_CONTACT_URI, null,
-                DataContact.CONTACT_ID + " = ?", new String[] {String.valueOf(contactId)}, null);
+                DataContact.RAW_CONTACT_ID + " = ?", new String[] {String.valueOf(contactId)}, null);
 
         return loader;
     }

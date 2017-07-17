@@ -1,9 +1,12 @@
 package ru.ivadimn.contactsbackup.model;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.ContactsContract;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by vadim on 14.05.2017.
@@ -20,6 +23,8 @@ public class RawContact {
     public static final String ACCOUT_TYPE = ContactsContract.RawContacts.ACCOUNT_TYPE;
     public static final String CUSTOM_RINGTONE = ContactsContract.RawContacts.CUSTOM_RINGTONE;
 
+
+
     public static final String[] PROJECTION = {
             _ID, CONTACT_ID, ACCOUT_NAME, ACCOUT_TYPE, CUSTOM_RINGTONE};
 
@@ -31,7 +36,7 @@ public class RawContact {
     public RawContact(String accountName, String accountType) {
         this.accountName = accountName;
         this.accountType = accountType;
-        data = new DataContact();
+
     }
 
     public RawContact(long _id, long contactId, String accountName, String accountType, String customRingtone) {
@@ -40,52 +45,60 @@ public class RawContact {
         this.accountName = accountName;
         this.accountType = accountType;
         this.customRingtone = customRingtone;
-        data = new DataContact(contactId);
+        this.contactId = contactId;
     }
 
-    private DataContact data;
+    private Bitmap photo;
+    private byte[] photoBytes;
 
-    public DataContact getData() {
-        return data;
+
+    private List<DataElement> elements = new ArrayList<>();
+
+    public void addElement(DataElement element) {
+        elements.add(element);
+    }
+
+    public List<DataElement> getElements(String mimeType) {
+        List<DataElement> list = new ArrayList<>();
+        for (DataElement e : elements) {
+            if (e.getMimeType().equals(mimeType))
+                list.add(e);
+        }
+        return list;
     }
 
     public long get_id() {
         return _id;
     }
-
-    public void set_id(long _id) {
-        this._id = _id;
-    }
-
     public long getContactId() {
         return contactId;
     }
-
-    public void setContactId(long contactId) {
-        this.contactId = contactId;
-    }
-
     public String getAccountName() {
         return accountName;
     }
-
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
-
     public String getAccountType() {
         return accountType;
     }
-
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
-    }
-
     public String getCustomRingtone() {
         return customRingtone;
     }
 
-    public void setCustomRingtone(String customRingtone) {
-        this.customRingtone = customRingtone;
+    public Bitmap getPhoto() {
+        /*ByteBuffer  buffer = ByteBuffer.allocate(photo.getByteCount());
+        photo.copyPixelsToBuffer(buffer);
+        byte[] b = buffer.array();*/
+        return photo;
     }
+    public void setPhoto(Bitmap photo) {
+        this.photo = photo;
+    }
+
+    public byte[] getPhotoBytes() {
+        return photoBytes;
+    }
+
+    public void setPhotoBytes(byte[] photoBytes) {
+        this.photoBytes = photoBytes;
+    }
+
 }

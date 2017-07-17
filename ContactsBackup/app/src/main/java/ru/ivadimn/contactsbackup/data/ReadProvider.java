@@ -13,6 +13,7 @@ import ru.ivadimn.contactsbackup.model.DataElement;
 import ru.ivadimn.contactsbackup.model.Email;
 import ru.ivadimn.contactsbackup.model.PersonName;
 import ru.ivadimn.contactsbackup.model.Phone;
+import ru.ivadimn.contactsbackup.model.RawContact;
 
 /**
  * Created by vadim on 20.05.2017.
@@ -65,25 +66,25 @@ public class ReadProvider {
         }
     }
 
-    public void readData(DataContact dataContact) {
+    public void readData(RawContact rw) {
         while(data.moveToNext()) {
             String itemType = data.getString(data.getColumnIndex(DataContact.MIME_TYPE));
             switch(itemType) {
                 case PersonName.MIME_TYPE:
-                    dataContact.setName(readPersonName());
+                    rw.addElement(readPersonName());
                     break;
                 case Phone.MIME_TYPE:
-                    dataContact.addPhone(readPhone());
+                    rw.addElement(readPhone());
                     break;
                 case Email.MIME_TYPE:
-                    dataContact.addEmail(readEmail());
+                    rw.addElement(readEmail());
                     break;
                 case DataContact.PHOTO_MIME_TYPE:
                     byte[] photo = readPhoto();
                     if (photo != null) {
                         Bitmap bmp = BitmapFactory.decodeByteArray(photo, 0, photo.length);
-                        dataContact.setPhoto(bmp);
-                        dataContact.setPhotoBytes(photo);
+                        rw.setPhoto(bmp);
+                        rw.setPhotoBytes(photo);
                     }
                     break;
             }

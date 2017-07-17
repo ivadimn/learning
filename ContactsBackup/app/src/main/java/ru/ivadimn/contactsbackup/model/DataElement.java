@@ -55,4 +55,5 @@ public abstract class DataElement {
     public abstract String getMimeType();
     public abstract String[] getFieldNames();
     public abstract String[] getStringValues();
+    public abstract  void generateTableValues();
 }
