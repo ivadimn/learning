@@ -5,13 +5,11 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 
 import ru.ivadimn.contactsbackup.model.DataContact;
 import ru.ivadimn.contactsbackup.model.DataElement;
 import ru.ivadimn.contactsbackup.model.Email;
-import ru.ivadimn.contactsbackup.model.PersonName;
+import ru.ivadimn.contactsbackup.model.data.PersonName;
 import ru.ivadimn.contactsbackup.model.Phone;
 import ru.ivadimn.contactsbackup.model.RawContact;
 

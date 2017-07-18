@@ -10,7 +10,7 @@ import java.util.List;
 
 import ru.ivadimn.contactsbackup.model.DataContact;
 import ru.ivadimn.contactsbackup.model.Email;
-import ru.ivadimn.contactsbackup.model.PersonName;
+import ru.ivadimn.contactsbackup.model.data.PersonName;
 import ru.ivadimn.contactsbackup.model.Phone;
 import ru.ivadimn.contactsbackup.model.RawContact;
 

@@ -23,8 +23,6 @@ public class RawContact {
     public static final String ACCOUT_TYPE = ContactsContract.RawContacts.ACCOUNT_TYPE;
     public static final String CUSTOM_RINGTONE = ContactsContract.RawContacts.CUSTOM_RINGTONE;
 
-
-
     public static final String[] PROJECTION = {
             _ID, CONTACT_ID, ACCOUT_NAME, ACCOUT_TYPE, CUSTOM_RINGTONE};
 
@@ -33,6 +31,7 @@ public class RawContact {
     private String accountName;
     private String accountType;
     private String customRingtone;
+
     public RawContact(String accountName, String accountType) {
         this.accountName = accountName;
         this.accountType = accountType;
@@ -58,7 +57,11 @@ public class RawContact {
         elements.add(element);
     }
 
-    public List<DataElement> getElements(String mimeType) {
+    public List<DataElement> getElements() {
+        return elements;
+    }
+    //получить элементы определённого типа (только телефоны или только emails)
+    public List<DataElement> getElementsByType(String mimeType) {
         List<DataElement> list = new ArrayList<>();
         for (DataElement e : elements) {
             if (e.getMimeType().equals(mimeType))
@@ -100,5 +103,6 @@ public class RawContact {
     public void setPhotoBytes(byte[] photoBytes) {
         this.photoBytes = photoBytes;
     }
+
 
 }

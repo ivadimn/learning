@@ -31,4 +31,7 @@
         <item>Name</item>
     </string-array>
 
+
+    <string name="contact_name">Contact name</string>
+
 </resources>

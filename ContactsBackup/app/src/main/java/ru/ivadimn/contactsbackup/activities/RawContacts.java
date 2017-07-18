@@ -20,6 +20,7 @@ import ru.ivadimn.contactsbackup.listeners.RVItemListener;
 import ru.ivadimn.contactsbackup.adapters.RawContactsAdapter;
 import ru.ivadimn.contactsbackup.model.DataContact;
 import ru.ivadimn.contactsbackup.model.RawContact;
+import ru.ivadimn.contactsbackup.model.data.DataContract;
 
 public class RawContacts extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -71,7 +72,7 @@ public class RawContacts extends AppCompatActivity implements LoaderManager.Load
         @Override
         public void onClick(View view, int position) {
             Intent intent = new Intent(context, DataContactsActivity.class);
-            intent.putExtra(DataContact.RAW_CONTACT_ID, rawContacts.get(position).getContactId());
+            intent.putExtra(DataContract.RAW_CONTACT_ID, rawContacts.get(position).getContactId());
             startActivity(intent);
         }
 

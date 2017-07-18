@@ -9,7 +9,7 @@ import android.widget.EditText;
 import ru.ivadimn.contactsbackup.R;
 import ru.ivadimn.contactsbackup.data.WriteProvider;
 import ru.ivadimn.contactsbackup.model.Email;
-import ru.ivadimn.contactsbackup.model.PersonName;
+import ru.ivadimn.contactsbackup.model.data.PersonName;
 import ru.ivadimn.contactsbackup.model.Phone;
 import ru.ivadimn.contactsbackup.model.RawContact;
 

@@ -18,6 +18,8 @@ import java.util.List;
 import ru.ivadimn.contactsbackup.R;
 import ru.ivadimn.contactsbackup.model.DataContact;
 import ru.ivadimn.contactsbackup.model.DataElement;
+import ru.ivadimn.contactsbackup.model.RawContact;
+import ru.ivadimn.contactsbackup.model.data.DataContract;
 
 public class DataContactsActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -26,13 +28,13 @@ public class DataContactsActivity extends AppCompatActivity implements LoaderMan
     private TextView tvData;
     private ImageView image;
     private long contactId;
-    private DataContact dataList = new DataContact();
+    private RawContact dataList = new RawContact();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        contactId = intent.getLongExtra(DataContact.RAW_CONTACT_ID, 0);
+        contactId = intent.getLongExtra(DataContract.RAW_CONTACT_ID, 0);
         setContentView(R.layout.activity_data_contacts);
         tvData = (TextView) findViewById(R.id.tv_data_id);
         image  = (ImageView) findViewById(R.id.img_photo_id);
@@ -42,8 +44,8 @@ public class DataContactsActivity extends AppCompatActivity implements LoaderMan
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        Loader<Cursor> loader = new CursorLoader(this, DataContact.DATA_CONTACT_URI, null,
-                DataContact.RAW_CONTACT_ID + " = ?", new String[] {String.valueOf(contactId)}, null);
+        Loader<Cursor> loader = new CursorLoader(this, DataContract.DATA_CONTACT_URI, null,
+                DataContract.RAW_CONTACT_ID + " = ?", new String[] {String.valueOf(contactId)}, null);
 
         return loader;
     }
@@ -55,7 +57,7 @@ public class DataContactsActivity extends AppCompatActivity implements LoaderMan
         sb.append("Типы данных: \n");
 
         while(data.moveToNext()) {
-            String itemType = data.getString(data.getColumnIndex(DataContact.MIME_TYPE));
+            String itemType = data.getString(data.getColumnIndex(DataContract.MIME_TYPE));
             DataElement e = getDataElement(data, itemType);
             if (e != null)
                 dataList.addElement(e);
@@ -67,7 +69,7 @@ public class DataContactsActivity extends AppCompatActivity implements LoaderMan
             image.setImageBitmap(bmp);
         else
             image.setImageResource(android.R.drawable.picture_frame);
-        List<DataElement> list = dataList.getDataElements();
+        List<DataElement> list = dataList.getElements();
         for (DataElement e : list) {
             List<String> fs = e.getKeyList();
             for (String s : fs) {
@@ -97,7 +99,7 @@ public class DataContactsActivity extends AppCompatActivity implements LoaderMan
 
     public Bitmap getPhoto(Cursor data, String itemType) {
         Bitmap bmp = null;
-        byte[] photo = data.getBlob(data.getColumnIndex(DataContact.PHOTO_ID));
+        byte[] photo = data.getBlob(data.getColumnIndex(DataContract.PHOTO_ID));
         if (photo != null) {
             bmp = BitmapFactory.decodeByteArray(photo, 0, photo.length);
             dataList.setPhoto(bmp);

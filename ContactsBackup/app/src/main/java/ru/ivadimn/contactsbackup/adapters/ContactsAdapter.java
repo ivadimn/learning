@@ -67,7 +67,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         }
 
         public void bind(RawContact p) {
-            Bitmap avatar = p.getData().getPhoto();
+            Bitmap avatar = p.getPhoto();
             if ( avatar == null) {
                 image.setImageResource(R.drawable.ic_mood_black_24dp);
             }
