@@ -105,11 +105,11 @@ public class ReadProvider {
     }
 
     public PersonName readPersonName() {
-        return new PersonName(
-                data.getString(data.getColumnIndex(PersonName.DISPLAY_NAME)),
+        return new PersonName();
+                /*data.getString(data.getColumnIndex(PersonName.DISPLAY_NAME)),
                 data.getString(data.getColumnIndex(PersonName.GIVEN_NAME)),
                 data.getString(data.getColumnIndex(PersonName.FAMILY_NAME))
-        );
+        );*/
     }
     private DataElement getDataElement(String itemType) {
         DataElement de = DataElement.createElement(itemType);

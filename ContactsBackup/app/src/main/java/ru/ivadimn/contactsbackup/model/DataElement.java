@@ -1,5 +1,7 @@
 package ru.ivadimn.contactsbackup.model;
 
+import android.util.SparseIntArray;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +41,10 @@ public abstract class DataElement {
         return values.get(key);
     }
 
+    public List<String> getValues() {
+        return new ArrayList<>(values.values());
+    }
+
     public void setValue(String key, String value) {
         if (values.containsKey(key)) {
             values.replace(key, value);
@@ -54,5 +60,15 @@ public abstract class DataElement {
 
     public abstract String getDescription(String key);
     public abstract String[] getFieldNames();
+
+
+    public static DataElement createElement(String mimeType) {
+        switch(mimeType) {
+            case PersonName.MIME_TYPE:
+                return new PersonName();
+            default:
+                return null;
+        }
+    }
 
 }

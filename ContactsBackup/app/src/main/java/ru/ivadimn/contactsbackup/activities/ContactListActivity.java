@@ -3,6 +3,7 @@ package ru.ivadimn.contactsbackup.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.provider.ContactsContract;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -20,6 +21,7 @@ import ru.ivadimn.contactsbackup.adapters.ContactsAdapter;
 import ru.ivadimn.contactsbackup.data.ReadProvider;
 import ru.ivadimn.contactsbackup.listeners.RVItemListener;
 import ru.ivadimn.contactsbackup.model.DataContact;
+import ru.ivadimn.contactsbackup.model.DataElement;
 import ru.ivadimn.contactsbackup.model.DataElementDisplay;
 import ru.ivadimn.contactsbackup.model.Email;
 import ru.ivadimn.contactsbackup.model.data.DataContract;
@@ -57,7 +59,7 @@ public class ContactListActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        ReadProvider read = new ReadProvider(this, RawContact.DATA_CONTACT_URI);
+        ReadProvider read = new ReadProvider(this, DataContract.DATA_CONTACT_URI);
         while(data.moveToNext()) {
             int _id = data.getInt(data.getColumnIndex(RawContact._ID));
             int contactId = data.getInt(data.getColumnIndex(RawContact.CONTACT_ID));
@@ -101,14 +103,10 @@ public class ContactListActivity extends AppCompatActivity
 
     private ArrayList<DataElementDisplay> getDisplayElements(RawContact rw) {
         ArrayList<DataElementDisplay> list = new ArrayList<>();
-       /* List<Phone> ps = rw.getData().getPhones();
-        for (Phone p : ps) {
-            list.add(new DataElementDisplay(Phone.MIME_TYPE, p.getStringValues()));
+        List<DataElement> ps = rw.getElementsByType(Phone.MIME_TYPE);
+        for (DataElement p : ps) {
+            list.add(new DataElementDisplay(Phone.MIME_TYPE, (String[]) p.getValues().toArray()));
         }
-        List<Email> es = rw.getData().getEmails();
-        for (Email e : es ) {
-            list.add(new DataElementDisplay(Email.MIME_TYPE, e.getStringValues()));
-        }*/
         return list;
     }
 

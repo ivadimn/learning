@@ -50,13 +50,7 @@ public class Phone  extends DataElement {
         return new String[] {NUMBER, TYPE, LABEL};
     }
 
-    @Override
-    public String[] getStringValues() {
-        return new String[]
-                {number,
-                 String.valueOf(type),
-                 label};
-    }
+
 
     public String getNumber() {
         return number;

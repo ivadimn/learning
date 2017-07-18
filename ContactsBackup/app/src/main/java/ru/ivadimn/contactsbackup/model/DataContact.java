@@ -58,7 +58,7 @@ public class DataContact {
     private Bitmap photo;
     private byte[] photoBytes;
 
-    private PersonName name;
+
     private List<Phone> phones = new ArrayList<>();
     private List<Email> emails = new ArrayList<>();
 
@@ -70,9 +70,7 @@ public class DataContact {
         emails.add(email);
     }
 
-    public void setName(PersonName name) {
-        this.name = name;
-    }
+
 
     public Bitmap getPhoto() {
         /*ByteBuffer  buffer = ByteBuffer.allocate(photo.getByteCount());
@@ -81,18 +79,6 @@ public class DataContact {
         return photo;
     }
 
-    public PersonName getName() {
-        return name;
-    }
-
-    /*public String[] getPhoneTypes() {
-        List<String> list = new ArrayList<>();
-        for (DataElement de : dataList) {
-            if (de.getMimeType() == Phone.MIME_TYPE )
-                list.add(de.getValue(Phone.TYPE));
-        }
-        return (String[]) list.toArray();
-    }*/
 
     public List<Phone> getPhones() {
         return phones;

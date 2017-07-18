@@ -42,11 +42,16 @@ public class RestoreActivity extends AppCompatActivity {
         RawContact rw = new RawContact(null, null);
         String displayName = txtGiven.getText().toString() + " " +
                 txtFamily.getText().toString();
-        rw.getData().setName(new PersonName(displayName, txtGiven.getText().toString(), txtFamily.getText().toString()));
-        rw.getData().addPhone(new Phone(txtPhone1.getText().toString(), "label1", 2));
+        PersonName p = new PersonName();
+        p.addValue(PersonName.DISPLAY_NAME, displayName);
+        p.addValue(PersonName.GIVEN_NAME,txtGiven.getText().toString());
+        p.addValue(PersonName.FAMILY_NAME,txtFamily.getText().toString());
+        rw.addElement(p);
+
+        /*rw.getData().addPhone(new Phone(txtPhone1.getText().toString(), "label1", 2));
         rw.getData().addPhone(new Phone(txtPhone2.getText().toString(), "label2", 2));
         rw.getData().addEmail(new Email(txtEmail1.getText().toString(), "email name 1"));
-        rw.getData().addEmail(new Email(txtEmail2.getText().toString(), "email name 2"));
+        rw.getData().addEmail(new Email(txtEmail2.getText().toString(), "email name 2"));*/
         WriteProvider wp = new WriteProvider(this);
         wp.writeData(rw);
         //wp.wd();

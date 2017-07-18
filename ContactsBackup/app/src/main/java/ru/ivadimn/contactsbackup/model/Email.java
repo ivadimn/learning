@@ -41,11 +41,6 @@ public class Email extends DataElement {
         return new String[] {ADDRESS, EMAIL_NAME};
     }
 
-    @Override
-    public String[] getStringValues() {
-        return new String[] {address, emailName};
-    }
-
     public String getAddress() {
         return address;
     }

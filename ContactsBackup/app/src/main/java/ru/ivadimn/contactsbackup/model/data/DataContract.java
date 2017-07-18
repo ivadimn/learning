@@ -14,6 +14,8 @@ public class DataContract  {
     public static final String RAW_CONTACT_ID = ContactsContract.Contacts.Data.RAW_CONTACT_ID;
     public static final String MIME_TYPE = ContactsContract.Data.MIMETYPE;
     public static final String PHOTO_MIME_TYPE = ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE;
+    //наименование столбцов photo
+    public static final String PHOTO_ID = ContactsContract.CommonDataKinds.Photo.PHOTO;
 
     //эти типы данных на развитие
     public static final String ORGANIZATION_TYPE = ContactsContract.CommonDataKinds.Organization.CONTENT_ITEM_TYPE;
