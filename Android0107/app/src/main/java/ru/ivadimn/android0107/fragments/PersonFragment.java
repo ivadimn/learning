@@ -126,9 +126,13 @@ public class PersonFragment extends Fragment {
 
 
     private void getPhoto() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //intent.putExtra(MediaStore.EXTRA_OUTPUT, )
+        //startActivityForResult(intent, REQUEST_PHOTO);
+        Intent intent = new Intent();
         intent.setType("image/*");
-        startActivityForResult(intent, REQUEST_PHOTO);
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_PHOTO);
     }
 
     public void setEditEnable(boolean enable) {
@@ -144,11 +148,14 @@ public class PersonFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == REQUEST_PHOTO) {
+            //Bundle bundle = data.getExtras();
             Uri uri = data.getData();
             try {
+
                 bmpPhoto = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+                //bmpPhoto = (Bitmap) bundle.get("data");
                 photo.setImageBitmap(bmpPhoto);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();;
             }
         }
