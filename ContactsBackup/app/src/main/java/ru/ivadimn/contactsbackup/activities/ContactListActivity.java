@@ -20,6 +20,7 @@ import ru.ivadimn.contactsbackup.R;
 import ru.ivadimn.contactsbackup.adapters.ContactsAdapter;
 import ru.ivadimn.contactsbackup.data.ReadProvider;
 import ru.ivadimn.contactsbackup.listeners.RVItemListener;
+import ru.ivadimn.contactsbackup.model.Contract;
 import ru.ivadimn.contactsbackup.model.DataContact;
 import ru.ivadimn.contactsbackup.model.DataElement;
 import ru.ivadimn.contactsbackup.model.DataElementDisplay;
@@ -52,8 +53,8 @@ public class ContactListActivity extends AppCompatActivity
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        Loader<Cursor> loader = new CursorLoader(getBaseContext(), RawContact.RAW_CONTACT_URI,
-                RawContact.PROJECTION, null, null, RawContact.CONTACT_ID);
+        Loader<Cursor> loader = new CursorLoader(getBaseContext(), Contract.Raw.CONTENT_URI,
+                Contract.Raw.PROJECTION, null, null, Contract.Raw.CONTACT_ID);
         return loader;
     }
 
@@ -61,11 +62,11 @@ public class ContactListActivity extends AppCompatActivity
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         ReadProvider read = new ReadProvider(this, DataContract.DATA_CONTACT_URI);
         while(data.moveToNext()) {
-            int _id = data.getInt(data.getColumnIndex(RawContact._ID));
-            int contactId = data.getInt(data.getColumnIndex(RawContact.CONTACT_ID));
-            String accountName = data.getString(data.getColumnIndex(RawContact.ACCOUT_NAME));
-            String accountType = data.getString(data.getColumnIndex(RawContact.ACCOUT_TYPE));
-            String customRingtone = data.getString(data.getColumnIndex(RawContact.CUSTOM_RINGTONE));
+            int _id = data.getInt(data.getColumnIndex(Contract.Raw._ID));
+            int contactId = data.getInt(data.getColumnIndex(Contract.Raw.CONTACT_ID));
+            String accountName = data.getString(data.getColumnIndex(Contract.Raw.ACCOUT_NAME));
+            String accountType = data.getString(data.getColumnIndex(Contract.Raw.ACCOUT_TYPE));
+            String customRingtone = data.getString(data.getColumnIndex(Contract.Raw.CUSTOM_RINGTONE));
             RawContact rc = new RawContact(_id, contactId, accountName, accountType, customRingtone);
             read.initCursor(null, DataContract.RAW_CONTACT_ID + " = ?", new String[] {String.valueOf(contactId)}, null);
             //read.getData(rc.getData());

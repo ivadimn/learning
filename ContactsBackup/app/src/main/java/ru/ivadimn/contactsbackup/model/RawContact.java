@@ -15,16 +15,7 @@ import java.util.List;
 public class RawContact {
 
     public static final int LOADER_ID = 1;
-    //таблица и поля
-    public static final Uri RAW_CONTACT_URI = ContactsContract.RawContacts.CONTENT_URI;
-    public static final String _ID = ContactsContract.RawContacts._ID;
-    public static final String CONTACT_ID = ContactsContract.RawContacts.CONTACT_ID;
-    public static final String ACCOUT_NAME = ContactsContract.RawContacts.ACCOUNT_NAME;
-    public static final String ACCOUT_TYPE = ContactsContract.RawContacts.ACCOUNT_TYPE;
-    public static final String CUSTOM_RINGTONE = ContactsContract.RawContacts.CUSTOM_RINGTONE;
 
-    public static final String[] PROJECTION = {
-            _ID, CONTACT_ID, ACCOUT_NAME, ACCOUT_TYPE, CUSTOM_RINGTONE};
 
     private long _id;
     private long contactId;

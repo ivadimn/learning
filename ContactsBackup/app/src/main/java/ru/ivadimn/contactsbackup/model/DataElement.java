@@ -47,7 +47,7 @@ public abstract class DataElement {
 
     public void setValue(String key, String value) {
         if (values.containsKey(key)) {
-            values.replace(key, value);
+            values.put(key, value);
         }
         else
             values.put(key, value);
