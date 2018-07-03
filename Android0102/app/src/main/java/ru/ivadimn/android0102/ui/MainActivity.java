@@ -1,6 +1,6 @@
 package ru.ivadimn.android0102.ui;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -14,7 +14,7 @@ import java.util.TimerTask;
 import ru.ivadimn.android0102.R;
 import ru.ivadimn.android0102.model.Predicate;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private List<Predicate> predicates = new ArrayList<>();
     private TextView tvContent;
